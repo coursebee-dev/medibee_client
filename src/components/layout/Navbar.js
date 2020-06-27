@@ -8,7 +8,7 @@ import logo from '../../images/logo.png';
 const LinkStyled = styled(Link)`
     color: black;
 	:hover {
-        background-color: #fb8c00;
+        background-color: #eb4034;
 		color: white;
 	}
 `
@@ -55,7 +55,7 @@ class Navbar extends Component {
                                 <li><LinkStyled to="/training">Training</LinkStyled></li>
                                 {this.props.auth.isAuthenticated ? <li><UserIcon /></li> :
                                     <li>
-                                        <Link className="teal darken-1" to="/mentor">
+                                        <Link className="blue darken-1" to="/mentor">
                                             Mentors Here!
                                         </Link>
                                     </li>

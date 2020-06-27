@@ -8,7 +8,7 @@ import logo from '../../images/logo.png';
 const LinkStyled = styled(Link)`
 	color: black;
 	:hover {
-		color: #ef6c00;
+		color: #eb4034;
 	}
 `
 

@@ -90,7 +90,7 @@ class Register extends Component {
                                 <b>Register</b> below
                             </h4>
                             <p className="grey-text text-darken-1">
-                                Already have an account? <Link className="orange-text text-darken-1" to="/mentor/login">Log in</Link>
+                                Already have an account? <Link className="red-text text-darken-1" to="/mentor/login">Log in</Link>
                             </p>
                         </div>
                         <form noValidate onSubmit={this.onSubmit}>
@@ -217,7 +217,7 @@ class Register extends Component {
                                             marginTop: "1rem"
                                         }}
                                         type="submit"
-                                        className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                                        className="btn btn-large waves-effect waves-light hoverable red darken-1"
                                     >
                                         Sign up
                                 </button>
