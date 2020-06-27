@@ -50,10 +50,10 @@ class App extends Component {
 
   render() {
     const seo = {
-      title: "Coursebee",
+      title: "Medibee",
       description:
-        "Coursebee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.",
-      url: "https://coursebee.com/",
+        "Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.",
+      url: "https://medibee.com.bd/",
       image: ""
     };
     return (
