@@ -29,7 +29,7 @@ class Footer extends Component {
                 </div>
                 <div className="footer-copyright">
                     <div style={{ width: "100%" }} className="container">
-                        <LinkStyled to="/" ><img style={{ height: "60px" }} src={logo} alt="COURSEBEE" /></LinkStyled>
+                        <LinkStyled to="/" ><img style={{ height: "60px" }} src={logo} alt="MEDIBEE" /></LinkStyled>
                         <div style={{ lineHeight: "60px" }} className="right black-text">© Kernel Foundation</div>
                     </div>
                 </div>

@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet';
 export class Course extends Component {
     render() {
         const seo = {
-            title: "Coursebee : Course",
+            title: "MEDIBEE : Course",
             description:
                 "Courses from top-notch mentors are coming soon.",
-            url: "https://coursebee.com/course/",
+            url: "https://medibee.com.bd/course/",
             image: ""
         };
         return (

@@ -79,7 +79,7 @@ class ScheduleClass extends Component {
             <div className="container">
                 <div style={{ marginTop: "8rem", marginBottom: "8rem" }} className="row">
                     <div className="col s8 offset-s2">
-                        <Link to="/mentor/dashboard" className="btn-flat waves-effect orange">
+                        <Link to="/mentor/dashboard" className="btn-flat waves-effect red">
                             <i className="material-icons left">keyboard_backspace</i>Go Back
                         </Link>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -188,7 +188,7 @@ class ScheduleClass extends Component {
                                         marginTop: "1rem"
                                     }}
                                     type="submit"
-                                    className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                                    className="btn btn-large waves-effect waves-light hoverable blue darken-1"
                                 >
                                     Schedule
                                 </button>

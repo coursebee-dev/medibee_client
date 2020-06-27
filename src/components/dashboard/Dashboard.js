@@ -23,13 +23,13 @@ class Dashboard extends Component {
               <h4>
                 <b>Hello, </b> {user.name.split(" ")[0]}
                 <p className="flow-text grey-text text-darken-1">
-                  Thank you for signing in to COURSEBEE. We are continuously working to make this a better platform.
+                  Thank you for signing in to MEDIBEE. We are continuously working to make this a better platform.
                   <br /><br />If you want to join our team send us a message in our{" "}
-                  <a href="https://www.facebook.com/coursebee.live" target="_blank" rel="noopener noreferrer">facebook page</a>.
+                  <a href="https://www.facebook.com/medibee.com.bd" target="_blank" rel="noopener noreferrer">facebook page</a>.
                 </p>
 
               </h4>
-              <Link to="/liveclass" className="btn-flat waves-effect orange darken-1">
+              <Link to="/liveclass" className="btn-flat waves-effect red darken-1">
                 View All Live Classes
                 <i className="material-icons left">arrow_forward</i>
               </Link>
@@ -44,7 +44,7 @@ class Dashboard extends Component {
                   marginTop: "1rem"
                 }}
                 onClick={this.onLogoutClick}
-                className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                className="btn btn-large waves-effect waves-light hoverable blue darken-1"
               >
                 Logout
               </button>

@@ -48,16 +48,16 @@ class MyLiveClass extends Component {
     }
     render() {
         const seo = {
-            title: "Coursebee : Live Classrom",
+            title: "Medibee : Live Classrom",
             description:
                 "Interactive live classes are coming soon.",
-            url: "https://coursebee.com/liveClassroom/",
+            url: "https://medibee.com.bd/liveClassroom/",
             image: ""
         };
         const myLiveClasses = this.state.myLiveClasses.map(liveClass => (
             <li className="collection-item" key={liveClass._id}>
                 <p className="secondary-content">
-                    <button value={liveClass._id} onClick={this.onJoinClick} className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">Join Class</button>
+                    <button value={liveClass._id} onClick={this.onJoinClick} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Join Class</button>
                 </p>
                 <h6>Topic : {liveClass.topic}</h6>
                 <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
