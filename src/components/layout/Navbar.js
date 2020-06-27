@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import UserIcon from "../userIcon/UserIcon"
 import styled from 'styled-components';
-import logo from '../../images/logo.png';
+import logo from '../../images/medibee.png';
 const LinkStyled = styled(Link)`
     color: black;
 	:hover {
