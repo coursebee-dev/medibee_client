@@ -3,6 +3,6 @@
 
 // (
 //     new Sitemap(router)
-//         .build('https://www.coursebee.com')
+//         .build('https://www.medibee.com.bd')
 //         .save('./sitemap.xml')
 // );

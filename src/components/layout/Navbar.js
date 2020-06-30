@@ -8,7 +8,7 @@ import logo from '../../images/medibee.png';
 const LinkStyled = styled(Link)`
     color: black;
 	:hover {
-        background-color: #fb8c00;
+        background-color: #eb4034;
 		color: white;
 	}
 `
@@ -23,7 +23,7 @@ class Navbar extends Component {
         return (
             <header className="no-padding">
                 <ul className="sidenav" id="mobile-demo">
-                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="COURSEBEE" /></LinkBrand></li>
+                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="MEDIBEE" /></LinkBrand></li>
                     <li><LinkStyled to="/about">About Us</LinkStyled></li>
                     <li><LinkStyled to="/liveclass">Live Classroom</LinkStyled></li>
                     <li><LinkStyled to="/course">Courses</LinkStyled></li>
@@ -46,7 +46,7 @@ class Navbar extends Component {
                                     <i style={{ lineHeight: "64px" }} className="material-icons">menu</i></LinkStyled>
                                 </li>
 
-                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="COURSEBEE" /></LinkBrand></li>
+                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="MEDIBEE" /></LinkBrand></li>
                             </ul>
                             <ul className="right hide-on-med-and-down">
                                 <li><LinkStyled to="/about">About Us</LinkStyled></li>
@@ -55,7 +55,7 @@ class Navbar extends Component {
                                 <li><LinkStyled to="/training">Training</LinkStyled></li>
                                 {this.props.auth.isAuthenticated ? <li><UserIcon /></li> :
                                     <li>
-                                        <Link className="teal darken-1" to="/mentor">
+                                        <Link className="blue darken-1" to="/mentor">
                                             Mentors Here!
                                         </Link>
                                     </li>
