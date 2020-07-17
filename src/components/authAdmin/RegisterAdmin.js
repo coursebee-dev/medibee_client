@@ -4,9 +4,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerAdmin } from "../../actions/authActionAdmin";
 import classnames from "classnames";
+import ReCAPTCHA from 'react-google-recaptcha';
+
 class Register extends Component {
     constructor() {
         super();
+        this.verifyCaptcha = this.verifyCaptcha.bind(this)
         this.state = {
             name: "",
             email: "",
@@ -17,6 +20,7 @@ class Register extends Component {
             position: "",
             location: "",
             adminKey: "",
+            captcha: false,
             errors: {}
         };
     }
@@ -58,13 +62,22 @@ class Register extends Component {
             adminKey: this.state.adminKey,
             type: "admin"
         };
-        console.log(JSON.stringify(newUser));
-        this.props.registerAdmin(newUser, this.props.history);
-        this.setState({ loading: false })
+        if (this.state.captcha) {
+            //console.log(JSON.stringify(newUser));
+            this.props.registerAdmin(newUser, this.props.history);
+        } else {
+            alert('Please verify captcha!')
+        }
     };
 
+    verifyCaptcha(response) {
+        if (response) {
+            this.setState({ captcha: true })
+        }
+    }
     render() {
         const { errors } = this.state;
+        let captcha_secret = process.env.REACT_APP_NOT_CAPTCHA_SECRET
         return (
             <div className="container">
                 <div style={{ marginTop: "8rem", marginBottom: "8rem" }} className="row">
@@ -78,7 +91,7 @@ class Register extends Component {
                                 <b>Register</b> below
                             </h4>
                             <p className="grey-text text-darken-1">
-                                Already have an account? <Link className="red-text text-darken-1" to="/admin/login">Log in</Link>
+                                Already have an account? <Link className="orange-text text-darken-1" to="/admin/login">Log in</Link>
                             </p>
                         </div>
                         <form noValidate onSubmit={this.onSubmit}>
@@ -209,6 +222,12 @@ class Register extends Component {
                                 <span className="red-text">{errors.adminKey}</span>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                                <ReCAPTCHA
+                                    sitekey={`${captcha_secret}`}
+                                    onChange={this.verifyCaptcha}
+                                />
+                            </div>
+                            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button
                                     style={{
                                         width: "150px",
@@ -217,7 +236,7 @@ class Register extends Component {
                                         marginTop: "1rem"
                                     }}
                                     type="submit"
-                                    className="btn btn-large waves-effect waves-light hoverable red-darken-1"
+                                    className="btn btn-large waves-effect waves-light hoverable teal-darken-1"
                                 >
                                     Sign up
                                 </button>

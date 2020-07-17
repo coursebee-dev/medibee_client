@@ -7,7 +7,7 @@ export class UserIcon extends Component {
     render() {
         return (
             <div>
-                <Link to="#" className="btn-floating btn-large waves-effect waves-light red darken-1">
+                <Link to="#" className="btn-floating btn-large waves-effect waves-light orange darken-1">
                     <b style={{ textAlign: "center", fontSize: "150%", textJustify: "center" }}>
                         {this.props.auth.user.name.charAt(0).toUpperCase()}
                     </b>

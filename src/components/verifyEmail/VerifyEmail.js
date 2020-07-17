@@ -28,8 +28,8 @@ class VerifyEmail extends Component {
     };
     render() {
         return (
-            <div>
-                <div style={{ minHeight: "60vh" }} className="container">
+            <div style={{ width: "100%" }}>
+                <div style={{ minHeight: "60vh" }}>
                     <div style={{ margin: "5%" }}>
                         <h6>
                             One last step
@@ -44,13 +44,13 @@ class VerifyEmail extends Component {
                     </div>
                     <div style={{ margin: "5%" }}>
 
-                        <button onClick={this.onResendClick} className="btn btn-small waves-effect waves-light hoverable blue darken-1">
+                        <button onClick={this.onResendClick} className="btn btn-small waves-effect waves-light hoverable teal darken-1">
                             Resend Email
                     </button>
                     </div>
                     <div style={{ margin: "5%" }}>
                         <Link
-                            className="btn btn-large waves-effect waves-light hoverable red darken-1 black-text"
+                            className="btn btn-large waves-effect waves-light hoverable orange darken-1 black-text"
                             to={this.props.location.state.type === "student" ?
                                 "/login" : this.props.location.state.type === "mentor" ?
                                     "mentor/login" : "/admin/login"}>

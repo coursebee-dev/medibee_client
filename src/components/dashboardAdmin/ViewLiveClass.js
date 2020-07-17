@@ -43,6 +43,7 @@ export default class ViewLiveClass extends Component {
                 </p>
 
                 <h6>Topic : {liveClass.topic}</h6>
+                <div dangerouslySetInnerHTML={{__html: liveClass.description}} />
                 <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
@@ -50,12 +51,12 @@ export default class ViewLiveClass extends Component {
         ));
         return (
             <div style={{ width: "100%", margin: "50px" }}>
-                <Link to="/admin/dashboard" className="btn-flat waves-effect red darken-1">
+                <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
                 <h4 style={{ margin: "50px" }}>Scheduled Classes</h4>
                 <ul style={{ textAlign: "left" }} className="collection">{liveClasses.reverse()}</ul>
-                <Link to="/admin/dashboard" className="btn-flat waves-effect red darken-1">
+                <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
             </div>

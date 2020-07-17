@@ -6,15 +6,15 @@ import { Helmet } from 'react-helmet';
 export class Course extends Component {
     render() {
         const seo = {
-            title: "MEDIBEE : Course",
+            title: "Coursebee : Course",
             description:
                 "Courses from top-notch mentors are coming soon.",
-            url: "https://medibee.com.bd/course/",
+            url: "https://coursebee.com/course/",
             image: ""
         };
         return (
             <div>
-                <h4 style={{ margin: "50px" }}>Courses</h4>
+                {/*<h4 style={{ margin: "50px" }}>Courses</h4>*/}
                 <Helmet
                     title={seo.title}
                     meta={[

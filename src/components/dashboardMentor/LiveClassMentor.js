@@ -9,11 +9,9 @@ export default class LiveClassMentor extends Component {
         }
     }
     componentDidMount() {
-        console.log(this.props.mentorId)
         axios.get('/api/mentor/liveclass/' + this.props.mentorId)
             .then(res => {
                 this.setState({ liveClasses: res.data })
-                console.log(this.state)
             })
             .catch(err => {
                 console.log(err)
@@ -27,10 +25,11 @@ export default class LiveClassMentor extends Component {
                 {liveClass.approved ? <span> Approved</span> : <span className="red-text"> Waiting Approval</span>}
                 </p>
                 <h6>Topic : {liveClass.topic}</h6>
+                <div dangerouslySetInnerHTML={{__html: liveClass.description}} />
                 <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
-                <Link to={"/mentor/dashboard/liveclassroom/" + liveClass._id} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</Link>
+                <Link to={"/mentor/dashboard/liveclassroom/" + liveClass._id} className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">Start Class</Link>
             </li>
         ));
         return (

@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet';
 export class Training extends Component {
     render() {
         const seo = {
-            title: "Medibee : Training",
+            title: "Coursebee : Training",
             description:
                 "Training programs are coming soon.",
-            url: "https://medibee.com.bd/training/",
+            url: "https://coursebee.com/training/",
             image: ""
         };
         return (
@@ -27,7 +27,7 @@ export class Training extends Component {
                     ]}
 
                 >
-                    <meta name="keywords" content="training,medibee,training course" />
+                    <meta name="keywords" content="training,coursebee,training course" />
                 </Helmet>
                 <ComingSoon />
             </div>

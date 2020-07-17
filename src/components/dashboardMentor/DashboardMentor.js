@@ -6,13 +6,26 @@ import logoutUser from "../../actions/logoutAction";
 import HeaderImg from "../layout/HeaderImg"
 import liveClass from '../../images/liveClass.jpg'
 import onlineCourse from '../../images/onlineCourse.jpg'
-import LiveClassMentor from './LiveClassMentor'
+import LiveClassMentor from './LiveClassMentor';
+
 class DashboardMentor extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.history.push("/");
     this.props.logoutUser();
   };
+
+  componentDidMount() {
+    // const options = {
+    //     inDuration: 250,
+    //     outDuration: 250,
+    //     opacity: 0.5,
+    //     dismissible: false,
+    //     startingTop: "4%",
+    //     endingTop: "10%"
+    // };
+  }
+
   render() {
     const { user } = this.props.auth; return (
       <div>
@@ -23,11 +36,12 @@ class DashboardMentor extends Component {
               <h4>
                 <b>Hello, </b> {user.name.split(" ")[0]}
                 <p className="flow-text grey-text text-darken-1">
-                  Thank you for signing in to MEDIBEE. We are continuously working to make this a better platform.
+                  Thank you for signing in to COURSEBEE. We are continuously working to make this a better platform.
                 <br /><br />If you want to join our team send us a message in our{" "}
-                  <a href="https://www.facebook.com/medibee.com.bd" target="_blank" rel="noopener noreferrer">facebook page</a>.
+                  <a href="https://www.facebook.com/coursebee.live" target="_blank" rel="noopener noreferrer">facebook page</a>.
               </p>
               </h4>
+              <button onClick={() => window.location.replace('/mentor/account')} className="btn modal-trigger">View your Account Information</button>
               {this.props.auth.user.adminVerify === false ?
                 <h5 className="red-text">Your account has been suspended. Your information is under review.
                 <br />To schedule live classes or submit online courses please send us an email</h5>
@@ -52,7 +66,7 @@ class DashboardMentor extends Component {
                   marginTop: "1rem"
                 }}
                 onClick={this.onLogoutClick}
-                className="btn btn-large waves-effect waves-light hoverable blue darken-1"
+                className="btn btn-large waves-effect waves-light hoverable teal darken-1"
               >
                 Logout
             </button>

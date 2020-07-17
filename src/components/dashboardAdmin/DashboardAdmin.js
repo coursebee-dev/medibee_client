@@ -22,9 +22,9 @@ class DashboardAdmin extends Component {
             <h4>
               <b>Hello, </b> {user.name.split(" ")[0]}
               <p className="flow-text grey-text text-darken-1">
-                Thank you for signing in to MEDIBEE. We are continuously working to make this a better platform.
+                Thank you for signing in to COURSEBEE. We are continuously working to make this a better platform.
                 <br /><br />If you want to join our team send us a message in our{" "}
-                <a href="https://www.facebook.com/medibee.com.bd" target="_blank" rel="noopener noreferrer">facebook page</a>.
+                <a href="https://www.facebook.com/coursebee.live" target="_blank" rel="noopener noreferrer">facebook page</a>.
               </p>
             </h4>
             <div className="container left-align">

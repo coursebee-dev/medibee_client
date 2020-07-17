@@ -55,7 +55,7 @@ export default class ViewMentorDetail extends Component {
                         <div> suspended <br /><br /><button onClick={this.onVerifyClick} className="btn btn-small waves-effect waves-light hoverable black">Verify</button></div>
                     }
                     </h5>
-                    <Link to="/admin/dashboard/viewmentor" className="btn-flat waves-effect red darken-1">
+                    <Link to="/admin/dashboard/viewmentor" className="btn-flat waves-effect orange darken-1">
                         <i className="material-icons left">keyboard_backspace</i>Go Back
                     </Link>
                 </div>
