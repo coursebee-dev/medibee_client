@@ -92,3 +92,7 @@ body {
 .editor{
   border-bottom: 1px solid rgb(221, 221, 221);
 }
+/*navbar*/
+nav{
+    background: linear-gradient(45deg, #fffefd,#fcdcdc, #d94a4e,#ae292d, #5d0c0e, #001321, #00080d);
+}

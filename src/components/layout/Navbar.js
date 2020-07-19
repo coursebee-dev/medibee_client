@@ -6,10 +6,13 @@ import UserIcon from "../userIcon/UserIcon"
 import styled from 'styled-components';
 import logo from '../../images/logo.png';
 const LinkStyled = styled(Link)`
-    color: black;
+    color: #ffffff;
+    font-weight:bold;
+    letter-spacing:2px;
 	:hover {
-        background-color: #fb8c00;
-		color: white;
+        // background-color: #fb8c00;
+		color: #00897b;
+		font-weight:bold
 	}
 `
 const LinkBrand = styled(Link)`
