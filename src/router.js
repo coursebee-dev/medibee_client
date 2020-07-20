@@ -45,6 +45,7 @@ import Disclaimer from './components/LegalDocuments/Disclaimer';
 import Contact from './components/contact/Contact';
 import ChangePass from './components/forgotPass/ChangePass';
 import AccountMentor from './components/dashboardMentor/AccountMentor';
+import Subjects from './components/dashboardAdmin/Subjects';
 
 
 export default function PathRoute() {
@@ -86,6 +87,7 @@ export default function PathRoute() {
                     <PrivateRouteMentor exact path="/mentor/dashboard/scheduleclass" component={ScheduleClass} />
                     <PrivateRouteMentor exact path="/mentor/account" component={AccountMentor} />
                     <PrivateRouteMentor exact path="/mentor/dashboard/liveclassroom/:classid" component={LiveClassRoomMentor} />
+                    <PrivateRouteAdmin exact path="/admin/dashboard/subjects" component={Subjects} />
                     <PrivateRouteAdmin exact path="/admin/dashboard" component={DashboardAdmin} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewmentor" component={ViewMentor} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewmentor/:mentorid" component={ViewMentorDetail} />
