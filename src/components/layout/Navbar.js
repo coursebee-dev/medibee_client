@@ -17,16 +17,16 @@ const LinkStyled = styled(Link)`
 `
 const LinkBrand = styled(Link)`
     height: 64px;
-	:hover {
-        background-color: white;
-	}
+	// :hover {
+    //     background-color: white;
+	// }
 `
 class Navbar extends Component {
     render() {
         return (
             <header className="no-padding">
                 <ul className="sidenav" id="mobile-demo">
-                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="COURSEBEE" /></LinkBrand></li>
+                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="MEDIBEE" /></LinkBrand></li>
                     <li><LinkStyled to="/about">About Us</LinkStyled></li>
                     <li><LinkStyled to="/liveclass">Live Classroom</LinkStyled></li>
                     <li><LinkStyled to="/course">Courses</LinkStyled></li>

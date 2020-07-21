@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import hexagon from '../../images/hexagon2.jpg'
+
 class HeaderImg extends Component {
+
     render() {
         return (
             <div>
