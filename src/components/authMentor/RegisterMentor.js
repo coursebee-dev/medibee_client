@@ -6,6 +6,10 @@ import { registerMentor } from "../../actions/authActionMentor";
 import classnames from "classnames";
 import ReCAPTCHA from 'react-google-recaptcha';
 import "../../App.css";
+import axios from "axios";
+import 'react-dropzone-uploader/dist/styles.css';
+import { ProPicUploader, StudentIDCard, StudentNid, MentorNid, MentorBMDC, MentorMBBS } from "./Uploader/Uploader";
+
 class Register extends Component {
     constructor() {
         super();
@@ -16,9 +20,15 @@ class Register extends Component {
             password: "",
             password2: "",
             mobileNo: "",
-            organization: "",
+            medicalcollege: "",
+            session: "",
+            mentortype: null,
             position: "",
             interest: "",
+            subjects: [],
+            subjectcategories: [],
+            subjectBySelectedCatagories: [],
+            selectedsubjectcategories: [],
             interests: [],
             captcha: false,
             errors: {}
@@ -26,6 +36,10 @@ class Register extends Component {
         this.onInterstChange = this.onInterstChange.bind(this)
         this.addInterest = this.addInterest.bind(this)
         this.deleteInterest = this.deleteInterest.bind(this)
+        this.getSubjectCategories = this.getSubjectCategories.bind(this)
+        this.handleCheckChange = this.handleCheckChange.bind(this)
+        this.getSelectedSubjects = this.getSelectedSubjects.bind(this)
+        this.handleSubjectCheckChange = this.handleSubjectCheckChange.bind(this)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -34,7 +48,48 @@ class Register extends Component {
             });
         }
     }
+
+    async getSubjectCategories() {
+        const { data } = await axios.get("/api/admin/category")
+        this.setState({ subjectcategories: data })
+    }
+
+    async getSelectedSubjects() {
+
+        const { data } = await axios.post('/api/admin/eachsubject', {
+            name: this.state.selectedsubjectcategories
+        })
+
+        this.setState({ subjectBySelectedCatagories: data })
+    }
+
+    handleCheckChange(e) {
+        let subcat = this.state.selectedsubjectcategories;
+        if (subcat.includes(e.target.value)) {
+            subcat = subcat.filter(arr => { return arr != e.target.value })
+        } else {
+            subcat.push(e.target.value)
+        }
+        this.setState({ selectedsubjectcategories: subcat }, () => this.getSelectedSubjects())
+    }
+
+    handleSubjectCheckChange(e) {
+        let newArray = this.state.subjects;
+        let obj = { subject: e.target.id, category: e.target.name, subcategory: e.target.value }
+        if (newArray.some(tempobj => tempobj.subcategory === e.target.value)) {
+            newArray = newArray.filter(arrobj => { return arrobj.subcategory !== e.target.value })
+        } else {
+            newArray.push(obj)
+        }
+        this.setState({ subjects: newArray }, () => console.log(this.state.subjects))
+
+
+    }
+
+
     componentDidMount() {
+        this.getSubjectCategories()
+        this.getSelectedSubjects()
         window.scrollTo(0, 0)
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
@@ -59,13 +114,18 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2,
             mobileNo: this.state.mobileNo,
-            organization: this.state.organization,
+            medicalcollege: this.state.medicalcollege,
+            session: this.state.session,
             position: this.state.position,
-            interests: this.state.interests,
+            preferred_topic: this.state.preferred_topic,
+            mentortype: this.state.mentortype,
+            subject_level: this.state.selectedsubjectcategories,
+            subjects: this.state.subjects,
             type: "mentor"
         };
         if (this.state.captcha) {
             this.props.registerMentor(newUser, this.props.history);
+            console.log(newUser)
         } else {
             alert('Please verify captcha!')
         }
@@ -75,7 +135,6 @@ class Register extends Component {
     onInterstChange(e) {
         this.setState({ interest: e.target.value })
     }
-
     addInterest(e) {
         e.preventDefault()
         this.setState(state => {
@@ -85,7 +144,6 @@ class Register extends Component {
                 interest: '',
             };
         });
-        console.log(this.state.interests)
     }
 
     verifyCaptcha(response) {
@@ -177,6 +235,10 @@ class Register extends Component {
                                 <label htmlFor="password2">Confirm Password</label>
                                 <span className="red-text">{errors.password}</span>
                             </div>
+                            <div className="col s12">
+                                <span>Upload your picture</span>
+                                <ProPicUploader />
+                            </div>
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
@@ -194,16 +256,16 @@ class Register extends Component {
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
-                                    value={this.state.organization}
-                                    error={errors.organization}
-                                    id="organization"
+                                    value={this.state.medicalcollege}
+                                    error={errors.medicalcollege}
+                                    id="medicalcollege"
                                     type="text"
                                     className={classnames("", {
-                                        invalid: errors.organization
+                                        invalid: errors.medicalcollege
                                     })}
                                 />
-                                <label htmlFor="organization">Organization</label>
-                                <span className="red-text">{errors.organization}</span>
+                                <label htmlFor="medicalcollege">Medical College</label>
+                                <span className="red-text">{errors.medicalcollege}</span>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -216,9 +278,92 @@ class Register extends Component {
                                         invalid: errors.position
                                     })}
                                 />
-                                <label htmlFor="position">Position</label>
+                                <label htmlFor="position">Position/Designation</label>
                                 <span className="red-text">{errors.position}</span>
                             </div>
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChange}
+                                    value={this.state.session}
+                                    error={errors.session}
+                                    id="session"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.session
+                                    })}
+                                />
+                                <label htmlFor="session">Session</label>
+                                <span className="red-text">{errors.session}</span>
+                            </div>
+                            <div className="col s12">
+                                <label htmlFor="mentortype">Current Status</label>
+                                <select
+                                    onChange={this.onChange}
+                                    error={errors.mentortype}
+                                    id="mentortype"
+                                    type="text"
+                                    className={classnames("browser-default ", {
+                                        invalid: errors.mentortype
+                                    })}>
+                                    <option value="" defaultValue>Choose your option</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Professional">Professional</option>
+                                </select>
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                <span>Upload Your Student ID Card <label>(You can upload multiple pictures)</label></span>
+                                <StudentIDCard />
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
+                                <StudentNid />
+                                <label>Not Mandatory</label>
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                <span>Upload Your MBBS Certificate <label>(You can upload multiple pictures)</label></span>
+                                <MentorMBBS />
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                <span>Upload Your BMDC Certificate <label>(You can upload multiple pictures)</label></span>
+                                <MentorBMDC />
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
+                                <MentorNid />
+                            </div>
+                            <div className="input-field col s12">
+                                <span>Select Desired Subject Category</span>
+                                {this.state.subjectcategories.map((subcat, id) => (
+                                    <p key={id}>
+                                        <label>
+                                            <input value={subcat.name} onChange={this.handleCheckChange} type="checkbox" />
+                                            <span>{subcat.name}</span>
+                                        </label>
+                                    </p>
+                                ))}
+                            </div>
+                            <span className="col s12">Select Sub-categories</span>
+                            {this.state.subjectBySelectedCatagories.map(subject => (
+                                <div key={subject._id} className="col s12">
+                                    <span>{subject.name}</span>
+                                    {subject.subcategory.map((subcat, id) => (
+                                        <p key={id}>
+                                            <label>
+                                                <input value={subcat.name} name={subject.category} id="subject" onChange={this.handleSubjectCheckChange} type="checkbox" />
+                                                <span>{subcat.name}</span>
+                                            </label>
+                                        </p>
+                                    ))}
+                                </div>
+                            ))}
+
+
+
+
+
+
+
+
                             {this.state.interests.map((interest, id) => (
                                 <div className="chip" key={id}>
                                     {interest}
@@ -238,7 +383,7 @@ class Register extends Component {
                                 />
                                 <button className="btn btn-small" disabled={!this.state.interest} onClick={this.addInterest}>Add Interest</button>
                                 <button className="btn btn-small" disabled={!this.state.interests[0]} onClick={this.deleteInterest}>Clear Interest</button>
-                                <label htmlFor="interests">Interests (you may add multiple)</label>
+                                <label htmlFor="interests">Preffered Topic of teaching (you may add multiple)</label>
                                 <span className="red-text">{errors.interests}</span>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -256,7 +401,7 @@ class Register extends Component {
                                         marginTop: "1rem"
                                     }}
                                     type="submit"
-                                    className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                                    className="btn btn-large waves-effect waves-light hoverable red"
                                 >
                                     Sign up
                                 </button>
@@ -264,8 +409,7 @@ class Register extends Component {
                         </form>
                     </div>
                 </div>
-                <button onClick={() => console.log(this.state.interests)}>onclick</button>
-            </div>
+            </div >
         );
     }
 }
