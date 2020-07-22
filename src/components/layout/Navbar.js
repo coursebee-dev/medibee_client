@@ -30,6 +30,7 @@ class Navbar extends Component {
                     <li><LinkStyled to="/about">About Us</LinkStyled></li>
                     <li><LinkStyled to="/liveclass">Live Classroom</LinkStyled></li>
                     <li><LinkStyled to="/course">Courses</LinkStyled></li>
+                    <li><LinkStyled to="/course">Mentors</LinkStyled></li>
                     <li><LinkStyled to="/training">Training</LinkStyled></li>
                     {this.props.auth.isAuthenticated ? <li><LinkStyled className="grey" to="#">{this.props.auth.user.name}</LinkStyled></li> :
                         <li>
@@ -55,6 +56,7 @@ class Navbar extends Component {
                                 <li><LinkStyled to="/about">About Us</LinkStyled></li>
                                 <li><LinkStyled to="/liveClass">Live Classroom</LinkStyled></li>
                                 <li><LinkStyled to="/course">Courses</LinkStyled></li>
+                                <li><LinkStyled to="/course">Mentors</LinkStyled></li>
                                 <li><LinkStyled to="/training">Training</LinkStyled></li>
                                 {this.props.auth.isAuthenticated ? <li><UserIcon /></li> :
                                     <li>

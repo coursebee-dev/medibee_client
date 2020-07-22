@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import M from "materialize-css"
+import HeaderImg from "../layout/HeaderImg";
 
 class LiveClassList extends Component {
     constructor() {
@@ -107,7 +108,9 @@ class LiveClassList extends Component {
             </li>
         ));
         return (
-            <div className="container" >
+            <>
+                <HeaderImg />
+                <div className="container" >
                 <Helmet
                     title={seo.title}
                     meta={[
@@ -126,6 +129,7 @@ class LiveClassList extends Component {
                     <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
             </div>
+            </>
         )
     }
 }

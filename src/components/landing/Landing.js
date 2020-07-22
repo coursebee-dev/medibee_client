@@ -27,7 +27,7 @@ class Landing extends Component {
         <HeaderImg />
         <div>
           <div className="center-align container">
-            <h3> <b className=" red-text text-darken-1" style={{wordSpacing:"10px"}}>ABOUT <span style={{color:"black",textShadow: "2px 2px 3px #84101c"}}>MEDI</span><span style={{color:"#E71E24",textShadow: "2px 2px 3px #171717"}}>BEE</span></b> </h3>
+            <h3> <b className=" red-text text-darken-1" style={{wordSpacing:"10px"}}>ABOUT <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h3>
             <div style={{ marginTop: "50px", marginBottom: "50px" }}>
               <div className="row">
                 <div className="col s12 m6">
@@ -40,43 +40,48 @@ class Landing extends Component {
                 <div className="col s12 m6">
                   <div className="valign-wrapper" style={{height:"287px"}}>
                     <div className="center-align" style={{width:"100%"}}>
-                      <img style={{ width: "300px", height: "120px" }} src={logo} alt="MEDIBEE" />
+                      <img style={{ height: "120px" }} src={logo} alt="MEDIBEE" />
                     </div>
                   </div>
 
                 </div>
 
               </div>
-
             </div>
-            <div>
-              <h4>
-                Dear Students, Greetings from<b> Medibee</b>
-              </h4>
+          </div>
+            {/*user registration*/}
+          <div className="center-align" style={{background: "#efefef", padding: "25px 0"}}>
+              <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
               <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
-
               <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
               <p className="flow-text grey-text text-darken-1">
                 We are just starting our journey to develop the best platform for you.<br />
                 To be one of the first students in Medibee
               </p>
               <h4>Register Now</h4>
-            </div>
-            <div style={{ maxWidth: "600px", display: "flex", justifyContent: "space-evenly" }} className="container">
-              <div>
-                <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable orange darken-1  black-text">
-                  Register
-              </Link>
-              </div>
-              <div>
-                <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable teal darken-1">
-                  Log In
-              </Link>
-              </div>
-            </div>
 
+              <div className="container">
+                <div style={{ justifyContent: "space-evenly" }} className="row">
+                  <div className="col s6 m6">
+                    <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable orange darken-1  black-text">
+                      Register
+                    </Link>
+                  </div>
+                  <div className="col s6 m6">
+                    <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable teal darken-1">
+                      Log In
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/*user registration end*/}
+          {/*greetings*/}
+          <div className="container" style={{padding: "25px 0"}}>
+            <h3 className="center-align" > <b className=" red-text text-darken-1" style={{wordSpacing:"10px"}}>Greetings From Doctors</b> </h3>
           </div>
 
+          {/*greetings end*/}
         </div>
       </div>
     );

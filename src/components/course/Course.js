@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ComingSoon } from '../comingSoon/ComingSoon'
 import { Helmet } from 'react-helmet';
+import HeaderImg from "../layout/HeaderImg";
 
 export class Course extends Component {
     render() {
@@ -14,6 +15,7 @@ export class Course extends Component {
         };
         return (
             <div>
+                <HeaderImg />
                 {/*<h4 style={{ margin: "50px" }}>Courses</h4>*/}
                 <Helmet
                     title={seo.title}
