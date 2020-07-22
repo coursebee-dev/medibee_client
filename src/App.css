@@ -6,8 +6,8 @@ body {
 
   main {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
   }
   
   /* width */
@@ -91,6 +91,42 @@ body {
 
 .editor{
   border-bottom: 1px solid rgb(221, 221, 221);
+}
+.medi{
+    color: black ;
+    text-shadow: 1px 1px 3px #84101c
+}
+.bee{
+    color:#E71E24;
+    text-shadow: 1px 1px 3px #171717
+}
+/*banner*/
+.banner{
+    position: relative;
+}
+.banner_overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #d9d9d9, #e900006b);
+    transform: translate(-0%, -0%);
+    padding: 15px 15px;
+}
+.banner_text{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-20%, -50%);
+    padding: 15px 15px;
+
+    font-family: cursive;
+    letter-spacing: 1px;
+    line-height: 33px;
+    color: #1c1c1c;
+    text-shadow: 1px 1px 3px #38c1ff;
+    font-weight: 700;
 }
 /*navbar*/
 nav{

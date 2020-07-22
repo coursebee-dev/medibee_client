@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ComingSoon } from '../comingSoon/ComingSoon'
 import { Helmet } from 'react-helmet';
+import HeaderImg from "../layout/HeaderImg";
 
 export class Training extends Component {
     render() {
@@ -14,6 +15,7 @@ export class Training extends Component {
         };
         return (
             <div>
+                <HeaderImg />
                 <Helmet
                     title={seo.title}
                     meta={[
