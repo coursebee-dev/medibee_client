@@ -7,7 +7,6 @@ import classnames from "classnames";
 import ReCAPTCHA from 'react-google-recaptcha';
 import "../../App.css";
 import axios from "axios";
-import 'react-dropzone-uploader/dist/styles.css';
 import { ProPicUploader, StudentIDCard, StudentNid, MentorNid, MentorBMDC, MentorMBBS } from "./Uploader/Uploader";
 
 class Register extends Component {

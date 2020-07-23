@@ -14,61 +14,107 @@ export function ProPicUploader() {
         }
     }
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => {
-                const body = new FormData()
-                body.append('image', file)
-                console.log(meta)
+        <h1>Hello</h1>
 
-                return { url: url, body }
-            }}
-            autoUpload="true"
-            onChangeStatus={handleChangeStatus}
-            accept="image/*" />
+        // <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
 
 export function StudentIDCard() {
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => console.log({ file, meta })}
-            onChangeStatus={() => console.log("a")}
-            accept="image/*" />
+        <h1>Hello</h1>
+
+        //     <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
 
 export function StudentNid() {
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => console.log({ file, meta })}
-            onChangeStatus={() => console.log("a")}
-            accept="image/*" />
+        <h1>Hello</h1>
+
+        // <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
 
 export function MentorMBBS() {
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => console.log({ file, meta })}
-            onChangeStatus={() => console.log("a")}
-            accept="image/*" />
+        <h1>Hello</h1>
+
+        // <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
 
 export function MentorBMDC() {
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => console.log({ file, meta })}
-            onChangeStatus={() => console.log("a")}
-            accept="image/*" />
+        <h1>Hello</h1>
+
+        // <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
 
 export function MentorNid() {
     return (
-        <Dropzone
-            getUploadParams={({ file, meta }) => console.log({ file, meta })}
-            onChangeStatus={() => console.log("a")}
-            accept="image/*" />
+        <h1>Hello</h1>
+        // <Dropzone
+        //     getUploadParams={({ file, meta }) => {
+        //         const body = new FormData()
+        //         body.append('image', file)
+        //         console.log(meta)
+
+        //         return { url: url, body }
+        //     }}
+        //     autoUpload="true"
+        //     onChangeStatus={handleChangeStatus}
+        //     accept="image/*" />
     )
 }
