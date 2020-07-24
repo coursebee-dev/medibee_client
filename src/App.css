@@ -132,3 +132,13 @@ body {
 nav{
     background: linear-gradient(45deg, #fffefd,#fcdcdc, #d94a4e,#ae292d, #5d0c0e, #001321, #00080d);
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #E71E24;
+}
+
+::selection {
+  color: white;
+  background: #E71E24;
+}

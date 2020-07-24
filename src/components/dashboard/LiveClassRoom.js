@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 class LiveClassRoom extends Component {
     componentDidMount() {
         console.log(this.props.match.params.classid)
-        const domain = 'meet.jit.si';
+        const domain = 'meet.ccoursebee.com';
         const options = {
             roomName: this.props.match.params.classid,
             width: '100%',

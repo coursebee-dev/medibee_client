@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { scheduleLiveClass } from "../../actions/liveClassAction";
 import { Editor } from '@tinymce/tinymce-react';
+import axios from 'axios';
 import '../../App.css';
 
 class ScheduleClass extends Component {
@@ -18,21 +19,85 @@ class ScheduleClass extends Component {
             price: "",
             duration: "",
             description: "",
+            academicExcellence: "",
+            selectedliveclasslevel: [],
+            selectedsubject: [],
+            selectedsubcategories: [],
+            categories: [],
+            subjects: [],
             errors: {}
         };
+        this.getSubjects = this.getSubjects.bind(this)
+        this.getCategories = this.getCategories.bind(this)
+        this.selectCategories = this.selectCategories.bind(this)
+        this.selectSubject = this.selectSubject.bind(this)
+        this.selectSubCategories = this.selectSubCategories.bind(this)
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
         }
     }
+
+    async getSubjects() {
+        try {
+            const { data } = await axios.post("/api/admin/eachsubject", {
+                name: this.state.selectedliveclasslevel
+            })
+            this.setState({ subjects: data })
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async getCategories() {
+        try {
+            const { data } = await axios.get("/api/admin/category")
+            this.setState({ categories: data })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    selectCategories(e) {
+        let newArray = this.state.selectedliveclasslevel;
+        if (newArray.includes(e.target.value)) {
+            newArray = newArray.filter(cat => { return cat !== e.target.value })
+        } else {
+            newArray.push(e.target.value)
+        }
+        this.setState({ selectedliveclasslevel: newArray })
+        this.getSubjects()
+    }
+
+    selectSubCategories(e) {
+        let newArray = this.state.selectedsubcategories;
+        if (newArray.includes(e.target.value)) {
+            newArray = newArray.filter(cat => { return cat !== e.target.value })
+        } else {
+            newArray.push(e.target.value)
+        }
+        this.setState({ selectedsubcategories: newArray })
+    }
+
+    async selectSubject(e) {
+        let newArray = this.state.selectedsubject;
+        if (newArray.includes(e.target.value)) {
+            newArray = newArray.filter(cat => { return cat !== e.target.value })
+        } else {
+            newArray.push(e.target.value)
+        }
+        this.setState({ selectedsubject: newArray }, console.log(this.state.selectedsubject))
+    }
+
     componentDidMount() {
         window.scrollTo(0, 0)
         if (this.props.auth.user.adminVerify === false) {
             this.props.history.push("mentor/dashboard");
         }
+        this.getCategories()
+        console.log(this.state)
     }
     handleEditorChange = (content, editor) => {
         console.log('Content was updated:', content);
@@ -77,6 +142,10 @@ class ScheduleClass extends Component {
             class_type: this.state.class_type,
             description: this.state.description,
             price: this.state.price,
+            academicExcellence: this.state.academicExcellence,
+            selectedliveclasslevel: this.state.selectedliveclasslevel,
+            selectedsubject: this.state.selectedsubject,
+            selectedsubcategories: this.state.selectedsubcategories,
             start_time: startTime.toISOString(),//start time in iso format UTC
             duration: this.state.duration,
         }
@@ -111,7 +180,7 @@ class ScheduleClass extends Component {
                             </div>
                             <div className="input-field col s12">
                                 <Editor
-                                    apiKey="24ih6yos0ufi5m49dpgg789u7to27syl18z7wpj3zd80ol3k"
+                                    apiKey={API_KEY}
                                     initialValue="<p>Add a description</p>"
                                     init={{
                                         height: 500,
@@ -122,9 +191,7 @@ class ScheduleClass extends Component {
                                             'insertdatetime table paste code wordcount'
                                         ],
                                         toolbar:
-                                            'undo redo | formatselect | bold italic backcolor | \
-                                            alignleft aligncenter alignright alignjustify | \
-                                            bullist numlist outdent indent | removeformat '
+                                            'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
                                     }}
                                     onEditorChange={this.handleEditorChange}
                                 />
@@ -133,14 +200,6 @@ class ScheduleClass extends Component {
                                     {errors.descriptionnotfound}
                                 </span>
                             </div>
-                            {/* <div className="input-field col s12">
-                                <div className="input-field col s12" id="paidclassdescription" onChange={this.handleEditorChange}></div>
-                                <label htmlFor="paidclassdescription">Description</label>
-                                <span className="red-text">
-                                    {errors.description}
-                                    {errors.descriptionnotfound}
-                                </span>
-                            </div> */}
                             <div className="col s12">
                                 <label htmlFor="class_type">Class type  </label>
                                 <select
@@ -153,7 +212,7 @@ class ScheduleClass extends Component {
                                     })}
                                 >
                                     <option disabled value="">Select Type</option>
-                                    <option value="Open" disabled>Open For All</option>
+                                    {/*<option value="Open" disabled>Open For All</option>*/}
                                     <option value="Free">Free Registration</option>
                                     <option value="Paid">Paid Live Class</option>
                                 </select>
@@ -162,22 +221,52 @@ class ScheduleClass extends Component {
                                     {errors.class_typenotfound}
                                 </span>
                             </div>
-                            <div className="input-field col s12" style={{ display: this.state.class_type === "Free" ? "none" : null }}>
+                            <div className="col s12">
+                                <label>Select Liveclass Level</label>
+                                {this.state.categories?.map(cat => (
+                                    <p key={cat._id}>
+                                        <label>
+                                            <input value={cat.name} type="checkbox" onChange={this.selectCategories} />
+                                            <span>{cat.name}</span>
+                                        </label>
+                                    </p>
+                                ))}
+                            </div>
+                            <div className="col s12">
+                                <label>Select Liveclass Subjects</label>
+                                {this.state.subjects.map(sub => (
+                                    <div key={sub._id}>
+                                        <label>
+                                            <input value={sub.name} type="checkbox" onChange={this.selectSubject} />
+                                            <span>{sub.name}</span>
+                                            <label style={{ marginLeft: "40px" }}><br />Select Subcategory</label>
+                                            {sub.subcategory.map((subcat, id) => (
+                                                <p style={{ marginLeft: "40px" }} key={id}>
+                                                    <label>
+                                                        <input value={subcat.name} type="checkbox" onChange={this.selectSubCategories} />
+                                                        <span>{subcat.name}</span>
+                                                    </label>
+                                                </p>
+                                            ))}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
-                                    value={this.state.price}
-                                    error={errors.price}
-                                    id="price"
-                                    type="number"
-                                    min="1"
+                                    value={this.state.academicExcellence}
+                                    error={errors.topic}
+                                    id="academicExcellence"
+                                    type="text"
                                     className={classnames("", {
-                                        invalid: errors.price || errors.pricenotfound
+                                        invalid: errors.academicExcellence || errors.academicExcellencenotfound
                                     })}
                                 />
-                                <label htmlFor="price">Price</label>
+                                <label htmlFor="academicExcellence">Academic Excellence</label>
                                 <span className="red-text">
-                                    {errors.price}
-                                    {errors.pricenotfound}
+                                    {errors.academicExcellence}
+                                    {errors.academicExcellencenotfound}
                                 </span>
                             </div>
                             <div className=" col s12">

@@ -16,7 +16,7 @@ class Login extends Component {
             errors: {}
         };
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
             this.props.history.push("/mentor/dashboard"); // push user to dashboard when they login
         }

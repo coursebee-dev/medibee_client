@@ -30,6 +30,7 @@ class Register extends Component {
             selectedsubjectcategories: [],
             interests: [],
             captcha: false,
+            imagedata: {},
             errors: {}
         };
         this.onInterstChange = this.onInterstChange.bind(this)
@@ -39,8 +40,9 @@ class Register extends Component {
         this.handleCheckChange = this.handleCheckChange.bind(this)
         this.getSelectedSubjects = this.getSelectedSubjects.bind(this)
         this.handleSubjectCheckChange = this.handleSubjectCheckChange.bind(this)
+        this.handleUpload = this.handleUpload.bind(this)
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
@@ -65,7 +67,7 @@ class Register extends Component {
     handleCheckChange(e) {
         let subcat = this.state.selectedsubjectcategories;
         if (subcat.includes(e.target.value)) {
-            subcat = subcat.filter(arr => { return arr != e.target.value })
+            subcat = subcat.filter(arr => { return arr !== e.target.value })
         } else {
             subcat.push(e.target.value)
         }
@@ -83,6 +85,40 @@ class Register extends Component {
         this.setState({ subjects: newArray }, () => console.log(this.state.subjects))
 
 
+    }
+
+    handleUpload(url, type) {
+        let imagedata = {
+            propicurl: "",
+            studentidurl: "",
+            studentnidurl: "",
+            bmdcurl: "",
+            mbbsurl: "",
+            mentornidurl: ""
+        };
+        switch (type) {
+            case "propic":
+                imagedata.propicurl = url
+                break;
+            case "studentid":
+                imagedata.studentidurl = url
+                break;
+            case "studentnid":
+                imagedata.studentnidurl = url
+                break;
+            case "bmdc":
+                imagedata.bmdcurl = url
+                break;
+            case "mbbs":
+                imagedata.mbbsurl = url
+                break;
+            case "mentornid":
+                imagedata.mentornidurl = url
+                break;
+            default:
+                break;
+        }
+        this.setState({ imagedata: imagedata }, () => console.log(this.state.imagedata))
     }
 
 
@@ -120,6 +156,7 @@ class Register extends Component {
             mentortype: this.state.mentortype,
             subject_level: this.state.selectedsubjectcategories,
             subjects: this.state.subjects,
+            imagedata: this.state.imagedata,
             type: "mentor"
         };
         if (this.state.captcha) {
@@ -236,7 +273,7 @@ class Register extends Component {
                             </div>
                             <div className="col s12">
                                 <span>Upload your picture</span>
-                                <ProPicUploader />
+                                <ProPicUploader handleUpload={(a, b) => this.handleUpload(a, b)} />
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -311,24 +348,24 @@ class Register extends Component {
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
                                 <span>Upload Your Student ID Card <label>(You can upload multiple pictures)</label></span>
-                                <StudentIDCard />
+                                <StudentIDCard handleUpload={(a, b) => this.handleUpload(a, b)} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
                                 <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
-                                <StudentNid />
+                                <StudentNid handleUpload={(a, b) => this.handleUpload(a, b)} />
                                 <label>Not Mandatory</label>
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
                                 <span>Upload Your MBBS Certificate <label>(You can upload multiple pictures)</label></span>
-                                <MentorMBBS />
+                                <MentorMBBS handleUpload={(a, b) => this.handleUpload(a, b)} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
                                 <span>Upload Your BMDC Certificate <label>(You can upload multiple pictures)</label></span>
-                                <MentorBMDC />
+                                <MentorBMDC handleUpload={(a, b) => this.handleUpload(a, b)} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
                                 <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
-                                <MentorNid />
+                                <MentorNid handleUpload={(a, b) => this.handleUpload(a, b)} />
                             </div>
                             <div className="input-field col s12">
                                 <span>Select Desired Subject Category</span>

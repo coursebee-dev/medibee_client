@@ -38,7 +38,6 @@ if (localStorage.jwtToken) {
 const history = createBrowserHistory()
 
 class App extends Component {
-
   render() {
     const seo = {
       title: "Coursebee",
