@@ -91,7 +91,7 @@ export default class LiveClassDetail extends Component {
                         <div className="col m3">
                             <div id="card" className="card vertical">
                                 <div className="card-image">
-                                    <img className="responsive-img" alt="mentor" src="https://lorempixel.com/400/400/nature/6" />
+                                    <img className="responsive-img mentors" alt="mentor" src="https://lorempixel.com/400/400/nature/6" />
                                 </div>
                                 <div className="card-content">
                                     Mentor:
