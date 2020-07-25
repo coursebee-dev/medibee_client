@@ -8,10 +8,10 @@ import Breadcrumbs from "../layout/Breadcrumbs";
 export class Course extends Component {
     render() {
         const seo = {
-            title: "Coursebee : Course",
+            title: "Medibee : Course",
             description:
                 "Courses from top-notch mentors are coming soon.",
-            url: "https://coursebee.com/course/",
+            url: "https://medibee.com/course/",
             image: ""
         };
         return (

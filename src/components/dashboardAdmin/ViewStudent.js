@@ -33,7 +33,7 @@ export default class ViewStudent extends Component {
                 <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
-                <h4 style={{ margin: "50px" }} className="center-align">Students IN COURSEBEE</h4>
+                <h4 style={{ margin: "50px" }} className="center-align">Students IN Medibee</h4>
                 <ul className="collection">{allStudents}</ul>
                 <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back

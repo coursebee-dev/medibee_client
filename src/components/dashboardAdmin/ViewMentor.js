@@ -44,7 +44,7 @@ export default class ViewMentor extends Component {
                 <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
-                <h4 style={{ margin: "50px" }} className="center-align">MENTORS IN COURSEBEE</h4>
+                <h4 style={{ margin: "50px" }} className="center-align">MENTORS IN MEDIBEE</h4>
                 <ul className="collection">{allMentors}</ul>
                 <Link to="/admin/dashboard" className="btn-flat waves-effect orange darken-1">
                     <i className="material-icons left">keyboard_backspace</i>Go Back

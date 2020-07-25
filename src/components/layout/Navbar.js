@@ -50,7 +50,7 @@ class Navbar extends Component {
                                     <i style={{ lineHeight: "64px" }} className="material-icons">menu</i></LinkStyled>
                                 </li>
 
-                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="COURSEBEE" /></LinkBrand></li>
+                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="Medibee" /></LinkBrand></li>
                             </ul>
                             <ul className="right hide-on-med-and-down">
                                 <li><LinkStyled to="/about">About Us</LinkStyled></li>

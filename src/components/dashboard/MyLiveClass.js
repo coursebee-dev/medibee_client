@@ -48,10 +48,10 @@ class MyLiveClass extends Component {
     }
     render() {
         const seo = {
-            title: "Coursebee : Live Classrom",
+            title: "Medibee : Live Classrom",
             description:
                 "Interactive live classes are coming soon.",
-            url: "https://coursebee.com/liveClassroom/",
+            url: "https://medibee.com/liveClassroom/",
             image: ""
         };
         const myLiveClasses = this.state.myLiveClasses.map(liveClass => (

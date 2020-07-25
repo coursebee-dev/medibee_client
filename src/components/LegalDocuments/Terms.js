@@ -4,12 +4,12 @@ export default class Terms extends Component {
     render() {
         return (
             <div className="container">
-                <h2>Welcome to Coursebee</h2>
-                <p>These terms and conditions outline the rules and regulations for the use of Coursebee's Website.</p> <br />
-                <span style={{ textTransform: 'capitalize' }}> Coursebee</span> is located at:<br />
+                <h2>Welcome to Medibee</h2>
+                <p>These terms and conditions outline the rules and regulations for the use of Medibee's Website.</p> <br />
+                <span style={{ textTransform: 'capitalize' }}> Medibee</span> is located at:<br />
                 <address>Flat- B2, Green Square, House- 1/B, Road-8 Gulshan-1, Dhaka <br />1212 - Dhaka , Bangladesh<br />
                 </address>
-                <p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use Coursebee's website
+                <p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use Medibee's website
           if you do not accept all of the terms and conditions stated on this page.</p>
                 <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice
                 and any or all Agreements: "Client", "You" and "Your" refers to you, the person accessing this website
@@ -21,33 +21,33 @@ export default class Terms extends Component {
                 of provision of the Company's stated services/products, in accordance with and subject to, prevailing law
                 of Bangladesh. Any use of the above terminology or other words in the singular, plural,
           capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p><h2>Cookies</h2>
-                <p>We employ the use of cookies. By using Coursebee's website you consent to the use of cookies
-          in accordance with Coursebee's privacy policy.</p><p>Most of the modern day interactive web sites
+                <p>We employ the use of cookies. By using Medibee's website you consent to the use of cookies
+          in accordance with Medibee's privacy policy.</p><p>Most of the modern day interactive web sites
                 use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site
                 to enable the functionality of this area and ease of use for those people visiting. Some of our
           affiliate / advertising partners may also use cookies.</p><h2>License</h2>
-                <p>Unless otherwise stated, Coursebee and/or it's licensors own the intellectual property rights for
-                all material on Coursebee. All intellectual property rights are reserved. You may view and/or print
-          pages from https://www.coursebee.com for your own personal use subject to restrictions set in these terms and conditions.</p>
+                <p>Unless otherwise stated, Medibee and/or it's licensors own the intellectual property rights for
+                all material on Medibee. All intellectual property rights are reserved. You may view and/or print
+          pages from https://www.Medibee.com for your own personal use subject to restrictions set in these terms and conditions.</p>
                 <p>You must not:</p>
                 <ol>
-                    <li>Republish material from https://www.coursebee.com</li>
-                    <li>Sell, rent or sub-license material from https://www.coursebee.com</li>
-                    <li>Reproduce, duplicate or copy material from https://www.coursebee.com</li>
+                    <li>Republish material from https://www.medibee.com</li>
+                    <li>Sell, rent or sub-license material from https://www.medibee.com</li>
+                    <li>Reproduce, duplicate or copy material from https://www.medibee.com</li>
                 </ol>
-                <p>Redistribute content from Coursebee (unless content is specifically made for redistribution).</p>
+                <p>Redistribute content from Medibee (unless content is specifically made for redistribution).</p>
                 <h2>User Comments</h2>
                 <ol>
                     <li>This Agreement shall begin on the date hereof.</li>
                     <li>Certain parts of this website offer the opportunity for users to post and exchange opinions, information,
-                    material and data ('Comments') in areas of the website. Coursebee does not screen, edit, publish
+                    material and data ('Comments') in areas of the website. Medibee does not screen, edit, publish
                     or review Comments prior to their appearance on the website and Comments do not reflect the views or
-                    opinions ofCoursebee, its agents or affiliates. Comments reflect the view and opinion of the
-                    person who posts such view or opinion. To the extent permitted by applicable laws Coursebeeshall
+                    opinions ofMedibee, its agents or affiliates. Comments reflect the view and opinion of the
+                    person who posts such view or opinion. To the extent permitted by applicable laws Medibeeshall
                     not be responsible or liable for the Comments or for any loss cost, liability, damages or expenses caused
                     and or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this
             website.</li>
-                    <li>Coursebeereserves the right to monitor all Comments and to remove any Comments which it considers
+                    <li>Medibeereserves the right to monitor all Comments and to remove any Comments which it considers
             in its absolute discretion to be inappropriate, offensive or otherwise in breach of these Terms and Conditions.</li>
                     <li>You warrant and represent that:
             <ol>
@@ -61,7 +61,7 @@ export default class Terms extends Component {
                 or unlawful activity.</li>
                         </ol>
                     </li>
-                    <li>You hereby grant to <strong>Coursebee</strong> a non-exclusive royalty-free license to use, reproduce,
+                    <li>You hereby grant to <strong>Medibee</strong> a non-exclusive royalty-free license to use, reproduce,
             edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats
             or media.</li>
                 </ol>
@@ -102,7 +102,7 @@ export default class Terms extends Component {
                 unfavorably on us or our accredited businesses (for example, trade associations or other organizations
                 representing inherently suspect types of business, such as work-at-home opportunities, shall not be allowed
                 to link); (b)the organization does not have an unsatisfactory record with us; (c) the benefit to us from
-                the visibility associated with the hyperlink outweighs the absence of Coursebee; and (d) where the
+                the visibility associated with the hyperlink outweighs the absence of Medibee; and (d) where the
                 link is in the context of general resource information or is otherwise consistent with editorial content
           in a newsletter or similar product furthering the mission of the organization.</p>
                 <p>These organizations may link to our home page, to publications or to other Web site information so long as
@@ -110,7 +110,7 @@ export default class Terms extends Component {
                 of the linking party and it products or services; and (c) fits within the context of the linking party's
           site.</p>
                 <p>If you are among the organizations listed in paragraph 2 above and are interested in linking to our website,
-          you must notify us by sending an e-mail to <a href="mailto:coursebee.online@gmail.com" title="send an email to coursebee.online@gmail.com">coursebee.online@gmail.com</a>.
+          you must notify us by sending an e-mail to <a href="mailto:medibee.online@gmail.com" title="send an email to medibee.online@gmail.com">Medibee.online@gmail.com</a>.
           Please include your name, your organization name, contact information (such as a phone number and/or e-mail
           address) as well as the URL of your site, a list of any URLs from which you intend to link to our Web site,
           and a list of the URL(s) on our site to which you would like to link. Allow 2-3 weeks for a response.</p>
@@ -121,7 +121,7 @@ export default class Terms extends Component {
                     <li>By use of any other description of our Web site or material being linked to that makes sense within the
             context and format of content on the linking party's site.</li>
                 </ol>
-                <p>No use of Coursebee's logo or other artwork will be allowed for linking absent a trademark license
+                <p>No use of Medibee's logo or other artwork will be allowed for linking absent a trademark license
           agreement.</p>
                 <h2>Iframes</h2>
                 <p>Without prior approval and express written permission, you may not create frames around our Web pages or
