@@ -10,7 +10,7 @@ export class Training extends Component {
             title: "Coursebee : Training",
             description:
                 "Training programs are coming soon.",
-            url: "https://coursebee.com/training/",
+            url: "https://medibee.com.bd/training/",
             image: ""
         };
         return (
@@ -29,7 +29,7 @@ export class Training extends Component {
                     ]}
 
                 >
-                    <meta name="keywords" content="training,coursebee,training course" />
+                    <meta name="keywords" content="training,medibee,training course" />
                 </Helmet>
                 <ComingSoon />
             </div>

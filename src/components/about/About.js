@@ -10,7 +10,7 @@ class About extends Component {
             title: "Coursebee : About",
             description:
                 "About Coursebee.",
-            url: "https://coursebee.com/about/",
+            url: "https://medibee.com.bd/about/",
             image: ""
         };
         return (

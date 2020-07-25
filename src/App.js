@@ -13,8 +13,8 @@ import { Helmet } from 'react-helmet';
 import PathRoute from "./router";
 
 axios.defaults.baseURL = process.env.REACT_APP_NOT_AXIOS_BASE_URL;
-//axios.defaults.baseURL = "https://coursebee-server-staging.herokuapp.com"
-//axios.defaults.baseURL = "https://coursebee-server.herokuapp.com"
+//axios.defaults.baseURL = "https://medibee-server-staging.herokuapp.com"
+//axios.defaults.baseURL = "https://medibee-server.herokuapp.com"
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -40,10 +40,10 @@ const history = createBrowserHistory()
 class App extends Component {
   render() {
     const seo = {
-      title: "Coursebee",
+      title: "Medibee",
       description:
         "Coursebee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.",
-      url: "https://coursebee.com/",
+      url: "https://medibee.com.bd/",
       image: ""
     };
     return (

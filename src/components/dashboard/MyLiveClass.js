@@ -51,7 +51,7 @@ class MyLiveClass extends Component {
             title: "Coursebee : Live Classrom",
             description:
                 "Interactive live classes are coming soon.",
-            url: "https://coursebee.com/liveClassroom/",
+            url: "https://medibee.com.bd/liveClassroom/",
             image: ""
         };
         const myLiveClasses = this.state.myLiveClasses.map(liveClass => (

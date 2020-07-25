@@ -11,7 +11,7 @@ export class Course extends Component {
             title: "Coursebee : Course",
             description:
                 "Courses from top-notch mentors are coming soon.",
-            url: "https://coursebee.com/course/",
+            url: "https://medibee.com.bd/course/",
             image: ""
         };
         return (

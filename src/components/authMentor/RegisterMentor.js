@@ -122,7 +122,7 @@ class Register extends Component {
         const body = new FormData()
         body.append('upload_preset', "enxcncgu")
         body.append("file", filedata)
-        const { data } = await axios.post("https://api.cloudinary.com/v1_1/coursebee/upload", body)
+        const { data } = await axios.post("https://api.cloudinary.com/v1_1/medibee/upload", body)
         return data.url;
     }
 
