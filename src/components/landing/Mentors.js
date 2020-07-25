@@ -5,6 +5,8 @@ import axios from 'axios';
 
 function Mentors() {
     const [mentors, setMentors] = useState([])
+    const [subject, setSubject] = useState([])
+    const [category, setCategory] = useState([])
     const getmentors = async () => {
         try {
             const { data } = await axios.get('/api/mentors');
@@ -13,13 +15,67 @@ function Mentors() {
             console.log(error)
         }
     }
+
+    const getfilteredmentors = async (e) => {
+        try {
+            const { data } = await axios.post('/api/mentor/filter', {
+                target: e.target.id,
+                value: e.target.value
+            });
+            setMentors(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getSubject = async () => {
+        try {
+            const { data } = await axios.get("/api/admin/subject")
+            setSubject(data)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    const getCategory = async () => {
+        try {
+            const { data } = await axios.get("/api/admin/category")
+            setCategory(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getmentors()
+        getSubject()
+        getCategory()
     }, [])
     return (
         <div>
             <HeaderImg />
             <div className="section">
+                <div className="section">
+                    <button onClick={getmentors} className="btn btn-large red">All mentors</button>
+                    {category.map(cat => (
+                        <button key={cat._id} id="category" onClick={getfilteredmentors} value={cat.name} className="btn btn-large red">{cat.name}</button>
+                    ))}
+                </div>
+                <div className="section">
+                    {subject.map(sub => (
+                        <button key={sub._id} id="subject" onClick={getfilteredmentors} value={sub.name} className="btn red">{sub.name}</button>
+                    ))}
+                </div>
+                <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }} className="section">
+                    {subject.map(sub => (
+                        <div style={{ display: "flex", flexDirection: "row", }} key={sub._id}>
+                            {sub.subcategory?.map((subcat, id) => (
+                                <button key={id} id="subcategory" onClick={getfilteredmentors} value={subcat.name} className="btn red">{subcat.name}</button>
+                            ))}
+                        </div>
+                    ))}
+                </div>
                 {mentors.map((mentor, id) => (
                     <div key={id} className="card">
                         {/* <div class="card-image">
