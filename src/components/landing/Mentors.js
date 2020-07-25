@@ -66,7 +66,7 @@ function Mentors() {
                                 <button key={cat._id} id="category" onClick={getfilteredmentors} value={cat.name} className="btn btn-large red">{cat.name}</button>
                             ))}
                         </div>
-                        <div className="section">
+                        {/* <div className="section">
                             {subject.map(sub => (
                                 <button key={sub._id} id="subject" onClick={getfilteredmentors} value={sub.name} className="btn red">{sub.name}</button>
                             ))}
@@ -79,7 +79,7 @@ function Mentors() {
                                     ))}
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                         {mentors.map((mentor, id) => (
                             <div key={id} className="card col s6 m4 center-align">
                                 <div className="card-image">
