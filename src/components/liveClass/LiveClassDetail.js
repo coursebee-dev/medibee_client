@@ -81,17 +81,17 @@ export default class LiveClassDetail extends Component {
                 <div className="section">
                     <div className="row">
                         <div className="col m9">
-                            <h1>Topic: {this.state.liveClasses.topic}</h1>
-                            <p>Start Time: {new Date(this.state.liveClasses.start_time).toLocaleDateString() + " " + new Date(this.state.liveClasses.start_time).toLocaleTimeString()} </p>
-                            <p>Duration : {Math.round(this.state.liveClasses.duration / 60)} hour {this.state.liveClasses.duration % 60} minutes </p>
-                            <p>Type: {this.state.liveClasses.class_type}</p>
-                            <h4>Description:</h4>
-                            <div dangerouslySetInnerHTML={{ __html: this.state.liveClasses.description }} />
+                            <h1>{this.state.liveClasses.topic}</h1>
+                            <p><b>Start Time:</b> {new Date(this.state.liveClasses.start_time).toLocaleDateString() + " " + new Date(this.state.liveClasses.start_time).toLocaleTimeString()} </p>
+                            <p><b>Duration :</b> {Math.round(this.state.liveClasses.duration / 60)} hour {this.state.liveClasses.duration % 60} minutes </p>
+                            <p><b>Type:</b> {this.state.liveClasses.class_type}</p>
+                            <h4><b>Description:</b></h4>
+                            <div style={{background: "#f1f1f1", padding: "20px"}} dangerouslySetInnerHTML={{ __html: this.state.liveClasses.description }} />
                         </div>
-                        <div className="col m3">
-                            <div id="card" className="card vertical">
+                        <div className="col m3" style={{marginTop:"100px"}}>
+                            <div className="card vertical">
                                 <div className="card-image">
-                                    <img className="responsive-img" alt="mentor" src="https://lorempixel.com/400/400/nature/6" />
+                                    <img className="responsive-img mentors" alt="mentor" src="https://lorempixel.com/400/400/nature/6" />
                                 </div>
                                 <div className="card-content">
                                     Mentor:

@@ -7,10 +7,14 @@ import HeaderImg from "../layout/HeaderImg";
 export class Training extends Component {
     render() {
         const seo = {
-            title: "Coursebee : Training",
+            title: "Medibee : Training",
             description:
                 "Training programs are coming soon.",
+<<<<<<< HEAD
             url: "https://medibee.com.bd/training/",
+=======
+            url: "https://medibee.com/training/",
+>>>>>>> af024ce92ec14b6eb3913e58409cf77363fe7b19
             image: ""
         };
         return (
