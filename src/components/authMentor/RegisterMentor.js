@@ -7,7 +7,6 @@ import classnames from "classnames";
 import ReCAPTCHA from 'react-google-recaptcha';
 import "../../App.css";
 import axios from "axios";
-import { ProPicUploader, StudentIDCard, StudentNid, MentorNid, MentorBMDC, MentorMBBS } from "./Uploader/Uploader";
 
 class Register extends Component {
     constructor() {
@@ -30,6 +29,22 @@ class Register extends Component {
             selectedsubjectcategories: [],
             interests: [],
             captcha: false,
+            propic: null,
+            idfont: null,
+            idback: null,
+            idurl: null,
+            idfront: null,
+            idback: null,
+            idurl: null,
+            mentornidfront: null,
+            mentornidback: null,
+            mentornidurl: null,
+            mbbsfront: null,
+            mbbsback: null,
+            mbbsurl: null,
+            bmdcfront: null,
+            bmdcback: null,
+            bmdcurl: null,
             imagedata: {},
             errors: {}
         };
@@ -41,6 +56,7 @@ class Register extends Component {
         this.getSelectedSubjects = this.getSelectedSubjects.bind(this)
         this.handleSubjectCheckChange = this.handleSubjectCheckChange.bind(this)
         this.handleUpload = this.handleUpload.bind(this)
+        this.setImageUrls = this.setImageUrls.bind(this)
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -87,41 +103,6 @@ class Register extends Component {
 
     }
 
-    handleUpload(url, type) {
-        let imagedata = {
-            propicurl: "",
-            studentidurl: "",
-            studentnidurl: "",
-            bmdcurl: "",
-            mbbsurl: "",
-            mentornidurl: ""
-        };
-        switch (type) {
-            case "propic":
-                imagedata.propicurl = url
-                break;
-            case "studentid":
-                imagedata.studentidurl = url
-                break;
-            case "studentnid":
-                imagedata.studentnidurl = url
-                break;
-            case "bmdc":
-                imagedata.bmdcurl = url
-                break;
-            case "mbbs":
-                imagedata.mbbsurl = url
-                break;
-            case "mentornid":
-                imagedata.mentornidurl = url
-                break;
-            default:
-                break;
-        }
-        this.setState({ imagedata: imagedata }, () => console.log(this.state.imagedata))
-    }
-
-
     componentDidMount() {
         this.getSubjectCategories()
         this.getSelectedSubjects()
@@ -135,6 +116,78 @@ class Register extends Component {
             } else if (this.props.auth.user.type === "admin") {
                 this.props.history.push("admin/dashboard");
             }
+        }
+    }
+    async getUploadData(filedata) {
+        const body = new FormData()
+        body.append('upload_preset', "enxcncgu")
+        body.append("file", filedata)
+        const { data } = await axios.post("https://api.cloudinary.com/v1_1/coursebee/upload", body)
+        return data.url;
+    }
+
+    async setImageUrls() {
+        if (this.state.mentortype === "Student") {
+            let id = []
+            let data = await this.getUploadData(this.state.idfont)
+            id.push(data)
+            data = await this.getUploadData(this.state.idback)
+            id.push(data)
+            this.setState({ idurl: id })
+
+            let nid = []
+            data = await this.getUploadData(this.state.nidfont)
+            nid.push(data)
+            data = await this.getUploadData(this.state.nidback)
+            nid.push(data)
+            this.setState({ nidurl: nid })
+        } else if (this.state.mentortype === "Professional") {
+            let bmdc = []
+            let data = await this.getUploadData(this.state.bmdcfront)
+            bmdc.push(data)
+            data = await this.getUploadData(this.state.bmdcback)
+            bmdc.push(data)
+            this.setState({ bmdcurl: bmdc })
+
+            let mentornid = []
+            data = await this.getUploadData(this.state.mentornidfront)
+            mentornid.push(data)
+            data = await this.getUploadData(this.state.mentornidback)
+            mentornid.push(data)
+            this.setState({ mentornidurl: mentornid })
+
+            let mbbs = []
+            data = await this.getUploadData(this.state.mbbsfront)
+            mbbs.push(data)
+            data = await this.getUploadData(this.state.mbbsback)
+            mbbs.push(data)
+            this.setState({ mbbsurl: mbbs })
+        }
+    }
+
+    handleUpload(e) {
+        if (e.target.value === "idfront") {
+            this.setState({ idfont: e.target.files[0] })
+        } else if (e.target.value === "idfront") {
+            this.setState({ idfont: e.target.files[0] })
+        } else if (e.target.value === "idback") {
+            this.setState({ idback: e.target.files[0] })
+        } else if (e.target.value === "nidfront") {
+            this.setState({ nidfront: e.target.files[0] })
+        } else if (e.target.value === "nidback") {
+            this.setState({ nidback: e.target.files[0] })
+        } else if (e.target.value === "bmdcfront") {
+            this.setState({ bmdcfront: e.target.files[0] })
+        } else if (e.target.value === "bmdcback") {
+            this.setState({ bmdcback: e.target.files[0] })
+        } else if (e.target.value === "mbbsfront") {
+            this.setState({ mbbsfront: e.target.files[0] })
+        } else if (e.target.value === "mbbsback") {
+            this.setState({ mbbsback: e.target.files[0] })
+        } else if (e.target.value === "mentornidfront") {
+            this.setState({ mentornidfront: e.target.files[0] })
+        } else if (e.target.value === "mentornidfront") {
+            this.setState({ mentornidback: e.target.files[0] })
         }
     }
     onChange = e => {
@@ -193,6 +246,12 @@ class Register extends Component {
         this.setState({
             interests: []
         });
+    }
+
+    uploadtest(e) {
+        e.preventDefault()
+        this.setImageUrls()
+        console.log(this.state)
     }
 
     render() {
@@ -272,8 +331,8 @@ class Register extends Component {
                                 <span className="red-text">{errors.password}</span>
                             </div>
                             <div className="col s12">
-                                <span>Upload your picture</span>
-                                <ProPicUploader handleUpload={(a, b) => this.handleUpload(a, b)} />
+                                <span>Upload Your profile picture</span>
+                                <input onChange={this.handleUpload} name="propic" type="file" />
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -346,27 +405,43 @@ class Register extends Component {
                                     <option value="Professional">Professional</option>
                                 </select>
                             </div>
+                            <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>Upload Your Student ID Card</span>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
-                                <span>Upload Your Student ID Card <label>(You can upload multiple pictures)</label></span>
-                                <StudentIDCard handleUpload={(a, b) => this.handleUpload(a, b)} />
+                                <span>(front)</span>
+                                <input type="file" name="idfront" onChange={this.handleUpload} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
-                                <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
-                                <StudentNid handleUpload={(a, b) => this.handleUpload(a, b)} />
-                                <label>Not Mandatory</label>
+                                <span>(back)</span>
+                                <input type="file" name="idback" onChange={this.handleUpload} />
+                            </div>
+                            <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>Upload Your NID/Passport <label>(Not Mandatory)</label></span>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                <span>(front)</span>
+                                <input type="file" name="nidfront" onChange={this.handleUpload} />
+                            </div>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                <span>(back)</span>
+                                <input type="file" name="nidback" onChange={this.handleUpload} />
+                            </div>
+                            <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>Upload Your BMDC Certificate</span>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                <span>(front)</span>
+                                <input type="file" name="bmdcfront" onChange={this.handleUpload} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
-                                <span>Upload Your MBBS Certificate <label>(You can upload multiple pictures)</label></span>
-                                <MentorMBBS handleUpload={(a, b) => this.handleUpload(a, b)} />
+                                <span>(back)</span>
+                                <input type="file" name="bmdcback" onChange={this.handleUpload} />
+                            </div>
+                            <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>Upload Your NID/Passport</span>
+                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                <span>(front)</span>
+                                <input type="file" name="mentornidfront" onChange={this.handleUpload} />
                             </div>
                             <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
-                                <span>Upload Your BMDC Certificate <label>(You can upload multiple pictures)</label></span>
-                                <MentorBMDC handleUpload={(a, b) => this.handleUpload(a, b)} />
+                                <span>(back)</span>
+                                <input type="file" name="mentornidback" onChange={this.handleUpload} />
                             </div>
-                            <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
-                                <span>Upload Your NID/Passport <label>(You can upload multiple pictures)</label></span>
-                                <MentorNid handleUpload={(a, b) => this.handleUpload(a, b)} />
-                            </div>
+
                             <div className="input-field col s12">
                                 <span>Select Desired Subject Category</span>
                                 {this.state.subjectcategories.map((subcat, id) => (
@@ -378,6 +453,7 @@ class Register extends Component {
                                     </p>
                                 ))}
                             </div>
+
                             <span className="col s12">Select Sub-categories</span>
                             {this.state.subjectBySelectedCatagories.map(subject => (
                                 <div key={subject._id} className="col s12">
@@ -392,14 +468,6 @@ class Register extends Component {
                                     ))}
                                 </div>
                             ))}
-
-
-
-
-
-
-
-
                             {this.state.interests.map((interest, id) => (
                                 <div className="chip" key={id}>
                                     {interest}

@@ -83,7 +83,7 @@ export default function PathRoute() {
                     <Route exact path="/disclaimer" component={Disclaimer} />
                     <Route exact path="/contactus" component={Contact} />
                     <Route exact path="/mentors" component={Mentors} />
-                    <PrivateRoute exact path="/mentors/details/:id" component={MentorsDetails} />
+                    <Route exact path="/mentors/details/:id" component={MentorsDetails} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute exact path="/dashboard/myliveclass/:id" component={MyLiveClass} />
                     <PrivateRoute exact path="/dashboard/liveclassroom/:classid" component={LiveClassRoom} />
