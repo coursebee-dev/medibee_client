@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HeaderImg from "../layout/HeaderImg"
 import { Helmet } from 'react-helmet'
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 class About extends Component {
     render() {
@@ -26,7 +27,7 @@ class About extends Component {
                         { property: "og:url", content: seo.url },
                     ]}
                 />
-                <HeaderImg />
+                <Breadcrumbs title="About" description="Who we are " />
 
                 <div className="container">
                     <div className="section">

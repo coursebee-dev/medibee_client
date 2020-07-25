@@ -53,16 +53,15 @@ class Landing extends Component {
           </div>
           {/*user registration*/}
           <div className="center-align" style={{ background: "#efefef", padding: "25px 0" }}>
-            <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
-            <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
-            <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
-            <p className="flow-text grey-text text-darken-1">
-              We are just starting our journey to develop the best platform for you.<br />
-                To be one of the first students in Medibee
-              </p>
-            <h4>Register Now</h4>
-
             <div className="container">
+              <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
+              <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
+              <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
+              <p className="flow-text grey-text text-darken-1">
+                We are just starting our journey to develop the best platform for you.<br />
+                  To be one of the first students in Medibee
+                </p>
+              <h4>Register Now</h4>
               <div style={{ justifyContent: "space-evenly" }} className="row">
                 <div className="col s6 m6">
                   <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable orange darken-1  black-text">
@@ -79,29 +78,32 @@ class Landing extends Component {
           </div>
           {/*user registration end*/}
           {/*greetings*/}
-          <div className="container" style={{ padding: "25px 0" }}>
-            <h3 className="center-align" > <b className=" red-text text-darken-1" style={{ wordSpacing: "10px" }}>Greetings From Doctors</b> </h3>
+          {/*<div className="container" style={{ padding: "25px 0" }}>*/}
+          {/*  <h3 className="center-align" > <b className=" red-text text-darken-1" style={{ wordSpacing: "10px" }}>Greetings From Doctors</b> </h3>*/}
 
-            <div className="row">
-              <div className="col s12 m7">
-                <div className="card">
-                  <div className="card-image center-align">
-                    <img src={logo} alt="MEDIBEE" style={{ width: "100px", height: "100px" }} />
-                    {/*<span className="card-title">Card Title</span>*/}
-                  </div>
-                  <div className="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                      I am convenient because I require little markup to use effectively.</p>
-                  </div>
-                  <div className="card-action">
-                    <a href="#">This is a link</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          {/*  <div className="row">*/}
+          {/*    <div className="col s12 m7">*/}
+          {/*      <div className="card">*/}
+          {/*        <div className="card-image center-align">*/}
+          {/*          <img src={logo} alt="MEDIBEE" style={{ width: "100px", height: "100px" }} />*/}
+          {/*          /!*<span className="card-title">Card Title</span>*!/*/}
+          {/*        </div>*/}
+          {/*        <div className="card-content">*/}
+          {/*          <p>I am a very simple card. I am good at containing small bits of information.*/}
+          {/*            I am convenient because I require little markup to use effectively.</p>*/}
+          {/*        </div>*/}
+          {/*        <div className="card-action">*/}
+          {/*          <a href="#">This is a link</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
           {/*greetings end*/}
+          {/*signup mentors*/}
+          <div className="container" style={{ padding: "25px 0" }}>
+            <h2>Share your knowledge as a Mentor <Link to="/mentor/register" className="mentor_signup">Signup</Link></h2>
+          </div>
         </div>
       </div>
     );

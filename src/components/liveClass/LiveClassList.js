@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import M from "materialize-css"
 import HeaderImg from "../layout/HeaderImg";
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 class LiveClassList extends Component {
     constructor() {
@@ -109,7 +110,7 @@ class LiveClassList extends Component {
         ));
         return (
             <>
-                <HeaderImg />
+                <Breadcrumbs title="Live Classroom" description="All live courses that are currently running " />
                 <div className="container" >
                 <Helmet
                     title={seo.title}

@@ -128,6 +128,45 @@ body {
     text-shadow: 1px 1px 3px #38c1ff;
     font-weight: 700;
 }
+/*landingpage*/
+.mentor_signup{
+    background: #d73737;
+    padding: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+    text-shadow: 2px 2px 3px black;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+}
+.mentor_signup:hover{
+    background: white;
+    padding: 10px;
+    border: 2px solid #d73737;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: #d73737;
+    text-shadow: 2px 2px 3px black;
+}
+/*landing page*/
+/*mentors*/
+.mentors{
+    margin-top: -50px;
+    width: 100px !important;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #dd585c;
+    border-radius: 100% !important;
+    padding: 5px;
+    background: #fffbf3;
+    box-shadow: 2px 5px 7px #928d8d;
+}
+/*mentors*/
 /*navbar*/
 nav{
     background: linear-gradient(45deg, #fffefd,#fcdcdc, #d94a4e,#ae292d, #5d0c0e, #001321, #00080d);

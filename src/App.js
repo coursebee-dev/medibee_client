@@ -12,7 +12,8 @@ import { createBrowserHistory } from 'history'
 import { Helmet } from 'react-helmet';
 import PathRoute from "./router";
 
-axios.defaults.baseURL = "http://localhost:5000"
+axios.defaults.baseURL = "https://medibee-server-alpha.herokuapp.com"
+// axios.defaults.baseURL = "http://localhost:5000"
 //axios.defaults.baseURL = "https://coursebee-server-staging.herokuapp.com"
 //axios.defaults.baseURL = "https://coursebee-server.herokuapp.com"
 // Check for token to keep user logged in
