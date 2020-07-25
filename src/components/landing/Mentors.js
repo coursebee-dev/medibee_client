@@ -81,7 +81,7 @@ function Mentors() {
                             ))}
                         </div> */}
                         {mentors.map((mentor, id) => (
-                            <div key={id} className="card col s6 m4 center-align">
+                            <div key={id} className="card col s6 m4 center-align" style={{ marginTop: "60px" }}>
                                 <div className="card-image">
                                     <img src={profile} alt="profile" className="mentors" />
                                 </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import Axios from 'axios'
 
@@ -48,8 +49,11 @@ export const MentorsDetails = ({ match, auth }) => {
                     </div>
                 </div>
             ) : (
-                    <div>
-                        You must login to view this page
+                    <div className="container">
+                        <div className="section" style={{ display: "flex", flexDirection: "column", justifyContent: "center", }}>
+                            <h1>You must login to view this page.</h1>
+                            <Link to={"/login"} className="btn btn-large waves-effect hoverable blue darken-1" style={{ maxWidth: "200px" }}>Login</Link>
+                        </div>
                     </div>
                 )}
         </>
