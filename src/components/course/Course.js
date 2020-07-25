@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ComingSoon } from '../comingSoon/ComingSoon'
 import { Helmet } from 'react-helmet';
 import HeaderImg from "../layout/HeaderImg";
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 export class Course extends Component {
     render() {
@@ -15,7 +16,7 @@ export class Course extends Component {
         };
         return (
             <div>
-                <HeaderImg />
+                <Breadcrumbs title="Courses" description="Registered courses" />
                 {/*<h4 style={{ margin: "50px" }}>Courses</h4>*/}
                 <Helmet
                     title={seo.title}
