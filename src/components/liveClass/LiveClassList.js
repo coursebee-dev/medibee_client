@@ -76,18 +76,14 @@ class LiveClassList extends Component {
             title: "Medibee : Live Classrom",
             description:
                 "Interactive live classes are coming soon.",
-<<<<<<< HEAD
             url: "https://medibee.com.bd/liveClassroom/",
-=======
-            url: "https://medibee.com/liveClassroom/",
->>>>>>> af024ce92ec14b6eb3913e58409cf77363fe7b19
             image: ""
         };
         const liveClasses = this.state.liveClasses.map(liveClass => (
             <div className="col m4 s6" key={liveClass._id}>
                 <div className="card ">
                     <div className="card-image">
-                        <img src={courseBanner} alt="course_banner"/>
+                        <img src={courseBanner} alt="course_banner" />
                     </div>
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
@@ -98,7 +94,6 @@ class LiveClassList extends Component {
                     <div className="card-action">
                         <button
                             value={liveClass._id}
-<<<<<<< HEAD
                             onClick={this.onRegisterClick(liveClass.class_type)}
                             className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                             Register for ৳ {liveClass.price}
@@ -109,51 +104,37 @@ class LiveClassList extends Component {
                             className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                             Register for free
                         </button>
-                    }
-                </p>
-                <h6>Topic : {liveClass.topic}</h6>
-                <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                <p>Duration : {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
-                <p>Type: {liveClass.class_type}</p>
-                <button
-                    value={liveClass._id}
-                    onClick={this.seeDetails}
-                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
-                    <i className="material-icons right">visibility</i>View Details
-                </button>
-            </li>
-=======
-                            onClick={this.seeDetails}
-                            className="btn-flat waves-effect red darken-4 white-text">
-                            <i className="material-icons right">visibility</i>View Details
-                        </button>
-                        <span className="secondary-content">
-                            {liveClass.class_type === "Paid" ?
-                                <button
-                                    value={liveClass._id}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
-                                    className="btn-flat waves-effect red darken-4 white-text">
-                                    Register for ৳ {liveClass.price}
-                                </button>
-                                : <button
-                                    value={liveClass._id}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
-                                    className="btn-flat waves-effect red darken-4 white-text">
-                                    Register for free
-                                </button>
-                            }
-                        </span>
                     </div>
+                    <button
+                        value={liveClass._id}
+                        onClick={this.seeDetails}
+                        className="btn-flat waves-effect red darken-4 white-text">
+                        <i className="material-icons right">visibility</i>View Details
+                        </button>
+                    <span className="secondary-content">
+                        {liveClass.class_type === "Paid" ?
+                            <button
+                                value={liveClass._id}
+                                onClick={this.onRegisterClick(liveClass.class_type)}
+                                className="btn-flat waves-effect red darken-4 white-text">
+                                Register for ৳ {liveClass.price}
+                            </button>
+                            : <button
+                                value={liveClass._id}
+                                onClick={this.onRegisterClick(liveClass.class_type)}
+                                className="btn-flat waves-effect red darken-4 white-text">
+                                Register for free
+                                </button>
+                        }
+                    </span>
                 </div>
-
             </div>
->>>>>>> af024ce92ec14b6eb3913e58409cf77363fe7b19
+
         ));
         return (
             <>
                 <Breadcrumbs title="Live Classroom" description="All live courses that are currently running " />
                 <div className="container" >
-<<<<<<< HEAD
                     <Helmet
                         title={seo.title}
                         meta={[
@@ -166,28 +147,10 @@ class LiveClassList extends Component {
                             { property: "og:url", content: seo.url },
                         ]}
                     />
-                    <h4 style={{ margin: "50px" }}>Scheduled Classes</h4>
-                    <ul style={{ width: "100%", textAlign: "left" }} className="collection">{liveClasses.reverse()}</ul>
-                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect blue darken-1 white-text">
+                    <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
+                    <div className="row ">{liveClasses.reverse()}</div>
+                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
                         <i className="material-icons left">keyboard_backspace</i>Go Back
-=======
-                <Helmet
-                    title={seo.title}
-                    meta={[
-                        {
-                            name: "description",
-                            property: "og:description",
-                            content: seo.description
-                        },
-                        { property: "og:title", content: seo.title },
-                        { property: "og:url", content: seo.url },
-                    ]}
-                />
-                <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
-                <div className="row ">{liveClasses.reverse()}</div>
-                <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
-                    <i className="material-icons left">keyboard_backspace</i>Go Back
->>>>>>> af024ce92ec14b6eb3913e58409cf77363fe7b19
                 </Link>
                 </div>
             </>

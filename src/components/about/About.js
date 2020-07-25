@@ -9,13 +9,8 @@ class About extends Component {
         const seo = {
             title: "Medibee : About",
             description:
-<<<<<<< HEAD
                 "About Coursebee.",
             url: "https://medibee.com.bd/about/",
-=======
-                "About Medibee.",
-            url: "https://medibee.com/about/",
->>>>>>> af024ce92ec14b6eb3913e58409cf77363fe7b19
             image: ""
         };
         return (
