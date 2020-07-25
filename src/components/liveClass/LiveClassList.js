@@ -85,13 +85,13 @@ class LiveClassList extends Component {
                         <button
                             value={liveClass._id}
                             onClick={this.onRegisterClick(liveClass.class_type)}
-                            className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
+                            className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                             Register for ৳ {liveClass.price}
                         </button>
                         : <button
                             value={liveClass._id}
                             onClick={this.onRegisterClick(liveClass.class_type)}
-                            className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
+                            className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                             Register for free
                         </button>
                     }
@@ -103,7 +103,7 @@ class LiveClassList extends Component {
                 <button
                     value={liveClass._id}
                     onClick={this.seeDetails}
-                    className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
+                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                     <i className="material-icons right">visibility</i>View Details
                 </button>
             </li>
@@ -112,24 +112,24 @@ class LiveClassList extends Component {
             <>
                 <Breadcrumbs title="Live Classroom" description="All live courses that are currently running " />
                 <div className="container" >
-                <Helmet
-                    title={seo.title}
-                    meta={[
-                        {
-                            name: "description",
-                            property: "og:description",
-                            content: seo.description
-                        },
-                        { property: "og:title", content: seo.title },
-                        { property: "og:url", content: seo.url },
-                    ]}
-                />
-                <h4 style={{ margin: "50px" }}>Scheduled Classes</h4>
-                <ul style={{ width: "100%", textAlign: "left" }} className="collection">{liveClasses.reverse()}</ul>
-                <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
-                    <i className="material-icons left">keyboard_backspace</i>Go Back
+                    <Helmet
+                        title={seo.title}
+                        meta={[
+                            {
+                                name: "description",
+                                property: "og:description",
+                                content: seo.description
+                            },
+                            { property: "og:title", content: seo.title },
+                            { property: "og:url", content: seo.url },
+                        ]}
+                    />
+                    <h4 style={{ margin: "50px" }}>Scheduled Classes</h4>
+                    <ul style={{ width: "100%", textAlign: "left" }} className="collection">{liveClasses.reverse()}</ul>
+                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect blue darken-1 white-text">
+                        <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
-            </div>
+                </div>
             </>
         )
     }

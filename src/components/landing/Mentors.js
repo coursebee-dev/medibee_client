@@ -91,7 +91,7 @@ function Mentors() {
                                     <p>{mentor.position}</p>
                                 </div>
                                 <div className="card-action">
-                                    <Link to={`/mentors/details/${mentor._id}`} className="btn btn-large waves-effect hoverable teal darken-1">Details</Link>
+                                    <Link to={`/mentors/details/${mentor._id}`} className="btn btn-large waves-effect hoverable blue darken-1">Details</Link>
                                 </div>
                             </div>
                         ))}

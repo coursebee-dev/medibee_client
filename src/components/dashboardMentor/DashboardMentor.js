@@ -66,7 +66,7 @@ class DashboardMentor extends Component {
                   marginTop: "1rem"
                 }}
                 onClick={this.onLogoutClick}
-                className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                className="btn btn-large waves-effect waves-light hoverable blue darken-1"
               >
                 Logout
             </button>

@@ -60,8 +60,8 @@ export default class ForgotPass extends Component {
                             Please open the email and click on the given link
                         </div>
                         <div className='red-text'>Note that the link will expire in a short time</div>
-                        <br/>
-                        <span className='teal-text'>{this.state.status}</span>
+                        <br />
+                        <span className='blue-text'>{this.state.status}</span>
                     </div>
                     <div className="col s8 offset-s1">
                         <form noValidate onSubmit={this.onSubmit}>
@@ -108,7 +108,7 @@ export default class ForgotPass extends Component {
                                         marginTop: "1rem"
                                     }}
                                     type="submit"
-                                    className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                                    className="btn btn-large waves-effect waves-light hoverable blue darken-1"
                                 >
                                     Verify
                                 </button>

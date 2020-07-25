@@ -29,7 +29,7 @@ class Dashboard extends Component {
                 </p>
 
               </h4>
-              <Link to="/liveclass" className="btn-flat waves-effect orange darken-1">
+              <Link to="/liveclass" className="btn-flat waves-effect red darken-1">
                 View All Live Classes
                 <i className="material-icons left">arrow_forward</i>
               </Link>
@@ -44,7 +44,7 @@ class Dashboard extends Component {
                   marginTop: "1rem"
                 }}
                 onClick={this.onLogoutClick}
-                className="btn btn-large waves-effect waves-light hoverable teal darken-1"
+                className="btn btn-large waves-effect waves-light hoverable blue darken-1"
               >
                 Logout
               </button>
