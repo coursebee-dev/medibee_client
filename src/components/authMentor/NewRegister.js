@@ -9,7 +9,7 @@ import "../../App.css";
 import axios from "axios";
 
 export class NewRegister extends Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
 
@@ -27,8 +27,8 @@ export class NewRegister extends Component {
     }
 
     componentDidMount() {
-        this.getSubjectCategories()
-        this.getSelectedSubjects()
+        //this.getSubjectCategories()
+        //this.getSelectedSubjects()
         window.scrollTo(0, 0)
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
@@ -45,6 +45,7 @@ export class NewRegister extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
+
     onSubmit = e => {
         e.preventDefault();
         this.setState({ loading: true })
@@ -72,6 +73,12 @@ export class NewRegister extends Component {
         }
         this.setState({ loading: false })
     };
+
+    verifyCaptcha(response) {
+        if (response) {
+            this.setState({ captcha: true })
+        }
+    }
 
     render() {
         return (

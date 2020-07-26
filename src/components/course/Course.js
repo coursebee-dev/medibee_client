@@ -30,6 +30,7 @@ export class Course extends Component {
                         { property: "og:url", content: seo.url },
                     ]}
                 />
+                <HeaderImg />
                 <ComingSoon />
             </div>
         )

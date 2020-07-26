@@ -11,6 +11,8 @@ import axios from "axios";
 import { createBrowserHistory } from 'history'
 import { Helmet } from 'react-helmet';
 import PathRoute from "./router";
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 
 axios.defaults.baseURL = process.env.REACT_APP_NOT_AXIOS_BASE_URL;
 //axios.defaults.baseURL = "https://medibee-server-staging.herokuapp.com"

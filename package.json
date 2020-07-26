@@ -13,7 +13,7 @@
     "html-react-parser": "^0.13.0",
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
-    "materialize-css": "^1.0.0",
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone-uploader": "^2.11.0",

@@ -57,7 +57,7 @@ class Landing extends Component {
               <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
               <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
               <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
-              <p className="flow-text grey-text text-darken-1">
+              <p className="flow-text grey-text">
                 We are just starting our journey to develop the best platform for you.<br />
                   To be one of the first students in Medibee
                 </p>
