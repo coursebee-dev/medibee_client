@@ -91,42 +91,32 @@ class LiveClassList extends Component {
                         <p><b>Duration :</b> {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
                         <p><b>Type:</b> {liveClass.class_type}</p>
                     </div>
-                    <div className="card-action">
+                    <div className="card-action row">
                         <button
                             value={liveClass._id}
-                            onClick={this.onRegisterClick(liveClass.class_type)}
-                            className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
-                            Register for ৳ {liveClass.price}
+                            onClick={this.seeDetails}
+                            style={{ width: "100%" }}
+                            className="btn-flat waves-effect col red darken-4 white-text">
+                            View Details
+                            <i className="material-icons right">visibility</i>
                         </button>
-                        : <button
-                            value={liveClass._id}
-                            onClick={this.onRegisterClick(liveClass.class_type)}
-                            className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
-                            Register for free
-                        </button>
-                    </div>
-                    <button
-                        value={liveClass._id}
-                        onClick={this.seeDetails}
-                        className="btn-flat waves-effect red darken-4 white-text">
-                        <i className="material-icons right">visibility</i>View Details
-                        </button>
-                    <span className="secondary-content">
                         {liveClass.class_type === "Paid" ?
                             <button
                                 value={liveClass._id}
                                 onClick={this.onRegisterClick(liveClass.class_type)}
-                                className="btn-flat waves-effect red darken-4 white-text">
+                                style={{ width: "100%", marginTop: "20px" }}
+                                className="btn-flat waves-effect col red darken-4 white-text">
                                 Register for ৳ {liveClass.price}
                             </button>
                             : <button
                                 value={liveClass._id}
+                                style={{ width: "100%", marginTop: "20px" }}
                                 onClick={this.onRegisterClick(liveClass.class_type)}
-                                className="btn-flat waves-effect red darken-4 white-text">
+                                className="btn-flat waves-effect col red darken-4 white-text">
                                 Register for free
                                 </button>
                         }
-                    </span>
+                    </div>
                 </div>
             </div>
 
