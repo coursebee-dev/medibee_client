@@ -112,7 +112,7 @@ export default class LiveClassDetail extends Component {
                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
                                     className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
                                     Register for free
-                        </button>
+                                </button>
                             }
                         </div>
                     </div>

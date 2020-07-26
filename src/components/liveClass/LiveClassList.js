@@ -91,7 +91,7 @@ class LiveClassList extends Component {
                         <p><b>Duration :</b> {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
                         <p><b>Type:</b> {liveClass.class_type}</p>
                     </div>
-                    <div className="card-action">
+                    <div className="card-action blue-grey darken-1">
                         <button
                             value={liveClass._id}
                             onClick={this.seeDetails}
