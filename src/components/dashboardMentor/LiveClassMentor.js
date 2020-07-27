@@ -30,7 +30,7 @@ export default class LiveClassMentor extends Component {
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
                 {liveClass.approved ? (
-                    <Link to={"/mentor/dashboard/liveclassroom/" + liveClass._id} className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">Start Class</Link>
+                    <Link to={"/mentor/dashboard/liveclassroom/" + liveClass._id} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</Link>
                 ) : (
                         null
                     )}

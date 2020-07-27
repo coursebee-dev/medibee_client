@@ -73,17 +73,17 @@ class LiveClassList extends Component {
     }
     render() {
         const seo = {
-            title: "Medibee : Live Classrom",
+            title: "Medibee : Live Classroom",
             description:
                 "Interactive live classes are coming soon.",
-            url: "https://medibee.com/liveClassroom/",
+            url: "https://medibee.com.bd/liveClassroom/",
             image: ""
         };
         const liveClasses = this.state.liveClasses.map(liveClass => (
             <div className="col m4 s6" key={liveClass._id}>
                 <div className="card ">
                     <div className="card-image">
-                        <img src={courseBanner} alt="course_banner"/>
+                        <img src={courseBanner} alt="course_banner" />
                     </div>
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
@@ -91,56 +91,58 @@ class LiveClassList extends Component {
                         <p><b>Duration :</b> {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
                         <p><b>Type:</b> {liveClass.class_type}</p>
                     </div>
-                    <div className="card-action blue-grey darken-1">
+                    <div className="card-action row">
                         <button
                             value={liveClass._id}
                             onClick={this.seeDetails}
-                            className="btn-flat waves-effect red darken-4 white-text">
-                            <i className="material-icons right">visibility</i>View Details
+                            style={{ width: "100%" }}
+                            className="btn-flat waves-effect col red darken-4 white-text">
+                            View Details
+                            <i className="material-icons right">visibility</i>
                         </button>
-                        <span className="secondary-content">
-                            {liveClass.class_type === "Paid" ?
-                                <button
-                                    value={liveClass._id}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
-                                    className="btn-flat waves-effect red darken-4 white-text">
-                                    Register for ৳ {liveClass.price}
+                        {liveClass.class_type === "Paid" ?
+                            <button
+                                value={liveClass._id}
+                                onClick={this.onRegisterClick(liveClass.class_type)}
+                                style={{ width: "100%", marginTop: "20px" }}
+                                className="btn-flat waves-effect col blue darken-4 white-text">
+                                Register for ৳ {liveClass.price}  <s style={{ color: "red" }}>  {liveClass.fake_price}</s>
+                            </button>
+                            : <button
+                                value={liveClass._id}
+                                style={{ width: "100%", marginTop: "20px" }}
+                                onClick={this.onRegisterClick(liveClass.class_type)}
+                                className="btn-flat waves-effect col blue darken-4 white-text">
+                                Register for free
                                 </button>
-                                : <button
-                                    value={liveClass._id}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
-                                    className="btn-flat waves-effect red darken-4 white-text">
-                                    Register for free
-                                </button>
-                            }
-                        </span>
+                        }
                     </div>
                 </div>
-
             </div>
+
         ));
         return (
             <>
                 <Breadcrumbs title="Live Classroom" description="All live courses that are currently running " />
                 <div className="container" >
-                <Helmet
-                    title={seo.title}
-                    meta={[
-                        {
-                            name: "description",
-                            property: "og:description",
-                            content: seo.description
-                        },
-                        { property: "og:title", content: seo.title },
-                        { property: "og:url", content: seo.url },
-                    ]}
-                />
-                <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
-                <div className="row ">{liveClasses.reverse()}</div>
-                <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
-                    <i className="material-icons left">keyboard_backspace</i>Go Back
+                    <Helmet
+                        title={seo.title}
+                        meta={[
+                            {
+                                name: "description",
+                                property: "og:description",
+                                content: seo.description
+                            },
+                            { property: "og:title", content: seo.title },
+                            { property: "og:url", content: seo.url },
+                        ]}
+                    />
+                    <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
+                    <div className="row ">{liveClasses.reverse()}</div>
+                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
+                        <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
-            </div>
+                </div>
             </>
         )
     }

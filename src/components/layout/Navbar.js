@@ -32,7 +32,7 @@ class Navbar extends Component {
                     <li><LinkStyled to="/course">Courses</LinkStyled></li>
                     <li><LinkStyled to="/mentors">Mentors</LinkStyled></li>
                     {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
-                    {this.props.auth.isAuthenticated ? <li><LinkStyled className="grey" to="#">{this.props.auth.user.name}</LinkStyled></li> :
+                    {this.props.auth.isAuthenticated ? <li><LinkStyled className="blue" to="#">{this.props.auth.user.name}</LinkStyled></li> :
                         <li>
                             <LinkStyled to="/register">
                                 Sign Up
@@ -60,7 +60,7 @@ class Navbar extends Component {
                                 {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
                                 {this.props.auth.isAuthenticated ? <li><UserIcon /></li> :
                                     <li>
-                                        <Link className="teal darken-1" to="/register">
+                                        <Link className="blue" to="/register">
                                             Sign Up
                                         </Link>
                                     </li>

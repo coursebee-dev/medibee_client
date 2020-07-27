@@ -104,19 +104,19 @@ export default class LiveClassDetail extends Component {
                                 <button
                                     value={this.state.liveClasses._id}
                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
+                                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                                     Register for ৳ {this.state.liveClasses.price}
                                 </button>
                                 : <button
                                     value={this.state.liveClasses._id}
                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn btn-small waves-effect waves-light hoverable orange darken-1 black-text">
+                                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
                                     Register for free
                                 </button>
                             }
                         </div>
                     </div>
-                    <Link style={{ margin: "40px" }} to="/liveClass" className="btn-flat waves-effect teal darken-1 white-text">
+                    <Link style={{ margin: "40px" }} to="/liveClass" className="btn-flat waves-effect blue darken-1 white-text">
                         <i className="material-icons left">keyboard_backspace</i>Go Back
                     </Link>
                 </div>

@@ -10,7 +10,7 @@ export class Training extends Component {
             title: "Medibee : Training",
             description:
                 "Training programs are coming soon.",
-            url: "https://medibee.com/training/",
+            url: "https://medibee.com.bd/training/",
             image: ""
         };
         return (

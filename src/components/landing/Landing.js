@@ -64,12 +64,12 @@ class Landing extends Component {
               <h4>Register Now</h4>
               <div style={{ justifyContent: "space-evenly" }} className="row">
                 <div className="col s6 m6">
-                  <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable orange darken-1  black-text">
+                  <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable red darken-1  black-text">
                     Register
                     </Link>
                 </div>
                 <div className="col s6 m6">
-                  <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable teal darken-1">
+                  <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable blue darken-1">
                     Log In
                     </Link>
                 </div>

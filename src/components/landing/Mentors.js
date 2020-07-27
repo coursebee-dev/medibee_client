@@ -66,7 +66,7 @@ function Mentors() {
                                 <button key={cat._id} id="category" onClick={getfilteredmentors} value={cat.name} className="btn btn-large red">{cat.name}</button>
                             ))}
                         </div>
-                        <div className="section">
+                        {/* <div className="section">
                             {subject.map(sub => (
                                 <button key={sub._id} id="subject" onClick={getfilteredmentors} value={sub.name} className="btn red">{sub.name}</button>
                             ))}
@@ -79,9 +79,9 @@ function Mentors() {
                                     ))}
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
                         {mentors.map((mentor, id) => (
-                            <div key={id} className="card col s6 m4 center-align">
+                            <div key={id} className="card col s6 m4 center-align" style={{ marginTop: "60px" }}>
                                 <div className="card-image">
                                     <img src={profile} alt="profile" className="mentors" />
                                 </div>
@@ -91,7 +91,7 @@ function Mentors() {
                                     <p>{mentor.position}</p>
                                 </div>
                                 <div className="card-action">
-                                    <Link to={`/mentors/details/${mentor._id}`} className="btn btn-large waves-effect hoverable teal darken-1">Details</Link>
+                                    <Link to={`/mentors/details/${mentor._id}`} className="btn btn-large waves-effect hoverable blue darken-1">Details</Link>
                                 </div>
                             </div>
                         ))}

@@ -55,7 +55,7 @@ export default class Contact extends Component {
                                 <textarea name="message" className="materialize-textarea" defaultValue={""} />
                             </div>
                         </div>
-                        <button type="submit" className="waves-effect waves-light orange btn">Submit</button>
+                        <button type="submit" className="waves-effect waves-light red btn">Submit</button>
                     </div>
                     {/*Row for Comment(Textfield) End*/}
                 </form>
