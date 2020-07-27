@@ -87,9 +87,11 @@ class LiveClassList extends Component {
                     </div>
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
-                        <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                        <p><b>Duration :</b> {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
-                        <p><b>Type:</b> {liveClass.class_type}</p>
+                        <div className="row">
+                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()}</p></div>
+                            <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div>
+                            <div className="col s4 m4"><b>Type</b></div>  <div className="col s8 m8">: {liveClass.class_type}</div>
+                        </div>
                     </div>
                     <div className="card-action">
                         <div className="row">
