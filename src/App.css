@@ -104,12 +104,55 @@ body {
 .card{
     transition:0.3s ease-in-out;
 }
-.card:hover{
-    box-shadow: 3px 3px 5px #666363;
+.custom-card:hover{
+    box-shadow: 5px 5px 10px #666363;
     transition: 0.3s ease-in-out;
+    transform: translate(-5px, -5px);
 }
-.card-content{
-    font-family: cursive;
+.custom_btn{
+    width: -moz-fit-content;
+    /*background-color: #190101;*/
+    height: 50px;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 2.8px;
+    box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: all 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 0;
+}
+.custom_btn span {
+    z-index: 1;
+    text-align: center;
+    text-shadow: 1px 1px 7px black;
+}
+.custom_btn:before, .custom_btn:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    top: 0;
+    transition: all 0.4s ease;
+    background-color: #ef4949;
+}
+.custom_btn:before {
+    left: 0;
+}
+.custom_btn:after {
+    right: 0;
+}
+.custom_btn:hover {
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px -12px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+    color: white;
+}
+.custom_btn:hover:before, .custom_btn:hover:after {
+    width: 51%;
 }
 /*banner*/
 .banner{

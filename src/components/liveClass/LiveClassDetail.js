@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../../App.css'
 import M from "materialize-css"
 import { Link } from "react-router-dom";
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 export default class LiveClassDetail extends Component {
     constructor() {
@@ -77,7 +78,9 @@ export default class LiveClassDetail extends Component {
 
     render() {
         return (
-            <div className="container">
+            <>
+                <Breadcrumbs title="Class Details" description="All live courses that are currently running " />
+                <div className="container">
                 <div className="section">
                     <div className="row">
                         <div className="col m9">
@@ -104,14 +107,14 @@ export default class LiveClassDetail extends Component {
                                 <button
                                     value={this.state.liveClasses._id}
                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
-                                    Register for ৳ {this.state.liveClasses.price}
+                                    className="btn-flat  cyan darken-2 white-text custom_btn">
+                                    <span>Register for ৳ {this.state.liveClasses.price}</span>
                                 </button>
                                 : <button
                                     value={this.state.liveClasses._id}
                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">
-                                    Register for free
+                                    className="btn-flat  cyan darken-2 white-text custom_btn">
+                                    <span>Register for free</span>
                                 </button>
                             }
                         </div>
@@ -121,6 +124,7 @@ export default class LiveClassDetail extends Component {
                     </Link>
                 </div>
             </div>
+            </>
         )
     }
 }
