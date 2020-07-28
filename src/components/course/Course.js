@@ -6,6 +6,7 @@ import HeaderImg from "../layout/HeaderImg";
 import Breadcrumbs from "../layout/Breadcrumbs";
 
 export class Course extends Component {
+
     render() {
         const seo = {
             title: "Medibee : Courses",
@@ -30,8 +31,6 @@ export class Course extends Component {
                         { property: "og:url", content: seo.url },
                     ]}
                 />
-                <HeaderImg />
-                <ComingSoon />
             </div>
         )
     }

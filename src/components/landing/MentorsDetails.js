@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import Axios from 'axios'
 
 export const MentorsDetails = ({ match, auth }) => {
     const [details, setDetails] = useState({})
-    const getMentorDetail = async () => {
-        const { data } = await Axios.get(`/api/mentors/${match.params.id}`)
-        setDetails(data)
-    }
 
-    useEffect(() => {
+    useEffect((match) => {
+        const getMentorDetail = async () => {
+            const { data } = await Axios.get(`/api/mentors/${match.params.id}`)
+            setDetails(data)
+        }
         getMentorDetail()
     }, [])
     useEffect(() => {

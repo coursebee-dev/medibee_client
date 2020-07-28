@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import HeaderImg from "../layout/HeaderImg";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import profile from "../../images/profile.png"

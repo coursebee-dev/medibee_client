@@ -1,0 +1,243 @@
+{form}
+                    <form noValidate onSubmit={this.onSubmit}>
+                        {/*                             
+                            <>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.name}
+                                        error={errors.name}
+                                        id="name"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.name
+                                        })}
+                                    />
+                                    <label htmlFor="name">Name</label>
+                                    <span className="red-text">{errors.name}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.email}
+                                        error={errors.email}
+                                        id="email"
+                                        type="email"
+                                        className={classnames("", {
+                                            invalid: errors.email
+                                        })}
+                                    />
+                                    <label htmlFor="email">Email</label>
+                                    <span className="red-text">{errors.email}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.password}
+                                        error={errors.password}
+                                        id="password"
+                                        type="password"
+                                        className={classnames("", {
+                                            invalid: errors.password
+                                        })}
+                                    />
+                                    <label htmlFor="password">Password</label>
+                                    <span className="red-text">{errors.password}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.password2}
+                                        error={errors.password2}
+                                        id="password2"
+                                        type="password"
+                                        className={classnames("", {
+                                            invalid: errors.password2
+                                        })}
+                                    />
+                                    <label htmlFor="password2">Confirm Password</label>
+                                    <span className="red-text">{errors.password}</span>
+                                </div>
+                                <div className="col s12">
+                                    <span>Upload Your profile picture</span>
+                                    <input onChange={this.handleUpload} name="propic" type="file" />
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.mobileNo}
+                                        error={errors.mobileNo}
+                                        id="mobileNo"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.mobileNo
+                                        })}
+                                    />
+                                    <label htmlFor="mobileNo">Mobile No.</label>
+                                    <span className="red-text">{errors.mobileNo}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.medicalcollege}
+                                        error={errors.medicalcollege}
+                                        id="medicalcollege"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.medicalcollege
+                                        })}
+                                    />
+                                    <label htmlFor="medicalcollege">Medical College</label>
+                                    <span className="red-text">{errors.medicalcollege}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.position}
+                                        error={errors.position}
+                                        id="position"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.position
+                                        })}
+                                    />
+                                    <label htmlFor="position">Position/Designation</label>
+                                    <span className="red-text">{errors.position}</span>
+                                </div>
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onChange}
+                                        value={this.state.session}
+                                        error={errors.session}
+                                        id="session"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.session
+                                        })}
+                                    />
+                                    <label htmlFor="session">Session</label>
+                                    <span className="red-text">{errors.session}</span>
+                                </div>
+                                <div className="col s12">
+                                    <label htmlFor="mentortype">Current Status</label>
+                                    <select
+                                        onChange={this.onChange}
+                                        error={errors.mentortype}
+                                        id="mentortype"
+                                        type="text"
+                                        className={classnames("browser-default ", {
+                                            invalid: errors.mentortype
+                                        })}>
+                                        <option value="" defaultValue>Choose your option</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Professional">Professional</option>
+                                    </select>
+                                </div>
+                                <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>Upload Your Student ID Card</span>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                    <span>(front)</span>
+                                    <input type="file" name="idfront" onChange={this.handleUpload} />
+                                </div>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                    <span>(back)</span>
+                                    <input type="file" name="idback" onChange={this.handleUpload} />
+                                </div>
+                                <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>Upload Your NID/Passport <label>(Not Mandatory)</label></span>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                    <span>(front)</span>
+                                    <input type="file" name="nidfront" onChange={this.handleUpload} />
+                                </div>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Professional" ? "none" : null }}>
+                                    <span>(back)</span>
+                                    <input type="file" name="nidback" onChange={this.handleUpload} />
+                                </div>
+                                <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>Upload Your BMDC Certificate</span>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                    <span>(front)</span>
+                                    <input type="file" name="bmdcfront" onChange={this.handleUpload} />
+                                </div>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                    <span>(back)</span>
+                                    <input type="file" name="bmdcback" onChange={this.handleUpload} />
+                                </div>
+                                <span className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>Upload Your NID/Passport</span>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                    <span>(front)</span>
+                                    <input type="file" name="mentornidfront" onChange={this.handleUpload} />
+                                </div>
+                                <div className={classnames("col s12", { hide: this.state.mentortype == null })} style={{ display: this.state.mentortype === "Student" ? "none" : null }}>
+                                    <span>(back)</span>
+                                    <input type="file" name="mentornidback" onChange={this.handleUpload} />
+                                </div>
+
+                                <div className="input-field col s12">
+                                    <span>Select Desired Subject Category</span>
+                                    {this.state.subjectcategories.map((subcat, id) => (
+                                        <p key={id}>
+                                            <label>
+                                                <input value={subcat.name} onChange={this.handleCheckChange} type="checkbox" />
+                                                <span>{subcat.name}</span>
+                                            </label>
+                                        </p>
+                                    ))}
+                                </div>
+
+                                <span className="col s12">Select Sub-categories</span>
+                                {this.state.subjectBySelectedCatagories.map(subject => (
+                                    <div key={subject._id} className="col s12">
+                                        <span>{subject.name}</span>
+                                        {subject.subcategory.map((subcat, id) => (
+                                            <p key={id}>
+                                                <label>
+                                                    <input value={subcat.name} name={subject.category} id="subject" onChange={this.handleSubjectCheckChange} type="checkbox" />
+                                                    <span>{subcat.name}</span>
+                                                </label>
+                                            </p>
+                                        ))}
+                                    </div>
+                                ))}
+                                {this.state.interests.map((interest, id) => (
+                                    <div className="chip" key={id}>
+                                        {interest}
+                                    </div>
+                                ))}
+                                <div className="input-field col s12">
+                                    <input
+                                        onChange={this.onInterstChange}
+                                        value={this.state.interest}
+                                        error={errors.interests}
+                                        id="interests"
+                                        type="text"
+                                        maxLength="120"
+                                        className={classnames("materialize-textarea", {
+                                            invalid: errors.interests
+                                        })}
+                                    />
+                                    <button className="btn btn-small" disabled={!this.state.interest} onClick={this.addInterest}>Add Interest</button>
+                                    <button className="btn btn-small" disabled={!this.state.interests[0]} onClick={this.deleteInterest}>Clear Interest</button>
+                                    <label htmlFor="interests">Preffered Topic of teaching (you may add multiple)</label>
+                                    <span className="red-text">{errors.interests}</span>
+                                </div>
+                                <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                                    <ReCAPTCHA
+                                        sitekey={`${captcha_secret}`}
+                                        onChange={this.verifyCaptcha}
+                                    />
+                                </div>
+                                <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                                    <button
+                                        style={{
+                                            width: "150px",
+                                            borderRadius: "3px",
+                                            letterSpacing: "1.5px",
+                                            marginTop: "1rem"
+                                        }}
+                                        type="submit"
+                                        className="btn btn-large waves-effect waves-light hoverable red"
+                                    >
+                                        Sign up
+                                </button>
+                                </div>
+                            </>
+                         */}
+                    </form>

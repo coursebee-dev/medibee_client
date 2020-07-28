@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import HeaderImg from "../layout/HeaderImg"
 import { Helmet } from 'react-helmet'
 import Breadcrumbs from "../layout/Breadcrumbs";
 

@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import M from "materialize-css"
-import HeaderImg from "../layout/HeaderImg";
 import courseBanner from "../../images/bannermedi.png";
 import Breadcrumbs from "../layout/Breadcrumbs";
 

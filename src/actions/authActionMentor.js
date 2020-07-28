@@ -24,7 +24,6 @@ export const registerMentor = (userData, history) => dispatch => {
         });
 };
 
-
 // Login - get user token
 export const loginMentor = (userData, history) => dispatch => {
     axios
