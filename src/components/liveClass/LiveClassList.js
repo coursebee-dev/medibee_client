@@ -72,49 +72,53 @@ class LiveClassList extends Component {
     }
     render() {
         const seo = {
-            title: "Medibee : Live Classrom",
+            title: "Medibee : Live Classroom",
             description:
                 "Interactive live classes are coming soon.",
             url: "https://medibee.com.bd/liveClassroom/",
             image: ""
         };
         const liveClasses = this.state.liveClasses.map(liveClass => (
-            <div className="col m4 s6" key={liveClass._id}>
-                <div className="card ">
+            <div className="col m4 s12" key={liveClass._id}>
+                <div className="card custom-card">
                     <div className="card-image">
                         <img src={courseBanner} alt="course_banner" />
                     </div>
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
-                        <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                        <p><b>Duration :</b> {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p>
-                        <p><b>Type:</b> {liveClass.class_type}</p>
+                        <div className="row">
+                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()}</p></div>
+                            <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div>
+                            <div className="col s4 m4"><b>Type</b></div>  <div className="col s8 m8">: {liveClass.class_type}</div>
+                        </div>
                     </div>
-                    <div className="card-action row">
-                        <button
-                            value={liveClass._id}
-                            onClick={this.seeDetails}
-                            style={{ width: "100%" }}
-                            className="btn-flat waves-effect col red darken-4 white-text">
-                            View Details
-                            <i className="material-icons right">visibility</i>
-                        </button>
-                        {liveClass.class_type === "Paid" ?
+                    <div className="card-action">
+                        <div className="row">
                             <button
                                 value={liveClass._id}
-                                onClick={this.onRegisterClick(liveClass.class_type)}
-                                style={{ width: "100%", marginTop: "20px" }}
-                                className="btn-flat waves-effect col blue darken-4 white-text">
-                                Register for ৳ {liveClass.price}  <s style={{ color: "red" }}>  {liveClass.fake_price}</s>
+                                onClick={this.seeDetails}
+                                style={{ width: "100%",fontWeight: "500" }}
+                                className="btn-flat blue-grey darken-3 custom_btn">
+                                 <span >View Details</span>
                             </button>
-                            : <button
-                                value={liveClass._id}
-                                style={{ width: "100%", marginTop: "20px" }}
-                                onClick={this.onRegisterClick(liveClass.class_type)}
-                                className="btn-flat waves-effect col blue darken-4 white-text">
-                                Register for free
+                            {liveClass.class_type === "Paid" ?
+                                <button
+                                    value={liveClass._id}
+                                    onClick={this.onRegisterClick(liveClass.class_type)}
+                                    style={{ width: "100%", marginTop: "20px",fontWeight: "500"  }}
+                                    className="btn-flat  cyan darken-2 white-text custom_btn">
+                                    <span >Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del></span>
                                 </button>
-                        }
+                                : <button
+                                    value={liveClass._id}
+                                    style={{ width: "100%", marginTop: "20px",fontWeight: "500"  }}
+                                    onClick={this.onRegisterClick(liveClass.class_type)}
+                                    className="btn-flat  blue darken-4 white-text custom_btn">
+                                    <span>Register for free</span>
+                                </button>
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>
