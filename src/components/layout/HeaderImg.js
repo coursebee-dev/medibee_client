@@ -10,11 +10,11 @@ class HeaderImg extends Component {
     render() {
         return (
             <div className="banner">
-                <img style={{ width: "100vw" }} src={hexagon} alt="header img" />
+                <img style={{ width: "100vw" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025430/assets/hexagon2_ahyjma.jpg" alt="header img" />
                 <div className="banner_overlay">
                     <div className="banner_text">
-                        <img style={{ height: "120px" }} src={logo} alt="MEDIBEE" />
-                        <h5 className="hide-on-small-only" style={{fontFamily: "cursive"}}>Build your career with professional online courses. <br/>And share your knowledge through live classroom ,training and video based courses.</h5>
+                        <img style={{ height: "120px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="MEDIBEE" />
+                        <h5 className="hide-on-small-only" style={{ fontFamily: "cursive" }}>Build your career with professional online courses. <br />And share your knowledge through live classroom ,training and video based courses.</h5>
                     </div>
                 </div>
             </div>

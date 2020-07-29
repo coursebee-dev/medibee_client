@@ -38,7 +38,7 @@ class LiveClassList extends Component {
         }
 
         if (liveclasstype === "Free") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
+            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${e.target.value}`)
                 .then(res => {
                     M.toast({ html: res.data.message })
                 })
@@ -137,7 +137,7 @@ class LiveClassList extends Component {
                     />
                     <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
                     <div className="row ">{liveClasses.reverse()}</div>
-                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect teal darken-1 white-text">
+                    <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect blue darken-1 white-text">
                         <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>
                 </div>
