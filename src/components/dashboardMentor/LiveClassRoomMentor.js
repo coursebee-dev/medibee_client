@@ -14,7 +14,8 @@ class LiveClassRoomMentor extends Component {
                 displayName: this.props.auth.user.name
             },
             configOverwrite: {
-                disableInviteFunctions: true
+                disableInviteFunctions: true,
+                disableDeepLinking: false
             },
             interfaceConfigOverwrite: {
                 HIDE_INVITE_MORE_HEADER: true,
