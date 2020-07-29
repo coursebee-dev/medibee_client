@@ -28,10 +28,6 @@ class LiveClassList extends Component {
             });
     }
 
-    seeDetails(e) {
-        window.location.replace(`/liveclass/${e.target.value}`)
-    }
-
     onRegisterClick = (liveclasstype) => e => {
         const liveclassid = e.target.value
         //const liveclasstype = e.target.liveclasstype
@@ -94,24 +90,23 @@ class LiveClassList extends Component {
                     </div>
                     <div className="card-action">
                         <div className="row">
-                            <button
-                                value={liveClass._id}
-                                onClick={this.seeDetails}
-                                style={{ width: "100%",fontWeight: "500" }}
-                                className="btn-flat blue-grey darken-3 custom_btn">
-                                 <span >View Details</span>
-                            </button>
+                            <Link
+                                to={`/liveclass/${liveClass._id}`}
+                                style={{ width: "100%", fontWeight: "500" }}
+                                className="btn-flat blue-grey white-text darken-3 custom_btn">
+                                <span >View Details</span>
+                            </Link>
                             {liveClass.class_type === "Paid" ?
                                 <button
                                     value={liveClass._id}
                                     onClick={this.onRegisterClick(liveClass.class_type)}
-                                    style={{ width: "100%", marginTop: "20px",fontWeight: "500"  }}
+                                    style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                     <span >Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del></span>
                                 </button>
                                 : <button
                                     value={liveClass._id}
-                                    style={{ width: "100%", marginTop: "20px",fontWeight: "500"  }}
+                                    style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     onClick={this.onRegisterClick(liveClass.class_type)}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
                                     <span>Register for free</span>
