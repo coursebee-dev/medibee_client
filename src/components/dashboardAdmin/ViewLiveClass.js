@@ -11,7 +11,7 @@ export default class ViewLiveClass extends Component {
             fakeprice: ""
         }
         this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.setPrice = this.setPrice.bind(this)
     }
 
     onChange(e) {
@@ -19,13 +19,16 @@ export default class ViewLiveClass extends Component {
             ...this.state,
             [e.target.name]: e.target.value
         })
-        console.log(this.state)
     }
 
-    async onSubmit(e) {
+    async setPrice(e) {
         e.preventDefault()
         try {
-            const { data } = await axios.post(`/api/admin/setprice/${e.target.value}`)
+            let id = e.target.value;
+            const { data } = await axios.post(`/api/admin/setprice/${id}`, {
+                price: this.state.price,
+                fake_price: this.state.fakeprice
+            })
             console.log(data)
         } catch (error) {
             console.log(error)
@@ -41,14 +44,10 @@ export default class ViewLiveClass extends Component {
             .catch(err => {
                 console.log(err)
             });
-        M.Modal.init(this.Modal);
     }
     onApproveClick = (liveId) => e => {
         e.preventDefault();
-        axios.post(`/api/admin/approvelive/${liveId}`, {
-            price: this.state.price,
-            fake_price: this.state.fakeprice
-        })
+        axios.post(`/api/admin/approvelive/${liveId}`)
             .then(res => {
                 if (res.data.message === 'success') {
                     this.setState(state => {
@@ -77,19 +76,17 @@ export default class ViewLiveClass extends Component {
                 <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
-                <form onSubmit={this.onSubmit}>
-                    <div className="row">
-                        <div className="input-field col s6">
-                            <input name="price" onChange={this.onChange} id="price" type="number" min="0" className="validate" />
-                            <label htmlFor="price">Price</label>
-                        </div>
-                        <div className="input-field col s6">
-                            <input name="fakeprice" onChange={this.onChange} id="fakeprice" id="price" type="number" min="0" className="validate" />
-                            <label htmlFor="fakeprice">Discount price</label>
-                        </div>
+                <div className="row">
+                    <div className="input-field col s6">
+                        <input name="price" onChange={this.onChange} id="price" type="number" min="0" className="validate" />
+                        <label htmlFor="price">Price</label>
                     </div>
-                    <button type="submit" value={liveClass._id} className="blue btn btn-small">Set Price</button>
-                </form>
+                    <div className="input-field col s6">
+                        <input name="fakeprice" onChange={this.onChange} id="fakeprice" type="number" min="0" className="validate" />
+                        <label htmlFor="fakeprice">Discount price</label>
+                    </div>
+                </div>
+                <button value={liveClass._id} onClick={this.setPrice} className="blue btn btn-small">Set Price</button>
             </li>
         ));
         return (

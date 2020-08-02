@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styled from 'styled-components';
-import logo from '../../images/logo.png';
 
 const LinkStyled = styled(Link)`
 	color: black;
@@ -29,7 +28,7 @@ class Footer extends Component {
                 </div>
                 <div className="footer-copyright">
                     <div style={{ width: "100%" }} className="container">
-                        <LinkStyled to="/" ><img style={{ height: "60px" }} src={logo} alt="Medibee" /></LinkStyled>
+                        <LinkStyled to="/" ><img style={{ height: "60px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="Medibee" /></LinkStyled>
                         <div style={{ lineHeight: "60px" }} className="right black-text">© Kernel Foundation</div>
                     </div>
                 </div>

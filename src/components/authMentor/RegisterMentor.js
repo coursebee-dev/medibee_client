@@ -1,4 +1,4 @@
-import React, { Component, Children } from "react";
+import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -211,8 +211,7 @@ class Register extends Component {
     }
 
     render() {
-        const { errors } = this.state;
-        let form;
+        //const { errors } = this.state;
         switch (this.state.step) {
             case 1:
                 return (
@@ -247,7 +246,7 @@ class Register extends Component {
                     } />
                 )
             default:
-                form = (
+                return (
                     <FormLayout Component={
                         <Step1 handleStepOne={(a, b, c, d, e, f) => this.handleStepOne(a, b, c, d, e, f)} getBack={() => this.getBack()} />
                     } />
