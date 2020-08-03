@@ -1,49 +1,73 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import Axios from 'axios'
+import axios from 'axios';
 
 export const MentorsDetails = ({ match, auth }) => {
     const [details, setDetails] = useState({})
-
-    useEffect((match) => {
-        const getMentorDetail = async () => {
-            const { data } = await Axios.get(`/api/mentors/${match.params.id}`)
-            setDetails(data)
+    const [subject, setSubject] = useState([])
+    const getSubject = async () => {
+        try {
+            const { data } = await axios.get("/api/admin/subject")
+            setSubject(data)
+        } catch (error) {
+            console.log(error)
         }
+
+    }
+    const getMentorDetail = async () => {
+        try {
+            const { data } = await axios.get(`/api/mentors/${match.params.id}`)
+            setDetails(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getSubject()
         getMentorDetail()
     }, [])
     useEffect(() => {
         console.log(details)
     }, [details])
     return (
-        <>
+        <div className="container">
             {auth.isAuthenticated ? (
                 <div className="section">
-                    <li>{details.name}</li>
-                    <li>{details.email}</li>
-                    <li>{details.medicalcollege}</li >
-                    <li>{details.position}</li >
-                    <li>{details.session}</li >
-                    <li>{details.mobileNo}</li >
+                    <img src={details.propicurl} style={{ height: "300px" }} alt={details.name} />
+                    <h1>{details.name}</h1>
+                    <h4><b>Institution: </b>{details.medicalcollege}</h4 >
+                    <h5><b>Position/Designation: </b>{details.position}</h5 >
+                    <h6><b>Session: </b>{details.session}</h6 >
+                    <b>Contact:</b>
+                    <br />
+                    <span>Email: {details.email}</span>
+                    <br />
+                    <span>Phone no.: {details.mobileNo}</span>
+
+                    <h5>Subjects:</h5>
+                    {subject.filter(sub => {
+                        return details.subject?.includes(sub._id)
+                    }).map((s, id) => (
+                        <React.Fragment key={id}>
+                            <h6>{id + 1}</h6>
+                            {s.subcategory.map(subcat => {
+                                return details.subcategory?.includes(subcat.name)
+                            }).map((sc, id) => (
+                                <React.Fragment key={id}>
+                                    <span>{sc.name}</span>
+                                </React.Fragment>
+                            ))}
+                            <br />
+                            <span>Academic level: {s.name}</span>
+                            <br />
+                            <span>Subject level: {s.category}</span>
+                        </React.Fragment>
+                    ))}
+
                     <div>
-                        {details.preferred_topic?.map((ptopic, id) => (
-                            <li key={id}>{ptopic}</li>
-                        ))}
-                    </div >
-                    <div>
-                        {details.subject_level?.map((slevel, id) => (
-                            <li key={id}>{slevel}</li>
-                        ))}
-                    </div>
-                    <div>
-                        {details.subjects?.map((sub, id) => (
-                            <li key={id}>{sub.subject}</li>
-                        ))}
-                    </div>
-                    <div>
-                        {details.subjects?.map((sub, id) => (
-                            <li key={id}>{sub.subcategory}</li>
+                        {details.subcategory?.map((subcat, id) => (
+                            <span key={id}>{subcat}</span>
                         ))}
                     </div>
                 </div>
@@ -55,7 +79,7 @@ export const MentorsDetails = ({ match, auth }) => {
                         </div>
                     </div>
                 )}
-        </>
+        </div>
     )
 }
 

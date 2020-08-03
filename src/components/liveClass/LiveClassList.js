@@ -19,6 +19,7 @@ class LiveClassList extends Component {
     }
 
     getLiveClasses = () => {
+        this.setState({ loading: true })
         axios.get('/api/approvedliveclass')
             .then(res => {
                 this.setState({ liveClasses: res.data })
@@ -26,6 +27,7 @@ class LiveClassList extends Component {
             .catch(err => {
                 console.log(err)
             });
+        this.setState({ loading: false })
     }
 
     onRegisterClick = (liveclasstype) => e => {
@@ -136,7 +138,13 @@ class LiveClassList extends Component {
                         ]}
                     />
                     <h4 className="center-align" style={{ margin: "50px" }}>Scheduled Classes</h4>
-                    <div className="row ">{liveClasses.reverse()}</div>
+                    {this.state.loading ? (
+                        <div className="progress">
+                            <div className="indeterminate blue"></div>
+                        </div>
+                    ) : (
+                            <div className="row ">{liveClasses.reverse()}</div>
+                        )}
                     <Link style={{ margin: "40px" }} to="/" className="btn-flat waves-effect blue darken-1 white-text">
                         <i className="material-icons left">keyboard_backspace</i>Go Back
                 </Link>

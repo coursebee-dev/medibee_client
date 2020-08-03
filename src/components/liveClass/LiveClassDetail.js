@@ -20,20 +20,24 @@ export default class LiveClassDetail extends Component {
     getMentor = async (mentorid) => {
         try {
             const { data } = await axios.get(`/api/mentor/mentorinfo/${mentorid}`)
-            this.setState({ mentor: data })
+            this.setState({ mentor: data },
+                console.log(data))
         } catch (error) {
             console.log(error)
         }
     }
 
     getLiveClass = async () => {
+        this.setState({ loading: true })
         try {
             const { data } = await axios.get(`/api/liveclassdetails/${this.props.match.params.id}`)
-            this.setState({ liveClasses: data })
+            this.setState({ liveClasses: data },
+                console.log(data))
             this.getMentor(data.mentorId)
         } catch (error) {
             console.log(error)
         }
+        this.setState({ loading: false })
     }
 
     onRegisterClick = (liveclasstype) => e => {
@@ -81,49 +85,85 @@ export default class LiveClassDetail extends Component {
             <>
                 <Breadcrumbs title="Class Details" description="All live courses that are currently running " />
                 <div className="container">
-                <div className="section">
-                    <div className="row">
-                        <div className="col m9">
-                            <h1>{this.state.liveClasses.topic}</h1>
-                            <p><b>Start Time:</b> {new Date(this.state.liveClasses.start_time).toLocaleDateString() + " " + new Date(this.state.liveClasses.start_time).toLocaleTimeString()} </p>
-                            <p><b>Duration :</b> {Math.round(this.state.liveClasses.duration / 60)} hour {this.state.liveClasses.duration % 60} minutes </p>
-                            <p><b>Type:</b> {this.state.liveClasses.class_type}</p>
-                            <h4><b>Description:</b></h4>
-                            <div style={{background: "#f1f1f1", padding: "20px"}} dangerouslySetInnerHTML={{ __html: this.state.liveClasses.description }} />
-                        </div>
-                        <div className="col m3" style={{marginTop:"100px"}}>
-                            <div className="card vertical">
-                                <div className="card-image">
-                                    <img className="responsive-img mentors" alt="mentor" src="https://lorempixel.com/400/400/nature/6" />
+                    <div className="section">
+                        <div className="row">
+                            {this.state.loading ? (
+                                <div className="progress">
+                                    <div className="indeterminate blue"></div>
                                 </div>
-                                <div className="card-content">
-                                    Mentor:
+                            ) : (
+                                    <>
+                                        <div className="col m9">
+                                            <h1>{this.state.liveClasses.topic}</h1>
+                                            <p><b>Start Time:</b> {new Date(this.state.liveClasses.start_time).toLocaleDateString() + " " + new Date(this.state.liveClasses.start_time).toLocaleTimeString()} </p>
+                                            <p><b>Duration :</b> {Math.round(this.state.liveClasses.duration / 60)} hour {this.state.liveClasses.duration % 60} minutes </p>
+                                            <p><b>Type:</b> {this.state.liveClasses.class_type}</p>
+                                            <p><b>Academic Excellence : </b>{this.state.liveClasses.academicExcellence}</p>
+                                            <div><b className="left">Level of participation: </b>
+                                                <br />
+                                                <div style={{ display: "flex" }}>
+                                                    {this.state.liveClasses.selectedliveclasslevel?.map((slc, id) => (
+                                                        <div style={{ padding: "10px" }} key={id}>{slc}</div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div><b className="left">Eligiblity for: </b>
+                                                <br />
+                                                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                                                    {this.state.liveClasses.selectedsubject?.map((ss, id) => (
+                                                        <div style={{ padding: "10px" }} key={id}>{ss}</div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div><b className="left">This Live class falls under: </b>
+                                                <br />
+                                                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                                                    {this.state.liveClasses.selectedsubcategories?.map((ssc, id) => (
+                                                        <div style={{ padding: "10px" }} key={id}>{ssc}</div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <h4><b>Description:</b></h4>
+                                            <div style={{ background: "#f1f1f1", padding: "20px" }} dangerouslySetInnerHTML={{ __html: this.state.liveClasses.description }} />
+                                        </div>
+                                        <div className="col m3" style={{ marginTop: "100px" }}>
+                                            <div className="card vertical">
+                                                <div className="card-image">
+                                                    <img className="responsive-img mentors" alt="mentor" src={this.state.mentor.propic} />
+                                                </div>
+                                                <div className="card-content">
+                                                    Mentor:
                                     <span className="card-title">{this.state.mentor.name}</span>
-                                    <p>{this.state.mentor.organization}</p>
-                                    <p>{this.state.mentor.position}</p>
-                                </div>
-                            </div>
-                            {this.state.liveClasses.class_type === "Paid" ?
-                                <button
-                                    value={this.state.liveClasses._id}
-                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn-flat  cyan darken-2 white-text custom_btn">
-                                    <span>Register for ৳ {this.state.liveClasses.price}</span>
-                                </button>
-                                : <button
-                                    value={this.state.liveClasses._id}
-                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
-                                    className="btn-flat  cyan darken-2 white-text custom_btn">
-                                    <span>Register for free</span>
-                                </button>
-                            }
+                                                    <p>{this.state.mentor.medicalcollege}</p>
+                                                    <p>{this.state.mentor.position}</p>
+                                                </div>
+                                            </div>
+                                            {this.state.liveClasses.class_type === "Paid" ?
+                                                <button
+                                                    value={this.state.liveClasses._id}
+                                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
+                                                    className="btn-flat  cyan darken-2 white-text custom_btn">
+                                                    <span>Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s></span>
+                                                </button>
+                                                : <button
+                                                    value={this.state.liveClasses._id}
+                                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
+                                                    className="btn-flat  cyan darken-2 white-text custom_btn">
+                                                    <span>Register for free</span>
+                                                </button>
+                                            }
+                                        </div>
+                                    </>
+                                )}
                         </div>
-                    </div>
-                    <Link style={{ margin: "40px" }} to="/liveClass" className="btn-flat waves-effect blue darken-1 white-text">
-                        <i className="material-icons left">keyboard_backspace</i>Go Back
+                        <Link style={{ margin: "40px" }} to="/liveClass" className="btn-flat waves-effect blue darken-1 white-text">
+                            <i className="material-icons left">keyboard_backspace</i>Go Back
                     </Link>
+                    </div>
                 </div>
-            </div>
             </>
         )
     }
