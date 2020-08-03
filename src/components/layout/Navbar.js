@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import UserIcon from "../userIcon/UserIcon"
 import styled from 'styled-components';
-import logo from '../../images/logo.png';
+
 const LinkStyled = styled(Link)`
     color: #ffffff;
     font-weight:bold;
@@ -26,7 +26,7 @@ class Navbar extends Component {
         return (
             <header className="no-padding">
                 <ul className="sidenav" id="mobile-demo">
-                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="MEDIBEE" /></LinkBrand></li>
+                    <li><LinkBrand to="/" ><img style={{ height: "60px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="MEDIBEE" /></LinkBrand></li>
                     <li><LinkStyled to="/about">About Us</LinkStyled></li>
                     <li><LinkStyled to="/liveclass">Live Classroom</LinkStyled></li>
                     <li><LinkStyled to="/course">Courses</LinkStyled></li>
@@ -50,7 +50,7 @@ class Navbar extends Component {
                                     <i style={{ lineHeight: "64px" }} className="material-icons">menu</i></LinkStyled>
                                 </li>
 
-                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src={logo} alt="Medibee" /></LinkBrand></li>
+                                <li><LinkBrand to="/" ><img style={{ height: "60px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="Medibee" /></LinkBrand></li>
                             </ul>
                             <ul className="right hide-on-med-and-down">
                                 <li><LinkStyled to="/about">About Us</LinkStyled></li>

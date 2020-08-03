@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ComingSoon } from '../comingSoon/ComingSoon'
 import { Helmet } from 'react-helmet';
-import HeaderImg from "../layout/HeaderImg";
 import Breadcrumbs from "../layout/Breadcrumbs";
 
 export class Course extends Component {

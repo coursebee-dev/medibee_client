@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 class LiveClassRoom extends Component {
     componentDidMount() {
         console.log(this.props.match.params.classid)
-        const domain = 'meet.medibee.com';
+        const domain = 'meet.coursebee.com';
         const options = {
             roomName: this.props.match.params.classid,
             width: '100%',
-            height: '100%',
+            height: '600px',
             userInfo: {
                 email: this.props.auth.user.email,
                 displayName: this.props.auth.user.name
@@ -16,6 +16,7 @@ class LiveClassRoom extends Component {
             configOverwrite: {
                 startWithAudioMuted: true,
                 disableInviteFunctions: true,
+                disableAudioLevels: true,
                 remoteVideoMenu: {
                     //     // If set to true the 'Kick out' button will be disabled.
                     disableKick: true
@@ -26,25 +27,27 @@ class LiveClassRoom extends Component {
                 HIDE_INVITE_MORE_HEADER: true,
                 TOOLBAR_BUTTONS: [
                     'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-                    'fodeviceselection', 'hangup', 'chat', 'etherpad', 'raisehand',
-                    'videoquality', 'filmstrip', 'feedback', 'stats',
-                    'tileview', 'videobackgroundblur', 'help'
+                    'fodeviceselection', 'hangup', 'chat', 'raisehand',
+                    'videoquality', 'filmstrip',
+                    'tileview'
                 ]
             },
             parentNode: document.querySelector('#studentmeet')
         };
-        new window.JitsiMeetExternalAPI(domain, options);
-        document.querySelector('.navbar-fixed').style.display = "none";
-        document.querySelector('.page-footer').style.display = "none";
-    }
-    componentWillUnmount() {
-        document.querySelector('.navbar-fixed').style.display = "block";
-        document.querySelector('.page-footer').style.display = "block";
+        const jitsiapi = new window.JitsiMeetExternalAPI(domain, options);
+        jitsiapi.on('passwordRequired', function () {
+            jitsiapi.executeCommand('password', 'The Password');
+        });
     }
     render() {
         return (
-            <div style={{ display: 'flex', width: '100%' }} id='studentmeet'>
-
+            <div className="container">
+                <div className="section">
+                    <div className="row">
+                        <div className="col s12" id="studentmeet">
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

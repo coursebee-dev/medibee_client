@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Formik, Form, Field } from 'formik';
 import axios from 'axios';
 import ReCAPTCHA from "react-google-recaptcha";
