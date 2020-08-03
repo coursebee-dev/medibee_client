@@ -104,6 +104,9 @@ body {
 .card{
     transition:0.3s ease-in-out;
 }
+.card-content{
+    line-height: 30px;
+}
 .custom-card:hover{
     box-shadow: 5px 5px 10px #666363;
     transition: 0.3s ease-in-out;
