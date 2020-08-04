@@ -38,28 +38,28 @@ class LiveClassList extends Component {
 
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
-        } else {
-            if (name === "Free") {
-                try {
-                    const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                    M.toast({ html: data.message })
-                } catch (error) {
+            return;
+        }
+        if (name === "Free") {
+            try {
+                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                M.toast({ html: data.message })
+            } catch (error) {
+                M.toast({ html: "Server Error" })
+                console.log(error)
+            }
+        } else if (name === "Paid") {
+            try {
+                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                if (data.status === 'success') {
+                    window.open(data.data);
+                } else {
                     M.toast({ html: "Server Error" })
-                    console.log(error)
+                    console.log(data.message)
                 }
-            } else if (name === "Paid") {
-                try {
-                    const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                    if (data.status === 'success') {
-                        window.open(data.data);
-                    } else {
-                        M.toast({ html: "Server Error" })
-                        console.log(data.message)
-                    }
-                } catch (error) {
-                    M.toast({ html: "Server Error" })
-                    console.log(error)
-                }
+            } catch (error) {
+                M.toast({ html: "Server Error" })
+                console.log(error)
             }
         }
     }
