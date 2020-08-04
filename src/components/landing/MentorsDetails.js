@@ -15,6 +15,7 @@ export const MentorsDetails = ({ match, auth }) => {
         }
 
     }
+
     const getMentorDetail = async () => {
         try {
             const { data } = await axios.get(`/api/mentors/${match.params.id}`)
