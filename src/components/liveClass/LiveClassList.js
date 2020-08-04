@@ -104,7 +104,7 @@ class LiveClassList extends Component {
                                     onClick={this.onRegisterClick}
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     className="btn-flat  cyan darken-2 white-text custom_btn">
-                                    <span >Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del></span>
+                                    Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del>
                                 </button>
                                 : <button
                                     value={liveClass._id}
@@ -112,7 +112,7 @@ class LiveClassList extends Component {
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     onClick={this.onRegisterClick}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
-                                    <span>Register for free</span>
+                                    Register for free
                                 </button>
                             }
                         </div>
