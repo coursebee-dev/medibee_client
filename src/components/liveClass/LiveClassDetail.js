@@ -18,6 +18,7 @@ class LiveClassDetail extends Component {
         }
         this.getMentor = this.getMentor.bind(this)
         this.getLiveClass = this.getLiveClass.bind(this)
+        this.onRegisterClick = this.onRegisterClick.bind(this)
     }
 
     getMentor = async (mentorid) => {
@@ -43,37 +44,35 @@ class LiveClassDetail extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick = e => {
+    onRegisterClick = async e => {
         const { name, value } = e.target;
 
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
-        } else {
-            if (name === "Free") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                    .then(res => {
-                        M.toast({ html: res.data.message })
-                    })
-                    .catch(err => {
-                        M.toast({ html: "Server Error" })
-                        console.log(err)
-                    });
-            } else if (name === "Paid") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                    .then(res => {
-                        if (res.data.status === 'success') {
-                            window.open(res.data.data);
-                        } else {
-                            M.toast({ html: "Server Error" })
-                            console.log(res.data.message)
-                        }
-
-                    })
-                    .catch(err => {
-                        M.toast({ html: "Server Error" })
-                        console.log(err)
-                    });
+            return;
+        }
+        if (name === "Free") {
+            try {
+                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                M.toast({ html: data.message })
+            } catch (error) {
+                M.toast({ html: "Server Error" })
+                console.log(error)
             }
+        } else if (name === "Paid") {
+            try {
+                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                if (data.status === 'success') {
+                    window.open(data.data);
+                } else {
+                    M.toast({ html: "Server Error" })
+                    console.log(data.message)
+                }
+            } catch (error) {
+                M.toast({ html: "Server Error" })
+                console.log(error)
+            }
+
         }
     }
 
@@ -148,14 +147,14 @@ class LiveClassDetail extends Component {
                                                     name={this.state.liveClasses.class_type}
                                                     onClick={this.onRegisterClick}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
-                                                    <span>Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s></span>
+                                                    Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s>
                                                 </button>
                                                 : <button
                                                     value={this.state.liveClasses._id}
                                                     name={this.state.liveClasses.class_type}
                                                     onClick={this.onRegisterClick}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
-                                                    <span>Register for free</span>
+                                                    Register for free
                                                 </button>
                                             }
                                         </div>
