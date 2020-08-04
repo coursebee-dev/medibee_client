@@ -34,34 +34,32 @@ class LiveClassList extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick = () => {
+    onRegisterClick = async () => {
 
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
         } else {
             if (this.state.classtype === "Free") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
-                    .then(res => {
-                        M.toast({ html: res.data.message })
-                    })
-                    .catch(err => {
-                        M.toast({ html: "Server Error" })
-                        console.log(err)
-                    });
+                try {
+                    const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
+                    M.toast({ html: data.message })
+                } catch (error) {
+                    M.toast({ html: "Server Error" })
+                    console.log(error)
+                }
             } else if (this.state.classtype === "Paid") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
-                    .then(res => {
-                        if (res.data.status === 'success') {
-                            window.open(res.data.data);
-                        } else {
-                            M.toast({ html: "Server Error" })
-                            console.log(res.data.message)
-                        }
-                    })
-                    .catch(err => {
+                try {
+                    const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
+                    if (data.status === 'success') {
+                        window.open(data.data);
+                    } else {
                         M.toast({ html: "Server Error" })
-                        console.log(err)
-                    });
+                        console.log(data.message)
+                    }
+                } catch (error) {
+                    M.toast({ html: "Server Error" })
+                    console.log(error)
+                }
             }
         }
     }
