@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import UserIcon from "../userIcon/UserIcon"
+import logoutUser from "../../actions/logoutAction";
 import styled from 'styled-components';
+import M from "materialize-css"
 
 const LinkStyled = styled(Link)`
     color: #ffffff;
@@ -15,6 +17,18 @@ const LinkStyled = styled(Link)`
 		font-weight:bold
 	}
 `
+
+const ButtonStyled = styled.button`
+    color: #111111;
+    font-weight:bold;
+    letter-spacing:2px;
+	:hover {
+        // background-color: #fb8c00;
+		color: blue;
+		font-weight:bold
+	}
+`
+
 const LinkBrand = styled(Link)`
     height: 64px;
 	// :hover {
@@ -22,6 +36,14 @@ const LinkBrand = styled(Link)`
 	// }
 `
 class Navbar extends Component {
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
+    componentDidMount() {
+        var elems = document.querySelectorAll('.sidenav');
+        M.Sidenav.init(elems);
+    }
     render() {
         return (
             <header className="no-padding">
@@ -38,6 +60,9 @@ class Navbar extends Component {
                                 Sign Up
                                 </LinkStyled>
                         </li>
+                    }
+                    {this.props.auth.isAuthenticated ? <li><ButtonStyled onClick={this.onLogoutClick} className="btn-flat">Log out</ButtonStyled></li> :
+                        (null)
                     }
                     <li><Link to="#!" className="sidenav-close"><i className="material-icons">close</i></Link></li>
                 </ul>
@@ -74,6 +99,7 @@ class Navbar extends Component {
     }
 }
 Navbar.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
@@ -81,4 +107,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
     mapStateToProps,
+    { logoutUser },
 )(Navbar);

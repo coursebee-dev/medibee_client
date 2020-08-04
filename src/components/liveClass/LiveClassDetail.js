@@ -132,7 +132,7 @@ class LiveClassDetail extends Component {
                                         <div className="col m3" style={{ marginTop: "100px" }}>
                                             <div className="card vertical">
                                                 <div className="card-image">
-                                                    <img className="responsive-img mentors" alt="mentor" src={this.state.mentor.propic} />
+                                                    <img className="responsive-img mentors" alt="mentor" style={{ minHeight: "200px", minWidth: "200px" }} src={this.state.mentor.propic} />
                                                 </div>
                                                 <div className="card-content">
                                                     Mentor:
