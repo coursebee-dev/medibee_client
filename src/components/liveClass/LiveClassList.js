@@ -13,6 +13,8 @@ class LiveClassList extends Component {
         super();
         this.state = {
             liveClasses: [],
+            classid: "",
+            classtype: "",
             loading: false,
         }
         this.getLiveClasses = this.getLiveClasses.bind(this)
@@ -30,15 +32,13 @@ class LiveClassList extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick = e => {
-        const { name, value } = e.target;
+    onRegisterClick() {
 
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
-            return
         } else {
-            if (name === "Free") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+            if (this.state.classtype === "Free") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
                     .then(res => {
                         M.toast({ html: res.data.message })
                     })
@@ -46,8 +46,8 @@ class LiveClassList extends Component {
                         M.toast({ html: "Server Error" })
                         console.log(err)
                     });
-            } else if (name === "Paid") {
-                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+            } else if (this.state.classtype === "Paid") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${this.state.classid}`)
                     .then(res => {
                         if (res.data.status === 'success') {
                             window.open(res.data.data);
@@ -64,6 +64,16 @@ class LiveClassList extends Component {
             }
         }
     }
+
+
+
+    handleclick(e) {
+        const { name, value } = e.target;
+        this.setState({ classid: value })
+        this.setState({ classtype: name })
+        this.onRegisterClick
+    }
+
     componentDidMount() {
         this.getLiveClasses();
     }
@@ -101,7 +111,7 @@ class LiveClassList extends Component {
                                 <button
                                     value={liveClass._id}
                                     name={liveClass.class_type}
-                                    onClick={this.onRegisterClick}
+                                    onClick={this.handleclick}
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                     <span >Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del></span>
@@ -110,7 +120,7 @@ class LiveClassList extends Component {
                                     value={liveClass._id}
                                     name={liveClass.class_type}
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
-                                    onClick={this.onRegisterClick}
+                                    onClick={this.handleclick}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
                                     <span>Register for free</span>
                                 </button>
