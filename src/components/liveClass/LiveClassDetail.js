@@ -43,39 +43,37 @@ class LiveClassDetail extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick = (liveclasstype) => e => {
-        const liveclassid = e.target.value
-        //const liveclasstype = e.target.liveclasstype
-        //console.log(liveclassid)
+    onRegisterClick = e => {
+        const { name, value } = e.target;
+
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
-            return
-        }
-
-        if (liveclasstype === "Free") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
-                .then(res => {
-                    M.toast({ html: res.data.message })
-                })
-                .catch(err => {
-                    M.toast({ html: "Server Error" })
-                    console.log(err)
-                });
-        } else if (liveclasstype === "Paid") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
-                .then(res => {
-                    if (res.data.status === 'success') {
-                        window.open(res.data.data);
-                    } else {
+        } else {
+            if (name === "Free") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                    .then(res => {
+                        M.toast({ html: res.data.message })
+                    })
+                    .catch(err => {
                         M.toast({ html: "Server Error" })
-                        console.log(res.data.message)
-                    }
+                        console.log(err)
+                    });
+            } else if (name === "Paid") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                    .then(res => {
+                        if (res.data.status === 'success') {
+                            window.open(res.data.data);
+                        } else {
+                            M.toast({ html: "Server Error" })
+                            console.log(res.data.message)
+                        }
 
-                })
-                .catch(err => {
-                    M.toast({ html: "Server Error" })
-                    console.log(err)
-                });
+                    })
+                    .catch(err => {
+                        M.toast({ html: "Server Error" })
+                        console.log(err)
+                    });
+            }
         }
     }
 
@@ -147,12 +145,14 @@ class LiveClassDetail extends Component {
                                             {this.state.liveClasses.class_type === "Paid" ?
                                                 <button
                                                     value={this.state.liveClasses._id}
+                                                    name={this.state.liveClasses.class_type}
                                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                                     <span>Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s></span>
                                                 </button>
                                                 : <button
                                                     value={this.state.liveClasses._id}
+                                                    name={this.state.liveClasses.class_type}
                                                     onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                                     <span>Register for free</span>

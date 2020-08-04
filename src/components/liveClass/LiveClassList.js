@@ -30,39 +30,38 @@ class LiveClassList extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick = (liveclasstype) => e => {
-        const liveclassid = e.target.value
-        //const liveclasstype = e.target.liveclasstype
-        //console.log(liveclassid)
+    onRegisterClick = e => {
+        const { name, value } = e.target;
+
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
             return
-        }
-
-        if (liveclasstype === "Free") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
-                .then(res => {
-                    M.toast({ html: res.data.message })
-                })
-                .catch(err => {
-                    M.toast({ html: "Server Error" })
-                    console.log(err)
-                });
-        } else if (liveclasstype === "Paid") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
-                .then(res => {
-                    if (res.data.status === 'success') {
-                        window.open(res.data.data);
-                    } else {
+        } else {
+            if (name === "Free") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                    .then(res => {
+                        M.toast({ html: res.data.message })
+                    })
+                    .catch(err => {
                         M.toast({ html: "Server Error" })
-                        console.log(res.data.message)
-                    }
+                        console.log(err)
+                    });
+            } else if (name === "Paid") {
+                axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
+                    .then(res => {
+                        if (res.data.status === 'success') {
+                            window.open(res.data.data);
+                        } else {
+                            M.toast({ html: "Server Error" })
+                            console.log(res.data.message)
+                        }
 
-                })
-                .catch(err => {
-                    M.toast({ html: "Server Error" })
-                    console.log(err)
-                });
+                    })
+                    .catch(err => {
+                        M.toast({ html: "Server Error" })
+                        console.log(err)
+                    });
+            }
         }
     }
     componentDidMount() {
@@ -101,15 +100,17 @@ class LiveClassList extends Component {
                             {liveClass.class_type === "Paid" ?
                                 <button
                                     value={liveClass._id}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
+                                    name={liveClass.class_type}
+                                    onClick={this.onRegisterClick}
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                     <span >Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del></span>
                                 </button>
                                 : <button
                                     value={liveClass._id}
+                                    name={liveClass.class_type}
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
-                                    onClick={this.onRegisterClick(liveClass.class_type)}
+                                    onClick={this.onRegisterClick}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
                                     <span>Register for free</span>
                                 </button>
