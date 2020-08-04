@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Helmet } from 'react-helmet'
 import '../../App.css'
 import M from "materialize-css"
 import { Link } from "react-router-dom";
 import Breadcrumbs from "../layout/Breadcrumbs";
 
-export default class LiveClassDetail extends Component {
+class LiveClassDetail extends Component {
     constructor() {
         super();
         this.state = {
@@ -168,3 +171,13 @@ export default class LiveClassDetail extends Component {
         )
     }
 }
+LiveClassDetail.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+    mapStateToProps
+)(LiveClassDetail);

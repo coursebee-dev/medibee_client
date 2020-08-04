@@ -40,7 +40,7 @@ class LiveClassList extends Component {
         }
 
         if (liveclasstype === "Free") {
-            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${e.target.value}`)
+            axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${liveclassid}`)
                 .then(res => {
                     M.toast({ html: res.data.message })
                 })
