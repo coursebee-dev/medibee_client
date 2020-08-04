@@ -34,7 +34,7 @@ class LiveClassList extends Component {
         this.setState({ loading: false })
     }
 
-    onRegisterClick() {
+    onRegisterClick = () => {
 
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
             M.toast({ html: "Please login as a student" })
@@ -57,7 +57,6 @@ class LiveClassList extends Component {
                             M.toast({ html: "Server Error" })
                             console.log(res.data.message)
                         }
-
                     })
                     .catch(err => {
                         M.toast({ html: "Server Error" })
@@ -69,11 +68,16 @@ class LiveClassList extends Component {
 
 
 
-    handleclick(e) {
+    handleclick = e => {
         const { name, value } = e.target;
-        this.setState({ classid: value })
-        this.setState({ classtype: name })
-        this.onRegisterClick()
+        this.setState({
+            classid: value,
+            classtype: name
+        },
+            this.onRegisterClick()
+        )
+        console.log("baaaaaaaaaaaaaaaaaa")
+
     }
 
     componentDidMount() {
