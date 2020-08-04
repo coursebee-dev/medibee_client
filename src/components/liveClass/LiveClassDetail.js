@@ -12,7 +12,7 @@ export default class LiveClassDetail extends Component {
             liveClasses: {},
             mentor: {},
             loading: false,
-        }
+        };
         this.getMentor = this.getMentor.bind(this)
         this.getLiveClass = this.getLiveClass.bind(this)
     }
@@ -24,7 +24,7 @@ export default class LiveClassDetail extends Component {
         } catch (error) {
             console.log(error)
         }
-    }
+    };
 
     getLiveClass = async () => {
         try {
@@ -37,11 +37,11 @@ export default class LiveClassDetail extends Component {
     }
 
     onRegisterClick = (liveclasstype) => e => {
-        const liveclassid = e.target.value
+        const liveclassid = e.target.value;
         //const liveclasstype = e.target.liveclasstype
         //console.log(liveclassid)
         if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
-            M.toast({ html: "Please login as a student" })
+            M.toast({ html: "Please login as a student" });
             return
         }
 
