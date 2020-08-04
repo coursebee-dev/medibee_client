@@ -18,6 +18,8 @@ class LiveClassList extends Component {
             loading: false,
         }
         this.getLiveClasses = this.getLiveClasses.bind(this)
+        this.handleclick = this.handleclick.bind(this)
+        this.onRegisterClick = this.onRegisterClick.bind(this)
     }
 
     getLiveClasses = () => {
