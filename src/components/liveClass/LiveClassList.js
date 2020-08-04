@@ -71,7 +71,7 @@ class LiveClassList extends Component {
         const { name, value } = e.target;
         this.setState({ classid: value })
         this.setState({ classtype: name })
-        this.onRegisterClick
+        this.onRegisterClick()
     }
 
     componentDidMount() {
