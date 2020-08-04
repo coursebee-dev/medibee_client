@@ -146,14 +146,14 @@ class LiveClassDetail extends Component {
                                                 <button
                                                     value={this.state.liveClasses._id}
                                                     name={this.state.liveClasses.class_type}
-                                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
+                                                    onClick={this.onRegisterClick}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                                     <span>Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s></span>
                                                 </button>
                                                 : <button
                                                     value={this.state.liveClasses._id}
                                                     name={this.state.liveClasses.class_type}
-                                                    onClick={this.onRegisterClick(this.state.liveClasses.class_type)}
+                                                    onClick={this.onRegisterClick}
                                                     className="btn-flat  cyan darken-2 white-text custom_btn">
                                                     <span>Register for free</span>
                                                 </button>
