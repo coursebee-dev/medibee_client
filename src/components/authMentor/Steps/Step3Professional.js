@@ -80,8 +80,7 @@ function Step3Professional({ handleStepThree, getBack }) {
                                                     <p>Drag 'n' drop some below here, or click to select files</p>
                                             }
                                             <div style={dropzoneStyle} {...getRootProps()}>
-                                                <div {...getInputProps()} multiple>
-                                                </div>
+                                                <input {...getInputProps()} multiple />
                                             </div>
                                         </>
                                     )}
@@ -105,8 +104,7 @@ function Step3Professional({ handleStepThree, getBack }) {
                                                     <p>Drag 'n' drop some below here, or click to select files</p>
                                             }
                                             <div style={dropzoneStyle} {...getRootProps()}>
-                                                <div {...getInputProps()} multiple>
-                                                </div>
+                                                <input {...getInputProps()} multiple />
                                             </div>
                                         </>
                                     )}
@@ -130,8 +128,7 @@ function Step3Professional({ handleStepThree, getBack }) {
                                                     <p>Drag 'n' drop some below here, or click to select files</p>
                                             }
                                             <div style={dropzoneStyle} {...getRootProps()}>
-                                                <div {...getInputProps()} multiple>
-                                                </div>
+                                                <input {...getInputProps()} multiple />
                                             </div>
                                         </>
                                     )}

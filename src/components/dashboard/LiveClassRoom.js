@@ -32,7 +32,7 @@ class LiveClassRoom extends Component {
             interfaceConfigOverwrite: {
                 HIDE_INVITE_MORE_HEADER: true,
                 TOOLBAR_BUTTONS: [
-                    'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+                    'microphone', 'camera', 'closedcaptions', 'fullscreen',
                     'fodeviceselection', 'hangup', 'chat', 'raisehand',
                     'videoquality', 'filmstrip', 'tileview'
                 ]
@@ -40,10 +40,6 @@ class LiveClassRoom extends Component {
             parentNode: document.querySelector('#studentmeet')
         };
         const jitsiapi = new window.JitsiMeetExternalAPI(domain, options);
-        jitsiapi.on('passwordRequired', function () {
-            jitsiapi.executeCommand('password', 'The Password');
-            jitsiapi.executeCommand('toggleVideo');
-        });
         this.setState({ jitsi: jitsiapi },
             console.log(this.state.jitsi))
     }

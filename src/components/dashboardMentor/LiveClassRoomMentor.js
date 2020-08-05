@@ -29,24 +29,13 @@ class LiveClassRoomMentor extends Component {
                 SHOW_PROMOTIONAL_CLOSE_PAGE: false,
                 VIDEO_LAYOUT_FIT: 'both',
                 TOOLBAR_BUTTONS: [
-                    'microphone', 'camera', 'desktop', 'fullscreen',
-                    'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
-                    'etherpad', 'settings', 'raisehand',
-                    'videoquality', 'filmstrip',
-                    'tileview', 'videobackgroundblur', 'help', 'mute-everyone', 'security'
+                    'microphone', 'camera', 'desktop', 'fullscreen', 'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
+                    'etherpad', 'settings', 'videoquality', 'filmstrip', 'tileview', 'videobackgroundblur', 'help', 'mute-everyone', 'security'
                 ]
             },
             parentNode: document.querySelector('#meet')
         };
         const jitsiapi = new window.JitsiMeetExternalAPI(domain, options);
-        jitsiapi.addEventListener("participantRoleChanged", function (event) {
-            if (event.role === "moderator") {
-                jitsiapi.executeCommand('password', 'The Password');
-            }
-        })
-        jitsiapi.on('passwordRequired', function () {
-            jitsiapi.executeCommand('password', 'The Password');
-        });
         return () => jitsiapi.dispose()
     }
     render() {
