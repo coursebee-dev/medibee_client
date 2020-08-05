@@ -34,8 +34,7 @@ class LiveClassRoom extends Component {
                 TOOLBAR_BUTTONS: [
                     'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
                     'fodeviceselection', 'hangup', 'chat', 'raisehand',
-                    'videoquality', 'filmstrip',
-                    'tileview'
+                    'videoquality', 'filmstrip', 'tileview'
                 ]
             },
             parentNode: document.querySelector('#studentmeet')
@@ -43,6 +42,7 @@ class LiveClassRoom extends Component {
         const jitsiapi = new window.JitsiMeetExternalAPI(domain, options);
         jitsiapi.on('passwordRequired', function () {
             jitsiapi.executeCommand('password', 'The Password');
+            jitsiapi.executeCommand('toggleVideo');
         });
         this.setState({ jitsi: jitsiapi },
             console.log(this.state.jitsi))
