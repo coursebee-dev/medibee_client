@@ -34,9 +34,6 @@ class Dashboard extends Component {
                 <i className="material-icons left">arrow_forward</i>
               </Link>
               <div className="container">
-                <div>
-                  <h3>If you are joining from phone, after selecting join class, you will see a popup that says</h3>
-                </div>
                 <MyLiveClass history={this.props.history} studentId={this.props.auth.user.id} />
               </div>
               <button
