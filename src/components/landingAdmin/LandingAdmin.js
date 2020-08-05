@@ -27,9 +27,9 @@ class LandingAdmin extends Component {
             <h4>
               Admins, Greetings from<b> MEDIBEE</b>
             </h4>
-            <div>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</div>
-            <br />
-            <div>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</div>
+            <b>Join "Medibee" Team</b>
+            <p>Medibee is medical education related Organization has been working relentlessly to improve the academic & co- curricular skills of medical students & doctors across the country and abroad.</p>
+            <p>The core concept of the group is to connect the medical students to renowned teachers and professionals working in different medical colleges, hospitals, government and private organizations in Bangladesh and abroad. We try to develop academic lectures, video lectures, tutorials for all & easily accessible from every corner of the country. We also arrange clinical workshops, skill development programs health awareness campaign, career seminar & so on to help medical students & doctors to improve their skills & serve their patients in a better way. We also arrange live session on various contemporary issues. Medical knowledge dissemination in remote areas is a very essential task for us as a leading medical education organization.</p>
             <h4>
               Admin Login
             </h4>

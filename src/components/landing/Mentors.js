@@ -195,23 +195,23 @@ function Mentors() {
                                 <div className="indeterminate blue"></div>
                             </div>
                         ) : (
-                                <>
+                                <div className="row">
                                     {filteredMentors.map((mentor, id) => (
-                                        <div key={id} className="card col s6 m4 center-align" style={{ marginTop: "60px" }}>
+                                        <div key={id} className="card no-padding col s12 m6 l4 center-align" style={{ marginTop: "60px" }}>
                                             <div className="card-image">
-                                                <img src={mentor.propicurl} alt="profile" className="mentors" />
+                                                <img src={mentor.propicurl} alt="profile" className="mentors" style={{ minHeight: "220px", minWidth: "220px" }} />
                                             </div>
                                             <div className="card-content">
                                                 <h5>{mentor.name}</h5>
                                                 <p>{mentor.medicalcollege}</p>
                                                 <p>{mentor.position}</p>
                                             </div>
-                                            <div className="card-action">
-                                                <Link to={`/mentors/details/${mentor._id}`} className="btn btn-large waves-effect hoverable blue darken-1">Details</Link>
+                                            <div className="card-content hoverable blue darken-1">
+                                                <Link to={`/mentors/details/${mentor._id}`} className="white-text">Details</Link>
                                             </div>
                                         </div>
                                     ))}
-                                </>
+                                </div>
                             )}
                     </div>
 

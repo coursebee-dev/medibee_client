@@ -4,11 +4,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class HeaderImg extends Component {
-
     render() {
         return (
             <div className="banner">
-                <img style={{ width: "100vw" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025430/assets/hexagon2_ahyjma.jpg" alt="header img" />
+                <div id="moving-banner" style={{ width: "100vw", minHeight: "300px" }} ></div>
                 <div className="banner_overlay">
                     <div className="banner_text">
                         <img style={{ height: "120px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="MEDIBEE" />

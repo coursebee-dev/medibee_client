@@ -169,6 +169,24 @@ body {
     transform: translate(-0%, -0%);
     padding: 15px 15px;
 }
+
+#moving-banner{
+  background:url("https://res.cloudinary.com/coursebee/image/upload/v1596579772/assets/long_bgyj9y.png");
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-size:cover ;
+  animation: moveRight 20s linear infinite;
+}
+
+@keyframes moveRight{
+  from{
+    background-position: 0 0;
+  }
+  to{
+    background-position: 100% 0;
+  }
+}
+
 .banner_text{
     position: absolute;
     top: 50%;

@@ -27,16 +27,42 @@ class Landing extends Component {
     return (
       <div>
         <HeaderImg />
+        {/*user registration*/}
+        <div className="center-align" style={{ background: "#efefef", padding: "25px 0" }}>
+          <div className="container">
+            <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
+            <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
+            <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
+            <p className="flow-text grey-text">
+              We are just starting our journey to develop the best platform for you.<br />
+                  To be one of the first students in Medibee
+                </p>
+            <h4>Register Now</h4>
+            <div style={{ justifyContent: "space-evenly" }} className="row">
+              <div className="col s6 m6">
+                <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable red darken-1  black-text">
+                  Register
+                    </Link>
+              </div>
+              <div className="col s6 m6">
+                <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable blue darken-1">
+                  Log In
+                    </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*user registration end*/}
         <div>
           <div className="center-align container">
             <h3> <b className=" red-text text-darken-1" style={{ wordSpacing: "10px" }}>ABOUT <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h3>
             <div style={{ marginTop: "50px", marginBottom: "50px" }}>
               <div className="row">
                 <div className="col s12 m6">
-                  <div style={{ textAlign: "justify" }}>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।শিক্ষার্থীরা প্রায়শই বিভিন্ন সমস্যায় আটকে যায় যা তারা সবসময় নিজেরা সামলাতে পারে না। যথাযথ গাইড্লাইন না পেয়ে, তারা অনেক সময় ভুল সিদ্ধান্ত নেয় যা তারা ভবিষ্যতে অনুশোচনা করে।
-                    <br /><br />Medibee এমন একটি প্ল্যাটফর্ম যেখানে তারা প্রফেশনালদের কাছ থেকে পরামর্শ নিতে পারবে এবং তাদের অভিজ্ঞতা share করতে পারবে।
-                    এখানে, গ্রুপের সদস্যরা তাদের ক্রিয়েটিভ চিন্তাভাবনা, প্রতিদিনের সমস্যাগুলি, ক্যারিয়ার পরামর্শ, নির্দেশিকা ইত্যাদি share করবে, যা অন্যান্য সদস্যদের সহায়তা করবে। বীজগণিত, ফ্লুইড মেকানিক্স,অ্যাকাউন্টিং, ফটোগ্রাফি, কোডিং, অর্থনীতি, সাহিত্য সহ সবকিছু এই প্ল্যাটফর্মের আওতায় আসবে।
-                    এই গ্রুপে আমরা বিভিন্ন বিষয়ে লাইভ সেশন এবং ওয়েবিনারের ব্যবস্থা করব যেখানে শিক্ষার্থীরা পেশাদারদের এবং বিশেষজ্ঞদের সাথে লাইভ ইনটারেকশন করতে পারে। এই কমিউনিটির মাধ্যমে Medibee হবে বাংলাদেশের বৃহত্তম অনলাইন শিক্ষামূলক প্ল্যাটফর্মে।
+                  <div style={{ textAlign: "justify" }}>
+                    Join "Medibee" Team
+                    <p>Medibee is medical education related Organization has been working relentlessly to improve the academic & co- curricular skills of medical students & doctors across the country and abroad.</p>
+                    <p>The core concept of the group is to connect the medical students to renowned teachers and professionals working in different medical colleges, hospitals, government and private organizations in Bangladesh and abroad. We try to develop academic lectures, video lectures, tutorials for all & easily accessible from every corner of the country. We also arrange clinical workshops, skill development programs health awareness campaign, career seminar & so on to help medical students & doctors to improve their skills & serve their patients in a better way. We also arrange live session on various contemporary issues. Medical knowledge dissemination in remote areas is a very essential task for us as a leading medical education organization.</p>
                   </div>
                 </div>
                 <div className="col s12 m6">
@@ -51,32 +77,7 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-          {/*user registration*/}
-          <div className="center-align" style={{ background: "#efefef", padding: "25px 0" }}>
-            <div className="container">
-              <h4> Dear Students, Greetings from<b> <span className="medi">MEDI</span><span className="bee">BEE</span></b> </h4>
-              <p>Medibee is online education platform where we disseminate contemporary knowledge through live classroom , training and video based courses.</p>
-              <p>Medibee একটি অনলাইন শিক্ষামূলক প্ল্যাটফর্ম। আমাদের মূল লক্ষ্য হল একটি ইউনিফাইড প্ল্যাটফর্মে শিক্ষার্থী এবং প্রফেশনালদের একত্রিত করা।</p>
-              <p className="flow-text grey-text">
-                We are just starting our journey to develop the best platform for you.<br />
-                  To be one of the first students in Medibee
-                </p>
-              <h4>Register Now</h4>
-              <div style={{ justifyContent: "space-evenly" }} className="row">
-                <div className="col s6 m6">
-                  <Link to="/register" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect waves-light hoverable red darken-1  black-text">
-                    Register
-                    </Link>
-                </div>
-                <div className="col s6 m6">
-                  <Link to="/login" style={{ margin: "10px", width: "140px", borderRadius: "3px", letterSpacing: "1.5px" }} className="btn btn-large waves-effect hoverable blue darken-1">
-                    Log In
-                    </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/*user registration end*/}
+
           {/*greetings*/}
           {/*<div className="container" style={{ padding: "25px 0" }}>*/}
           {/*  <h3 className="center-align" > <b className=" red-text text-darken-1" style={{ wordSpacing: "10px" }}>Greetings From Doctors</b> </h3>*/}

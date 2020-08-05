@@ -9,7 +9,7 @@ class Breadcrumbs extends Component {
     render() {
         return (
             <div className="banner">
-                <img style={{ width: "100vw", height: "250px" }} src={hexagon} alt="header img" />
+                <div id="moving-banner" style={{ width: "100vw", minHeight: "300px" }} ></div>
                 <div className="banner_overlay">
                     <div className="banner_text">
                         <h2 className="hide-on-small-only" style={{ fontFamily: "cursive" }}>{this.props.title}</h2>
