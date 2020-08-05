@@ -47,7 +47,7 @@ class LiveClassRoomMentor extends Component {
         jitsiapi.on('passwordRequired', function () {
             jitsiapi.executeCommand('password', 'The Password');
         });
-
+        return () => jitsiapi.dispose()
     }
     render() {
         return (
