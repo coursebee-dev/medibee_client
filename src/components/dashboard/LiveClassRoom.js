@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 class LiveClassRoom extends Component {
+    constructor() {
+        super();
+        this.state = {
+            jitsi: {}
+        }
+    }
     componentDidMount() {
         console.log(this.props.match.params.classid)
         const domain = 'meet.coursebee.com';
@@ -38,6 +44,8 @@ class LiveClassRoom extends Component {
         jitsiapi.on('passwordRequired', function () {
             jitsiapi.executeCommand('password', 'The Password');
         });
+        this.setState({ jitsi: jitsiapi },
+            console.log(this.state.jitsi))
     }
     render() {
         return (
