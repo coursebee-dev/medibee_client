@@ -9,13 +9,12 @@ export const MentorsDetails = ({ match, auth }) => {
     const [subject, setSubject] = useState([])
     const getSubject = async () => {
         try {
-            const { data } = await axios.get("/api/admin/subject")
+            const { data } = await axios.get("/api/admin/subject");
             setSubject(data)
         } catch (error) {
             console.log(error)
         }
-
-    }
+    };
 
     const getMentorDetail = async () => {
         try {
@@ -48,7 +47,7 @@ export const MentorsDetails = ({ match, auth }) => {
                             <h5><u>Contact</u></h5>
                             <span><b>Email:</b> {details.email}</span>
                             <br />
-                            <span><b>Phone no.:</b> {details.mobileNo}</span>
+                            <span><b>Phone no:</b> {details.mobileNo}</span>
 
 
                         </div>
@@ -83,11 +82,11 @@ export const MentorsDetails = ({ match, auth }) => {
 
                             </div>
                         ))}
-                        <div>
-                            {details.subcategory?.map((subcat, id) => (
-                                <span className="alert" key={id}>{subcat}</span>
-                            ))}
-                        </div>
+                    </div>
+                    <div className="row">
+                        {details.subcategory?.map((subcat, id) => (
+                            <span className="alert" key={id}>{subcat}</span>
+                        ))}
                     </div>
                 </>
             ) : (

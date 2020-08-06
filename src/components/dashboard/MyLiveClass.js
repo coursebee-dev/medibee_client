@@ -61,12 +61,12 @@ class MyLiveClass extends Component {
                 </p>
                 <h4 className="center-align">{liveClass.topic}</h4>
                 <div className="center-align" dangerouslySetInnerHTML={{ __html: liveClass.description }} />
-                <div className="row">
+                <div className="row center-align">
                     <div className="col m4 s4">
-                      <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
+                      <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                     </div>
-                    <div className="col m4 s4"><p>Duration : {liveClass.duration}</p></div>
-                    <div className="col m4 s4"><p>Type: {liveClass.class_type}</p></div>
+                    <div className="col m4 s4"><p><b>Duration :</b> {liveClass.duration} min</p></div>
+                    <div className="col m4 s4"><p><b>Type:</b> {liveClass.class_type}</p></div>
 
                 </div>
                 
