@@ -45,11 +45,10 @@ export const MentorsDetails = ({ match, auth }) => {
                             <h4>{details.medicalcollege}</h4 >
                             <h5>{details.position}</h5 >
                             <h6><b>Session: </b>{details.session}</h6 >
-                            <b>Contact:</b>
+                            <h5><u>Contact</u></h5>
+                            <span><b>Email:</b> {details.email}</span>
                             <br />
-                            <span>Email: {details.email}</span>
-                            <br />
-                            <span>Phone no.: {details.mobileNo}</span>
+                            <span><b>Phone no.:</b> {details.mobileNo}</span>
 
 
                         </div>
