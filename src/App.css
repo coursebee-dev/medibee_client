@@ -8,7 +8,7 @@ body {
   main {
     min-height: 100vh;
   }
-  
+
   /* width */
   ::-webkit-scrollbar {
     width: 10px;
@@ -17,17 +17,17 @@ body {
   #description{
     height: 200px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
@@ -77,10 +77,10 @@ body {
 
 .editProfileForm {
   max-width: 300px;
-   min-width: 300px; 
+   min-width: 300px;
    display: flex;
    justify-content: center;
-   align-items: center; 
+   align-items: center;
    flex-direction: column;
 }
 
@@ -104,6 +104,9 @@ body {
 }
 .card-content{
     line-height: 30px;
+}
+.custom-card{
+  transition: 0.3s ease-in-out !important;
 }
 .custom-card:hover{
     box-shadow: 5px 5px 10px #666363;
@@ -154,6 +157,44 @@ body {
 }
 .custom_btn:hover:before, .custom_btn:hover:after {
     width: 51%;
+}
+.card_drop_shadow{
+    transition: 0.5s
+}
+.card_drop_shadow:hover{
+    box-shadow: 1px 1px 15px black;
+    transition: 0.5s
+}
+.card_shadow{
+  box-shadow: 1px 1px 15px black !important;
+}
+.alert{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-width: 1px;
+    border-style: solid;
+    /*border-color: transparent;*/
+    border-image: initial;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out 0s, background-color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    color: rgb(35, 63, 230);
+    background-color: transparent;
+    background-image: none;
+    border-color: rgb(51, 125, 204);
+    margin: 5px;
+}
+.alert:hover{
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgb(51, 125, 204);
+    border-color: rgb(51, 125, 204);
 }
 /*banner*/
 .banner{
@@ -238,6 +279,7 @@ body {
     padding: 5px;
     background: #fffbf3;
     box-shadow: 2px 5px 7px #928d8d;
+    transform: translate(10px, -40px);
 }
 /*mentors*/
 /*navbar*/

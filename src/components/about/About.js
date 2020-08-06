@@ -34,27 +34,12 @@ class About extends Component {
                             About<b> Medibee</b>
                         </h4>
                         <blockquote>
-                            Join "Medibee" Team
-                            <p>
-
-                                Medibee is medical education related Organization has been working relentlessly to improve the academic & co- curricular skills of medical students & doctors across the country and abroad.</p>
-
-                            <p>The core concept of the group is to connect the medical students to renowned teachers and professionals working in different medical colleges, hospitals, government and private organizations in Bangladesh and abroad. We try to develop academic lectures, video lectures, tutorials for all & easily accessible from every corner of the country. We also arrange clinical workshops, skill development programs health awareness campaign, career seminar & so on to help medical students & doctors to improve their skills & serve their patients in a better way. We also arrange live session on various contemporary issues. Medical knowledge dissemination in remote areas is a very essential task for us as a leading medical education organization.</p>
-                            <b>Slogan:</b>
-                            <b>Vision:</b>
-                            <p>To create and foster a medical learning community to provide learners with knowledge, skills and attitudes to successfully overcome current and future challenges in health care.</p>
-                            <b>Mission:</b>
-                            <p>The mission of MediBee is to educate medical students, physicians and other health professionals from demographically diverse backgrounds to meet future primary and specialty health care needs; foster medical research that leads to improvement of clinical and public health; and provide a broad range of patient services.</p>
-                            <b>Projects & programmes:</b>
-                                Online and offline class lectures
-                                Contemporary knowledge sharing sessions
-                                Webinar and seminars organize
-                                Higher education abroad: Opportunism and challenges sharing.
-                                Professional and career discussion
-                                Medical research and publications workshop
-
-                                <b>Our Core values:</b>
-                            <p>Medical excellence, Quality, Innovation, Research and Development, Accuracy, teambuilding.</p>
+                          <p>মেডিবি দেশের অন্যতম সেরা অনলাইনভিত্তিক মেডিক্যাল শিক্ষামূলক প্ল্যাটফর্ম যা আমাদের দেশের মেডিক্যাল শিক্ষার্থীদের জন্য দেশ বিদেশের খ্যাতিমান মেডিক্যাল বিশ্ববিদ্যালয় ও কলেজের খ্যাতিমান ডাক্তারদের নিয়ে একাডেমিক ও সহ - পাঠক্রম সংক্রান্ত কার্যক্রম সম্পাদনায় নিরিলসভাবে কাজ করে যাচ্ছে।</p>
+                          <p>ডাক্তারদের নিয়ে একাডেমিক ও সহ - পাঠক্রম সংক্রান্ত কার্যক্রম সম্পাদনায় নিরিলসভাবে কাজ করে যাচ্ছে।</p>
+                          <p>আমাদের মূল উদ্দেশ্য হল দেশ বিদেশের খ্যাতিমান মেডিক্যাল বিশ্ববিদ্যালয় ও কলেজের খ্যাতিমান শিক্ষক,  সরকারী এবং বেসরকারী সংস্থায় কর্মরত সফল ডাক্তারদের সাথে মেডিক্যাল কলেজ পড়ুয়া শিক্ষার্থীদের সাথে একটি নিরবিচ্ছিন্ন সম্পর্ক প্রতিষ্ঠা করা।</p>
+                          <p>আমাদের দেশের মেডিক্যাল শিক্ষার্থীদের বিষয়গুলো মাথায় রেখে একাডেমিক লেকচার, ভিডিও লেকচার, টিউটোরিয়াল এমনভাবে প্রস্তুত করা যাতে করে দেশের প্রতিটি মেডিক্যাল শিক্ষার্থী দেশের প্রতিটি কোণ থেকে সহজেই এই কোর্সগুলোর আওতাভুক্ত হতে পারে।</p>
+                          <p>এছাড়াও আমরা অনলাইন ক্লিনিক্যাল ওয়ার্শপ, দক্ষতামূলক প্রশিক্ষণ, স্বাস্থ্য সচেতনতা ক্যাম্প, ক্যারিয়ার সেমিনারের মত নানা শিক্ষার্থী সহায়ক প্রোগ্রাম করে থাকি।</p>
+                          <p>পৃথিবীর নানা সমসাময়িক মেডিক্যাল সাইন্স ভিত্তিক আলোচনা অনলাইন সেশনের মাধ্যমে প্রচার করে থাকি যাতে করে মেডিক্যাল শিক্ষার্থীগন আরোও উন্নতভাবে তাদের সেবা কার্যক্রম বজায় রাখতে পারে। মেডিক্যাল কেন্দ্রীয় সকল জ্ঞানচর্চা দেশের প্রতিটি শিক্ষার্থীদের মাঝে পৌছে দিতে আমরা বদ্ধপরিকর।</p>
                         </blockquote>
                     </div>
                 </div>

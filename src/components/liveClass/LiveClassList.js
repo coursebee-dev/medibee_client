@@ -112,7 +112,7 @@ class LiveClassList extends Component {
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     onClick={this.onRegisterClick}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
-                                    Register for free
+                                    <span>Register for free</span>
                                 </button>
                             }
                         </div>
