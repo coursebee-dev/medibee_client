@@ -82,6 +82,9 @@ class Register extends Component {
                             <i className="material-icons left">keyboard_backspace</i>
                             Back to home
                         </Link>
+                        <div className="col m12 s12">
+                            <h5>Want to Sign Up as a <b>Mentor</b>? Then click here <Link to="/mentor/register" className="btn-flat btn hoverable red darken-1 white-text">Mentor Signup</Link></h5>
+                        </div>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                             <h4>
                                 <b>Register</b> below
