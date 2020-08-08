@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import logoutUser from "../../actions/logoutAction";
-import HeaderImg from "../layout/HeaderImg"
-import MyLiveClass from "./MyLiveClass"
+import HeaderImg from "../layout/HeaderImg";
+import MyLiveClass from "./MyLiveClass";
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -16,20 +17,19 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
     return (
       <div>
-        <HeaderImg />
+        <Breadcrumbs title={user.name.split(" ")[0]} description="Dashboard" />
         <div>
           <div className="row">
-            <div className="col s12 center-align">
+            <div className="col s12 center-align ">
               <h4>
-                <b>Hello, </b> {user.name.split(" ")[0]}
-                <p className="flow-text grey-text text-darken-1">
-                  Thank you for signing in to Medibee. We are continuously working to make this a better platform.
-                  <br /><br />If you want to join our team send us a message in our{" "}
-                  <a href="https://www.facebook.com/medibee.live" target="_blank" rel="noopener noreferrer">facebook page</a>.
-                </p>
+                {/*<p className="flow-text grey-text text-darken-1">*/}
+                {/*  Thank you for signing in to Medibee. We are continuously working to make this a better platform.*/}
+                {/*  <br /><br />If you want to join our team send us a message in our{" "}*/}
+                {/*  <a href="https://www.facebook.com/medibee.live" target="_blank" rel="noopener noreferrer">facebook page</a>.*/}
+                {/*</p>*/}
 
               </h4>
-              <Link to="/liveclass" className="btn-flat waves-effect red darken-1">
+              <Link to="/liveclass" className="btn-flat waves-effect red darken-1 white-text">
                 View All Live Classes
                 <i className="material-icons left">arrow_forward</i>
               </Link>

@@ -141,41 +141,44 @@ function Mentors() {
             <div className="section">
                 <div className="container" style={{ padding: "35px 0" }}>
                     <div className="row">
-                        <div className="section">
-                            <div className="card col s12 red">
-                                <div className="row col">
-                                    <label className="white-text">Academic position</label>
-                                    <select onChange={onChange} name="category" className="browser-default">
-                                        <option value="all" >All</option>
-                                        {category.map((cat, id) => (
-                                            <option key={id} value={cat.name}>{cat.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="row col">
-                                    <label className="white-text">Academic level</label>
-                                    <select onChange={onChange} name="subject" className="browser-default">
-                                        <option value="all" >All</option>
-                                        {subject.map((sub, id) => (
-                                            <option key={id} value={sub._id}>{sub.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="row col">
-                                    <label className="white-text">Academic level</label>
-                                    <select onChange={onChange} name="subcategory" className="browser-default">
-                                        <option value="all" >All</option>
-                                        {subject.map((sub, id) => (
-                                            <React.Fragment key={id}>
-                                                {sub.subcategory.map((subcat, id) => (
-                                                    <option key={id} value={subcat.name}>{subcat.name}</option>
-                                                ))}
-                                            </React.Fragment>
-                                        ))}
-                                    </select>
-                                </div>
+                        <div className="col m12 s12 ">
+                            <div className="row">
+                              <div className="col m3 s12"></div>
+                              <div className="col m2 s12 center-align">
+                                  <label className="">Academic position</label>
+                                  <select onChange={onChange} name="category" className="browser-default" style={{background: "#ff3535"}}>
+                                      <option value="all" >All</option>
+                                      {category.map((cat, id) => (
+                                          <option key={id} value={cat.name}>{cat.name}</option>
+                                      ))}
+                                  </select>
+                              </div>
+                              <div className="col m2 s12 center-align">
+                                  <label className="">Academic level</label>
+                                  <select onChange={onChange} name="subject" className="browser-default" style={{background: "#ff3535"}}>
+                                      <option value="all" >All</option>
+                                      {subject.map((sub, id) => (
+                                          <option key={id} value={sub._id}>{sub.name}</option>
+                                      ))}
+                                  </select>
+                              </div>
+                              <div className="col m2 s12 center-align">
+                                  <label className="">Academic level</label>
+                                  <select onChange={onChange} name="subcategory" className="browser-default" style={{background: "#ff3535"}}>
+                                      <option value="all" >All</option>
+                                      {subject.map((sub, id) => (
+                                          <React.Fragment key={id}>
+                                              {sub.subcategory.map((subcat, id) => (
+                                                  <option key={id} value={subcat.name}>{subcat.name}</option>
+                                              ))}
+                                          </React.Fragment>
+                                      ))}
+                                  </select>
+                              </div>
+                              <div className="col m3 s12"></div>
                             </div>
                         </div>
+                    </div>
                         {/* <div className="section">
                             {subject.map(sub => (
                                 <button key={sub._id} id="subject" onClick={getfilteredmentors} value={sub.name} className="btn red">{sub.name}</button>
@@ -197,23 +200,26 @@ function Mentors() {
                         ) : (
                                 <div className="row">
                                     {filteredMentors.map((mentor, id) => (
-                                        <div key={id} className="card no-padding col s12 m6 l4 center-align" style={{ marginTop: "60px" }}>
+                                      <div className="col s12 m6 l3">
+                                        <div key={id} className="card no-padding center-align card_shadow" style={{ marginTop: "60px" }}>
                                             <div className="card-image">
-                                                <img src={mentor.propicurl} alt="profile" className="mentors" style={{ minHeight: "220px", minWidth: "220px" }} />
+                                                <img src={mentor.propicurl} alt="profile" className="mentors" />
                                             </div>
                                             <div className="card-content">
                                                 <h5>{mentor.name}</h5>
                                                 <p>{mentor.medicalcollege}</p>
                                                 <p>{mentor.position}</p>
                                             </div>
-                                            <div className="card-content hoverable blue darken-1">
-                                                <Link to={`/mentors/details/${mentor._id}`} className="white-text">Details</Link>
+                                            <div className="card-action" style={{padding:"5px"}}>
+                                                <Link to={`/mentors/details/${mentor._id}`} className="btn hoverable red darken-1 white-text">Details</Link>
                                             </div>
                                         </div>
+                                      </div>
+
                                     ))}
                                 </div>
                             )}
-                    </div>
+
 
                 </div>
             </div>

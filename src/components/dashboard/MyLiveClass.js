@@ -55,16 +55,22 @@ class MyLiveClass extends Component {
             image: ""
         };
         const myLiveClasses = this.state.myLiveClasses.map(liveClass => (
-            <li className="collection-item" key={liveClass._id}>
+            <div className="col s12 m12 card_shadow" key={liveClass._id}>
                 <p className="secondary-content">
-                    <button value={liveClass._id} onClick={this.onJoinClick} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Join Class</button>
+                    <button value={liveClass._id} onClick={this.onJoinClick} className="btn btn-small waves-effect waves-light hoverable red darken-1 white-text">Join Class</button>
                 </p>
-                <h6>Topic : {liveClass.topic}</h6>
-                <div dangerouslySetInnerHTML={{ __html: liveClass.description }} />
-                <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                <p>Duration : {liveClass.duration}</p>
-                <p>Type: {liveClass.class_type}</p>
-            </li>
+                <h4 className="center-align">{liveClass.topic}</h4>
+                <div className="center-align" dangerouslySetInnerHTML={{ __html: liveClass.description }} />
+                <div className="row center-align">
+                    <div className="col m4 s4">
+                      <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
+                    </div>
+                    <div className="col m4 s4"><p><b>Duration :</b> {liveClass.duration} min</p></div>
+                    <div className="col m4 s4"><p><b>Type:</b> {liveClass.class_type}</p></div>
+
+                </div>
+                
+            </div>
         ));
         return (
             <div>
@@ -81,7 +87,7 @@ class MyLiveClass extends Component {
                     ]}
                 />
                 <h4 style={{ margin: "50px" }}>Registered Classes</h4>
-                <ul style={{ textAlign: "left" }} className="collection">{myLiveClasses.reverse()}</ul>
+                <div style={{ textAlign: "left" }} className="row">{myLiveClasses.reverse()}</div>
             </div>
         )
     }
