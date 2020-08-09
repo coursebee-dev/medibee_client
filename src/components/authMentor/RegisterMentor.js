@@ -47,7 +47,7 @@ class Register extends Component {
             mobileNo: "",
             medicalcollege: "",
             session: "",
-            mentortype: "{rofessional",
+            mentortype: "",
             position: "",
             propicurl: "",
             idurl: [],
@@ -57,7 +57,7 @@ class Register extends Component {
             subject: [],
             category: [],
             subcategory: [],
-            step: 3,
+            step: 1,
             errors: {}
         };
         this.getBack = this.getBack.bind(this)
