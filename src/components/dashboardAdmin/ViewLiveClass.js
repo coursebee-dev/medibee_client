@@ -75,6 +75,9 @@ export default class ViewLiveClass extends Component {
                 <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
+                {liveClass.approved ? (
+                    <Link to={liveClass.zoomStartLink} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</Link>
+                ) : null}
                 <div className="row">
                     <div className="input-field col s6">
                         <input name="price" onChange={this.onChange} id="price" type="number" min="0" className="validate" />

@@ -156,7 +156,7 @@ class ScheduleClass extends Component {
                             }}
                             onSubmit={values => {
                                 const startTime = new Date(`${values.start_date}T${values.start_time}:00Z`)
-                                startTime.setHours(startTime.getHours() - 6)// timezone:Asia/Dhaka
+                                startTime.setHours(startTime.getHours())// timezone:Asia/Dhaka
                                 const tempTime = new Date()
                                 console.log(startTime)
                                 tempTime.setHours(tempTime.getHours() - 2)
