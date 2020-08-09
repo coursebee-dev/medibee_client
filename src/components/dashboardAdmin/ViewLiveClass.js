@@ -76,7 +76,7 @@ export default class ViewLiveClass extends Component {
                 <p>Duration : {liveClass.duration}</p>
                 <p>Type: {liveClass.class_type}</p>
                 {liveClass.approved ? (
-                    <Link to={liveClass.zoomStartLink} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</Link>
+                    < button className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text" onClick={() => window.open(liveClass.zoomStartLink, "_blank")}>Start Class</button>
                 ) : null}
                 <div className="row">
                     <div className="input-field col s6">
