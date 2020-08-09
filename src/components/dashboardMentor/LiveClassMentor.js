@@ -30,7 +30,7 @@ export default class LiveClassMentor extends Component {
                 <p><b>Duration :</b> {liveClass.duration}</p>
                 <p><b>Type:</b> {liveClass.class_type}</p>
                 {liveClass.approved ? (
-                    <Link to={liveClass.zoomJoinLink} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</Link>
+                    <button onClick={() => window.open(liveClass.zoomJoinLink, "_blank")} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</button>
                 ) : (
                         null
                     )}
