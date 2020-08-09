@@ -15,23 +15,21 @@ class LiveClassList extends Component {
             liveClasses: [],
             classid: "",
             classtype: "",
-            loading: false,
-        }
+            loading: true,
+        };
         this.getLiveClasses = this.getLiveClasses.bind(this)
         this.onRegisterClick = this.onRegisterClick.bind(this)
     }
 
     getLiveClasses = () => {
-        this.setState({ loading: true })
         axios.get('/api/approvedliveclass')
             .then(res => {
-                this.setState({ liveClasses: res.data })
+                this.setState({ liveClasses: res.data,loading:false })
             })
             .catch(err => {
                 console.log(err)
             });
-        this.setState({ loading: false })
-    }
+    };
 
     onRegisterClick = async (e) => {
         const { name, value } = e.target;
@@ -84,7 +82,7 @@ class LiveClassList extends Component {
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
                         <div className="row">
-                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()}</p></div>
+                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString() }</p></div>
                             <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div>
                             <div className="col s4 m4"><b>Type</b></div>  <div className="col s8 m8">: {liveClass.class_type}</div>
                         </div>
