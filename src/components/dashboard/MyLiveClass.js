@@ -35,6 +35,7 @@ class MyLiveClass extends Component {
             const { data } = await axios.get(`/api/joinliveclass/${this.props.studentId}/${liveclassid}`)
             this.setState({ notify: data.message })
             if (data.success) {
+                M.toast({ html: this.state.notify })
                 window.open(data.joinurl, "_blank")
             }
             else {
