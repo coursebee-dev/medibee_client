@@ -15,7 +15,7 @@ class Footer extends Component {
     render() {
         return (
             <footer className="page-footer white z-depth-1">
-                <div className="container" style={{ width: "40%", justifyContent: "center" }}>
+                <div className="container" style={{ justifyContent: "center" }}>
                     <ul className="row">
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/about">About</LinkStyled></li>
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/contactus" title="Contact">Contact</LinkStyled></li>

@@ -29,22 +29,20 @@ class MyLiveClass extends Component {
     componentDidMount() {
         this.getLiveClasses()
     }
-    onJoinClick = e => {
+    onJoinClick = async e => {
         let liveclassid = e.target.value
-        console.log(this.props.studentId)
-        axios.get(`/api/joinliveclass/${this.props.studentId}/${liveclassid}`)
-            .then(res => {
-                this.setState({ notify: res.data.message })
-                if (res.data.success) {
-                    this.props.history.push('/dashboard/liveclassroom/' + liveclassid)
-                }
-                else {
-                    M.toast({ html: this.state.notify })
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            });
+        try {
+            const { data } = await axios.get(`/api/joinliveclass/${this.props.studentId}/${liveclassid}`)
+            this.setState({ notify: data.message })
+            if (data.success) {
+                window.open(data.joinurl, "_blank")
+            }
+            else {
+                M.toast({ html: this.state.notify })
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
     render() {
         const seo = {
@@ -55,21 +53,21 @@ class MyLiveClass extends Component {
             image: ""
         };
         const myLiveClasses = this.state.myLiveClasses.map(liveClass => (
-            <div className="col s12 m12 card_shadow" key={liveClass._id}>
+            <div className="col s12 m12 z-depth-2" style={{ margin: "10px" }} key={liveClass._id}>
                 <p className="secondary-content">
                     <button value={liveClass._id} onClick={this.onJoinClick} className="btn btn-small waves-effect waves-light hoverable red darken-1 white-text">Join Class</button>
                 </p>
                 <h4 className="center-align">{liveClass.topic}</h4>
-                <div className="center-align" dangerouslySetInnerHTML={{ __html: liveClass.description }} />
+                {/* <div className="center-align" dangerouslySetInnerHTML={{ __html: liveClass.description }} /> */}
                 <div className="row center-align">
                     <div className="col m4 s4">
-                      <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
+                        <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
                     </div>
                     <div className="col m4 s4"><p><b>Duration :</b> {liveClass.duration} min</p></div>
                     <div className="col m4 s4"><p><b>Type:</b> {liveClass.class_type}</p></div>
 
                 </div>
-                
+
             </div>
         ));
         return (

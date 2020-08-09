@@ -24,10 +24,8 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Dashboard from './components/dashboard/Dashboard';
 import LiveClassList from './components/liveClass/LiveClassList';
-import LiveClassRoom from './components/dashboard/LiveClassRoom';
 import DashboardMentor from './components/dashboardMentor/DashboardMentor';
 import ScheduleClass from './components/dashboardMentor/ScheduleClass';
-import LiveClassRoomMentor from './components/dashboardMentor/LiveClassRoomMentor';
 import DashboardAdmin from './components/dashboardAdmin/DashboardAdmin';
 import ViewMentor from './components/dashboardAdmin/ViewMentor';
 import ViewMentorDetail from './components/dashboardAdmin/ViewMentorDetail';
@@ -86,11 +84,9 @@ export default function PathRoute() {
                     <Route exact path="/mentors/details/:id" component={MentorsDetails} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute exact path="/dashboard/myliveclass/:id" component={MyLiveClass} />
-                    <PrivateRoute exact path="/dashboard/liveclassroom/:classid" component={LiveClassRoom} />
                     <PrivateRouteMentor exact path="/mentor/dashboard" component={DashboardMentor} />
                     <PrivateRouteMentor exact path="/mentor/dashboard/scheduleclass" component={ScheduleClass} />
                     <PrivateRouteMentor exact path="/mentor/account" component={AccountMentor} />
-                    <PrivateRouteMentor exact path="/mentor/dashboard/liveclassroom/:classid" component={LiveClassRoomMentor} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/subjects" component={Subjects} />
                     <PrivateRouteAdmin exact path="/admin/dashboard" component={DashboardAdmin} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewmentor" component={ViewMentor} />
