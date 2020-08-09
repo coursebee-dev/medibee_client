@@ -24,7 +24,7 @@ class LiveClassList extends Component {
     getLiveClasses = () => {
         axios.get('/api/approvedliveclass')
             .then(res => {
-                this.setState({ liveClasses: res.data,loading:false })
+                this.setState({ liveClasses: res.data, loading: false })
             })
             .catch(err => {
                 console.log(err)
@@ -82,7 +82,7 @@ class LiveClassList extends Component {
                     <div className="card-content">
                         <span className="card-title center-align">{liveClass.topic}</span>
                         <div className="row">
-                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString() }</p></div>
+                            <div className="col m4 s4"><b>Start Time</b></div>  <div className="col s8 m8"><p>: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()}</p></div>
                             <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div>
                             <div className="col s4 m4"><b>Type</b></div>  <div className="col s8 m8">: {liveClass.class_type}</div>
                         </div>
@@ -110,7 +110,7 @@ class LiveClassList extends Component {
                                     style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
                                     onClick={this.onRegisterClick}
                                     className="btn-flat  blue darken-4 white-text custom_btn">
-                                    <span>Register for free</span>
+                                    Register for free
                                 </button>
                             }
                         </div>
