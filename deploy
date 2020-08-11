@@ -7,5 +7,5 @@ echo "Building app"
 npm run build
 
 echo "Deploying files to server"
-rsync -avP build/ kernel@coursebee.com:/var/www/coursebee.com/
+rsync -avP build/ kernel@medibee.com.bd:/var/www/medibee.com.bd/
 echo "Deployment complete"
