@@ -27,6 +27,7 @@ export const MentorsDetails = ({ match, auth }) => {
     useEffect(() => {
         getSubject()
         getMentorDetail()
+        // eslint-disable-next-line
     }, [])
     useEffect(() => {
         console.log(details)

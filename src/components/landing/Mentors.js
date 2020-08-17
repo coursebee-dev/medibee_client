@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import profile from "../../images/profile.png"
 import Breadcrumbs from "../layout/Breadcrumbs";
 import { intersection } from 'lodash';
 
@@ -42,7 +41,6 @@ function Mentors() {
             setFilteredMentors(data)
             getCategory()
             getSubject()
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -73,28 +71,9 @@ function Mentors() {
                     setSelSubCategory(value)
                 }
                 break;
+            default:
+                break;
         }
-        // if (name === "catagory") {
-        //     if (value === "all") {
-        //         setSelCategory(null)
-        //     } else {
-        //         setSelCategory(value)
-        //     }
-        // }
-        // if (name === "subject") {
-        //     if (value === "all") {
-        //         setSelSubject(null)
-        //     } else {
-        //         setSelSubject(value)
-        //     }
-        // }
-        // if (name = "subcategory") {
-        //     if (value === "all") {
-        //         setSelSubCategory(null)
-        //     } else {
-        //         setSelSubCategory(value)
-        //     }
-        // }
     }
 
     const getfilteredmentors = () => {
@@ -129,10 +108,12 @@ function Mentors() {
 
     useEffect(() => {
         getmentors()
-    }, [])
+        // eslint-disable-next-line
+    }, [mentors])
 
     useEffect(() => {
         getfilteredmentors()
+        // eslint-disable-next-line
     }, [selCategory, selSubject, selSubCategory])
 
     return (
@@ -143,43 +124,43 @@ function Mentors() {
                     <div className="row">
                         <div className="col m12 s12 ">
                             <div className="row">
-                              <div className="col m3 s12"></div>
-                              <div className="col m2 s12 center-align">
-                                  <label className="">Academic position</label>
-                                  <select onChange={onChange} name="category" className="browser-default" style={{background: "#ff3535"}}>
-                                      <option value="all" >All</option>
-                                      {category.map((cat, id) => (
-                                          <option key={id} value={cat.name}>{cat.name}</option>
-                                      ))}
-                                  </select>
-                              </div>
-                              <div className="col m2 s12 center-align">
-                                  <label className="">Academic level</label>
-                                  <select onChange={onChange} name="subject" className="browser-default" style={{background: "#ff3535"}}>
-                                      <option value="all" >All</option>
-                                      {subject.map((sub, id) => (
-                                          <option key={id} value={sub._id}>{sub.name}</option>
-                                      ))}
-                                  </select>
-                              </div>
-                              <div className="col m2 s12 center-align">
-                                  <label className="">Academic level</label>
-                                  <select onChange={onChange} name="subcategory" className="browser-default" style={{background: "#ff3535"}}>
-                                      <option value="all" >All</option>
-                                      {subject.map((sub, id) => (
-                                          <React.Fragment key={id}>
-                                              {sub.subcategory.map((subcat, id) => (
-                                                  <option key={id} value={subcat.name}>{subcat.name}</option>
-                                              ))}
-                                          </React.Fragment>
-                                      ))}
-                                  </select>
-                              </div>
-                              <div className="col m3 s12"></div>
+                                <div className="col m3 s12"></div>
+                                <div className="col m2 s12 center-align">
+                                    <label className="">Academic position</label>
+                                    <select onChange={onChange} name="category" className="browser-default" style={{ background: "#ff3535" }}>
+                                        <option value="all" >All</option>
+                                        {category.map((cat, id) => (
+                                            <option key={id} value={cat.name}>{cat.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col m2 s12 center-align">
+                                    <label className="">Academic level</label>
+                                    <select onChange={onChange} name="subject" className="browser-default" style={{ background: "#ff3535" }}>
+                                        <option value="all" >All</option>
+                                        {subject.map((sub, id) => (
+                                            <option key={id} value={sub._id}>{sub.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col m2 s12 center-align">
+                                    <label className="">Academic level</label>
+                                    <select onChange={onChange} name="subcategory" className="browser-default" style={{ background: "#ff3535" }}>
+                                        <option value="all" >All</option>
+                                        {subject.map((sub, id) => (
+                                            <React.Fragment key={id}>
+                                                {sub.subcategory.map((subcat, id) => (
+                                                    <option key={id} value={subcat.name}>{subcat.name}</option>
+                                                ))}
+                                            </React.Fragment>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col m3 s12"></div>
                             </div>
                         </div>
                     </div>
-                        {/* <div className="section">
+                    {/* <div className="section">
                             {subject.map(sub => (
                                 <button key={sub._id} id="subject" onClick={getfilteredmentors} value={sub.name} className="btn red">{sub.name}</button>
                             ))}
@@ -193,14 +174,14 @@ function Mentors() {
                                 </div>
                             ))}
                         </div> */}
-                        {loading ? (
-                            <div className="progress">
-                                <div className="indeterminate blue"></div>
-                            </div>
-                        ) : (
-                                <div className="row">
-                                    {filteredMentors.map((mentor, id) => (
-                                      <div className="col s12 m6 l3">
+                    {loading ? (
+                        <div className="progress">
+                            <div className="indeterminate blue"></div>
+                        </div>
+                    ) : (
+                            <div className="row">
+                                {filteredMentors.map((mentor, id) => (
+                                    <div className="col s12 m6 l3">
                                         <div key={id} className="card no-padding center-align card_shadow" style={{ marginTop: "60px" }}>
                                             <div className="card-image">
                                                 <img src={mentor.propicurl} alt="profile" className="mentors" />
@@ -210,15 +191,15 @@ function Mentors() {
                                                 <p>{mentor.medicalcollege}</p>
                                                 <p>{mentor.position}</p>
                                             </div>
-                                            <div className="card-action" style={{padding:"5px"}}>
+                                            <div className="card-action" style={{ padding: "5px" }}>
                                                 <Link to={`/mentors/details/${mentor._id}`} className="btn hoverable red darken-1 white-text">Details</Link>
                                             </div>
                                         </div>
-                                      </div>
+                                    </div>
 
-                                    ))}
-                                </div>
-                            )}
+                                ))}
+                            </div>
+                        )}
 
 
                 </div>
