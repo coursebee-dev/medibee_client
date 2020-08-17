@@ -17,10 +17,10 @@ class Footer extends Component {
             <footer className="page-footer white z-depth-1">
                 <div className="container" style={{ justifyContent: "center" }}>
                     <ul className="row">
-                        <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/about">About</LinkStyled></li>
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/contactus" title="Contact">Contact</LinkStyled></li>
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/disclaimer">Disclaimer</LinkStyled></li>
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/privacy">Privacy</LinkStyled></li>
+                        <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/returnRefund">Refund</LinkStyled></li>
                         <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/terms">Terms</LinkStyled></li>
                         {this.props.auth.isAuthenticated ? null : <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/admin">Admin</LinkStyled></li>}
                         {this.props.auth.isAuthenticated ? <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="#">Settings</LinkStyled></li> : null}

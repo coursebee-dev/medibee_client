@@ -46,6 +46,7 @@ import AccountMentor from './components/dashboardMentor/AccountMentor';
 import Subjects from './components/dashboardAdmin/Subjects';
 import Mentors from "./components/landing/Mentors";
 import MentorsDetails from './components/landing/MentorsDetails';
+import ReturnRefund from "./components/LegalDocuments/ReturnRefund";
 
 
 export default function PathRoute() {
@@ -79,6 +80,7 @@ export default function PathRoute() {
                     <Route exact path="/terms" component={Terms} />
                     <Route exact path="/privacy" component={Privacy} />
                     <Route exact path="/disclaimer" component={Disclaimer} />
+                    <Route exact path="/returnRefund" component={ReturnRefund} />
                     <Route exact path="/contactus" component={Contact} />
                     <Route exact path="/mentors" component={Mentors} />
                     <Route exact path="/mentors/details/:id" component={MentorsDetails} />

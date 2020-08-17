@@ -1,166 +1,78 @@
 import React, { Component } from 'react'
+import Breadcrumbs from "../layout/Breadcrumbs";
 
 export default class Terms extends Component {
       render() {
             return (
+                <>
+                <Breadcrumbs title="Terms & Conditions" description="" />
                   <div className="container">
-                        <h2>Welcome to Medibee</h2>
-                        <p>These terms and conditions outline the rules and regulations for the use of Medibee's Website.</p> <br />
-                        <span style={{ textTransform: 'capitalize' }}> Medibee</span> is located at:<br />
-                        <address>Flat- B2, Green Square, House- 1/B, Road-8 Gulshan-1, Dhaka <br />1212 - Dhaka , Bangladesh<br />
-                        </address>
-                        <p>By accessing this website we assume you accept these terms and conditions in full. Do not continue to use Medibee's website
-          if you do not accept all of the terms and conditions stated on this page.</p>
-                        <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice
-                        and any or all Agreements: "Client", "You" and "Your" refers to you, the person accessing this website
-                        and accepting the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers
-                        to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves, or either the Client
-                        or ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake
-                        the process of our assistance to the Client in the most appropriate manner, whether by formal meetings
-                        of a fixed duration, or any other means, for the express purpose of meeting the Client's needs in respect
-                        of provision of the Company's stated services/products, in accordance with and subject to, prevailing law
-                        of Bangladesh. Any use of the above terminology or other words in the singular, plural,
-          capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p><h2>Cookies</h2>
-                        <p>We employ the use of cookies. By using Medibee's website you consent to the use of cookies
-          in accordance with Medibee's privacy policy.</p><p>Most of the modern day interactive web sites
-                        use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site
-                        to enable the functionality of this area and ease of use for those people visiting. Some of our
-          affiliate / advertising partners may also use cookies.</p><h2>License</h2>
-                        <p>Unless otherwise stated, Medibee and/or it's licensors own the intellectual property rights for
-                        all material on Medibee. All intellectual property rights are reserved. You may view and/or print
-          pages from https://www.Medibee.com for your own personal use subject to restrictions set in these terms and conditions.</p>
-                        <p>You must not:</p>
-                        <ol>
-                              <li>Republish material from https://www.medibee.com</li>
-                              <li>Sell, rent or sub-license material from https://www.medibee.com</li>
-                              <li>Reproduce, duplicate or copy material from https://www.medibee.com</li>
-                        </ol>
-                        <p>Redistribute content from Medibee (unless content is specifically made for redistribution).</p>
-                        <h2>User Comments</h2>
-                        <ol>
-                              <li>This Agreement shall begin on the date hereof.</li>
-                              <li>Certain parts of this website offer the opportunity for users to post and exchange opinions, information,
-                              material and data ('Comments') in areas of the website. Medibee does not screen, edit, publish
-                              or review Comments prior to their appearance on the website and Comments do not reflect the views or
-                              opinions ofMedibee, its agents or affiliates. Comments reflect the view and opinion of the
-                              person who posts such view or opinion. To the extent permitted by applicable laws Medibeeshall
-                              not be responsible or liable for the Comments or for any loss cost, liability, damages or expenses caused
-                              and or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this
-            website.</li>
-                              <li>Medibeereserves the right to monitor all Comments and to remove any Comments which it considers
-            in its absolute discretion to be inappropriate, offensive or otherwise in breach of these Terms and Conditions.</li>
-                              <li>You warrant and represent that:
-            <ol>
-                                          <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to
-                do so;</li>
-                                          <li>The Comments do not infringe any intellectual property right, including without limitation copyright,
-                patent or trademark, or other proprietary right of any third party;</li>
-                                          <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material
-                or material which is an invasion of privacy</li>
-                                          <li>The Comments will not be used to solicit or promote business or custom or present commercial activities
-                or unlawful activity.</li>
-                                    </ol>
-                              </li>
-                              <li>You hereby grant to <strong>Medibee</strong> a non-exclusive royalty-free license to use, reproduce,
-            edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats
-            or media.</li>
-                        </ol>
-                        <h2>Hyperlinking to our Content</h2>
-                        <ol>
-                              <li>The following organizations may link to our Web site without prior written approval:
-            <ol>
-                                          <li>Government agencies;</li>
-                                          <li>Search engines;</li>
-                                          <li>News organizations;</li>
-                                          <li>Online directory distributors when they list us in the directory may link to our Web site in the same
-                manner as they hyperlink to the Web sites of other listed businesses; and</li>
-                                          <li>Systemwide Accredited Businesses except soliciting non-profit organizations, charity shopping malls,
-                and charity fundraising groups which may not hyperlink to our Web site.</li>
-                                    </ol>
-                              </li>
-                        </ol>
-                        <ol start={2}>
-                              <li>These organizations may link to our home page, to publications or to other Web site information so long
-                              as the link: (a) is not in any way misleading; (b) does not falsely imply sponsorship, endorsement or
-                              approval of the linking party and its products or services; and (c) fits within the context of the linking
-                              party's site.
-          </li>
-                              <li>We may consider and approve in our sole discretion other link requests from the following types of organizations:
-            <ol>
-                                          <li>commonly-known consumer and/or business information sources such as Chambers of Commerce, American
-                Automobile Association, AARP and Consumers Union;</li>
-                                          <li>dot.com community sites;</li>
-                                          <li>associations or other groups representing charities, including charity giving sites,</li>
-                                          <li>online directory distributors;</li>
-                                          <li>internet portals;</li>
-                                          <li>accounting, law and consulting firms whose primary clients are businesses; and</li>
-                                          <li>educational institutions and trade associations.</li>
-                                    </ol>
-                              </li>
-                        </ol>
+                      <h2>Terms of Use</h2>
+                      <p>Use of the Medibee website </p>
+                      <p>You may not copy, reproduce, republish, download, post, broadcast, transmit or otherwise use the Medibee website content in any way except for your own personal, non-commercial use.
+                          You also agree not to adapt, alter or create a derivative work from the Medibee website content except for your own personal, non-commercial use.
+                          Permanent copying and/or storage of whole or part of this website or the information contained therein or reproduction or incorporation of any part of it in any other work or publication, whether paper or electronic media or any other form, requires the prior written permission of Medibee.</p>
+                      <p>You agree to use the Medibee website only for lawful purposes, and in a way that does not infringe the rights of, restrict or inhibit anyone else's use and enjoyment of the Medibee website.
+                              Prohibited behavior includes harassing or causing distress or inconvenience to any person, transmitting obscene or offensive content or disrupting the normal flow of dialogue within the Medibee website.</p>
 
-                        <p>We will approve link requests from these organizations if we determine that: (a) the link would not reflect
-                        unfavorably on us or our accredited businesses (for example, trade associations or other organizations
-                        representing inherently suspect types of business, such as work-at-home opportunities, shall not be allowed
-                        to link); (b)the organization does not have an unsatisfactory record with us; (c) the benefit to us from
-                        the visibility associated with the hyperlink outweighs the absence of Medibee; and (d) where the
-                        link is in the context of general resource information or is otherwise consistent with editorial content
-          in a newsletter or similar product furthering the mission of the organization.</p>
-                        <p>These organizations may link to our home page, to publications or to other Web site information so long as
-                        the link: (a) is not in any way misleading; (b) does not falsely imply sponsorship, endorsement or approval
-                        of the linking party and it products or services; and (c) fits within the context of the linking party's
-          site.</p>
-                        <p>If you are among the organizations listed in paragraph 2 above and are interested in linking to our website,
-          you must notify us by sending an e-mail to <a href="mailto:medibee.online@gmail.com" title="send an email to medibee.online@gmail.com">Medibee.online@gmail.com</a>.
-          Please include your name, your organization name, contact information (such as a phone number and/or e-mail
-          address) as well as the URL of your site, a list of any URLs from which you intend to link to our Web site,
-          and a list of the URL(s) on our site to which you would like to link. Allow 2-3 weeks for a response.</p>
-                        <p>Approved organizations may hyperlink to our Web site as follows:</p>
-                        <ol>
-                              <li>By use of our corporate name; or</li>
-                              <li>By use of the uniform resource locator (Web address) being linked to; or</li>
-                              <li>By use of any other description of our Web site or material being linked to that makes sense within the
-            context and format of content on the linking party's site.</li>
-                        </ol>
-                        <p>No use of Medibee's logo or other artwork will be allowed for linking absent a trademark license
-          agreement.</p>
-                        <h2>Iframes</h2>
-                        <p>Without prior approval and express written permission, you may not create frames around our Web pages or
-          use other techniques that alter in any way the visual presentation or appearance of our Web site.</p>
-                        <h2>Reservation of Rights</h2>
-                        <p>We reserve the right at any time and in its sole discretion to request that you remove all links or any particular
-                        link to our Web site. You agree to immediately remove all links to our Web site upon such request. We also
-                        reserve the right to amend these terms and conditions and its linking policy at any time. By continuing
-          to link to our Web site, you agree to be bound to and abide by these linking terms and conditions.</p>
-                        <h2>Removal of links from our website</h2>
-                        <p>If you find any link on our Web site or any linked web site objectionable for any reason, you may contact
-                        us about this. We will consider requests to remove links but will have no obligation to do so or to respond
-          directly to you.</p>
-                        <p>Whilst we endeavour to ensure that the information on this website is correct, we do not warrant its completeness
-                        or accuracy; nor do we commit to ensuring that the website remains available or that the material on the
-          website is kept up to date.</p>
-                        <h2>Content Liability</h2>
-                        <p>We shall have no responsibility or liability for any content appearing on your Web site. You agree to indemnify
-                        and defend us against all claims arising out of or based upon your Website. No link(s) may appear on any
-                        page on your Web site or within any context containing content or materials that may be interpreted as
-                        libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or
-          other violation of, any third party rights.</p>
-                        <h2>Disclaimer</h2>
-                        <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website (including, without limitation, any warranties implied by law in respect of satisfactory quality, fitness for purpose and/or the use of reasonable care and skill). Nothing in this disclaimer will:</p>
-                        <ol>
-                              <li>limit or exclude our or your liability for death or personal injury resulting from negligence;</li>
-                              <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-                              <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-                              <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
-                        </ol>
-                        <p>The limitations and exclusions of liability set out in this Section and elsewhere in this disclaimer: (a)
-                        are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer or
-                        in relation to the subject matter of this disclaimer, including liabilities arising in contract, in tort
-          (including negligence) and for breach of statutory duty.</p>
-                        <p>To the extent that the website and the information and services on the website are provided free of charge,
-          we will not be liable for any loss or damage of any nature.</p>
-                        <p />
+                      <h2>Terms & Conditions</h2>
+                      <h3>Acceptance of Terms and Conditions</h3>
+                      <p>Welcome to Medibee.
+                          By using the Website, you are indicating your agreement to these Terms and Conditions of Use (“Terms of Use. If you do not agree to these Terms of Use,
+                          please do not use the Website and exit now. Throughout these Terms of Use, the words “we,” “us,” “our,” refer to Medibee.</p>
+                      <p>You agree to use this site only for lawful purposes, and in a manner that does not infringe the rights of, or restrict or inhibit the use and enjoyment of this site by any third party.
+                          Such restriction or inhibition includes, without limitation, conduct which is unlawful, or which may harass or cause distress or inconvenience to any person,
+                          and the transmission of obscene or offensive content or disruption of normal </p>
+                      <p>We may revise these Terms of Use at any time without prior notice by updating this page and such revisions will be effective upon posting to this page.
+                          Please check this page periodically for any changes.
+                          Your continued use of this Website following the posting of any revisions to these Terms of Use will mean you accept those changes.
+                          We reserve the right to alter, suspend or discontinue any aspect of www.medibee.com.bd , including your access to it. Unless explicitly stated,
+                          any new features will be subject to these Terms of Use.</p>
+                      <h2>Accounts; Passwords; Security</h2>
+                      <p>You need to set up an account in order to use the Website.
+                          When you are setting up your account, you must give us accurate and complete information.
+                          This means that you cannot set up an account using a name or contact information that does not apply to you, and you must provide accurate and current information on all registration forms that are part of the Website.
+                          You may only set up one account.
+                          You have complete responsibility for your account and everything that happens on your account.
+                          This means you need to be careful with your password.
+                          If you find out that someone is using your account without your permission, you must let us know immediately.
+                          You may not transfer your account to someone else. We are not liable for any damages or losses caused by someone using your account without your permission.
+                          However, if we (or anyone else) suffer any damage due to the unauthorized use of your account, you may be liable.</p>
+                      <p>
+                          Access to the online courses requires the functioning of servers, websites and internet connections.
+                          Medibee undertakes to provide a service at least meeting e-learning industry norms for those elements of availability which are under its control.
+                          It does not undertake to provide availability to the Course Content at any specific time.
+                          Under the conditions of this Licence, Medibee specifically excludes liability to you or any third party for losses arising from the non- availability of access to the Course Content at any particular time.
+                          If you provide evidence that the general availability of access is inferior to that which could be expected under normal industry standards because of failure on the part of Medibee,
+                          Medibee may provide compensation which will not in any event exceed the price paid by you, or on your behalf, to purchase this Licence.</p>
+
+                      <h2>Who can see users' data?</h2>
+                      <p>Medibee approved people working within Medibee have access to users’ records and user profiles.
+                          This may include our suppliers but such organizations will be asked to sign Non-Disclosure Agreements and will never be allowed to use the information for commercial purposes.</p>
+
+                      <h2>Use of cookies</h2>
+                      <p>For more information on cookies, please see the Information Commissioner's Office web site.</p>
+                      <p>Medibee do use cookies on website but in a limited fashion and users have to agree to cookie usage in line with ICO guidance.</p>
+                      <p>The majority of cookies on website are used to keep track of a user's input when filling in online forms,
+                          known as session-id cookies, which are exempt from needing consent as they are deemed essential for using the site.
+                          We also use a cookie to remember usernames if the user checks the 'Remember me' box on the log in page.</p>
+                      <p>Medibee also use Google Analytics to collect anonymous information about how the site is used, including the number of unique users, the pages they visited,
+                          which browser they use etc. Google Analytics also uses cookies.</p>
+
+                      <h2>Intellectual property</h2>
+                      <p>All intellectual property rights relating to the online learning resources remain with Medibee.
+                          Users have no rights other than to access the learning resources for the purpose of personal study.
+                          No modification of any kind is to be attempted to be made to the learning resources.
+                          No downloading or copying of any content to electronic or photographic media is allowed.
+                          Limited printing of pages of the learning resources is authorized only to the extent reasonably required by you to aid personal study.
+                          No part of the learning resources can be reproduced by any means or under any format other than as a reasonable aid to your personal study.
+                          You accept liability for any losses suffered by Medibee arising from your breach, or attempted breach, of its intellectual property rights.
+                          The names, images and logos identifying Medibee and its projects are proprietary marks of Medibee.
+                          If you wish to copy or use the Medibee logo, the authority will take legal actions against you must get prior approval from Medibee by emailing kernel.medibee@gmail.com.
+                          If you wish to copy or use the Medibee logo, you must get prior approval from Medibee by email.
+                          Tell us how and why you wish to use our logos. Please include your contact details: name, address, telephone number and email.</p>
                   </div>
+                </>
             )
       }
 }
