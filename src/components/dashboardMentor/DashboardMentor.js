@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import logoutUser from "../../actions/logoutAction";
-import HeaderImg from "../layout/HeaderImg"
 import liveClass from '../../images/liveClass.jpg'
 import onlineCourse from '../../images/onlineCourse.jpg'
 import LiveClassMentor from './LiveClassMentor';

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { scheduleLiveClass } from "../../actions/liveClassAction";
 import { Editor } from '@tinymce/tinymce-react';
 import axios from 'axios';
@@ -22,9 +21,6 @@ class ScheduleClass extends Component {
         };
         this.getSubjects = this.getSubjects.bind(this)
         this.getCategories = this.getCategories.bind(this)
-        this.selectCategories = this.selectCategories.bind(this)
-        this.selectSubject = this.selectSubject.bind(this)
-        this.selectSubCategories = this.selectSubCategories.bind(this)
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -36,9 +32,7 @@ class ScheduleClass extends Component {
 
     async getSubjects() {
         try {
-            const { data } = await axios.post("/api/admin/eachsubject", {
-                name: this.state.selectedliveclasslevel
-            })
+            const { data } = await axios.get("/api/admin/subject")
             this.setState({ subjects: data })
             //console.log(data)
         } catch (error) {
@@ -53,38 +47,6 @@ class ScheduleClass extends Component {
             console.log(error)
         }
     }
-    selectCategories(e) {
-        let newArray = this.state.selectedliveclasslevel;
-        if (newArray.includes(e.target.value)) {
-            newArray = newArray.filter(cat => { return cat !== e.target.value })
-        } else {
-            newArray.push(e.target.value)
-        }
-        this.setState({ selectedliveclasslevel: newArray })
-        this.getSubjects()
-    }
-
-    selectSubCategories(e) {
-        let newArray = this.state.selectedsubcategories;
-        if (newArray.includes(e.target.value)) {
-            newArray = newArray.filter(cat => { return cat !== e.target.value })
-        } else {
-            newArray.push(e.target.value)
-        }
-        this.setState({ selectedsubcategories: newArray })
-    }
-
-    async selectSubject(e) {
-        let newArray = this.state.selectedsubject;
-        if (newArray.includes(e.target.value)) {
-            newArray = newArray.filter(cat => { return cat !== e.target.value })
-        } else {
-            newArray.push(e.target.value)
-        }
-        this.setState({ selectedsubject: newArray },
-            //console.log(this.state.selectedsubject)
-        )
-    }
 
     componentDidMount() {
         window.scrollTo(0, 0)
@@ -92,9 +54,10 @@ class ScheduleClass extends Component {
             this.props.history.push("mentor/dashboard");
         }
         this.getCategories()
+        this.getSubjects()
         //console.log(this.state)
     }
-    handleEditorChange = (content, editor) => {
+    handleEditorChange = (content) => {
         console.log('Content was updated:', content);
         this.setState({ description: content })
     }
@@ -106,12 +69,13 @@ class ScheduleClass extends Component {
     }
 
     render() {
+        // eslint-disable-next-line
         const { errors } = this.state;
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
         return (
-            <div>
+            <div className="container">
                 <div style={{ marginTop: "8rem", marginBottom: "8rem" }} className="row">
-                    <div className="col s8 offset-s2">
+                    <div className="col s12">
                         <Formik
                             initialValues={{
                                 topic: "",
@@ -120,7 +84,9 @@ class ScheduleClass extends Component {
                                 start_date: "",
                                 duration: 0,
                                 academicExcellence: "",
-                                description: ""
+                                description: "",
+                                liveclasslevel: [],
+                                liveclassSubject: []
                             }}
                             validate={values => {
                                 const errors = {};
@@ -171,16 +137,15 @@ class ScheduleClass extends Component {
                                     description: values.description,
                                     price: 0,
                                     academicExcellence: values.academicExcellence,
-                                    selectedliveclasslevel: this.state.selectedliveclasslevel,
-                                    selectedsubject: this.state.selectedsubject,
-                                    selectedsubcategories: this.state.selectedsubcategories,
+                                    selectedliveclasslevel: values.liveclasslevel,
+                                    selectedsubject: values.liveclassSubject,
                                     start_time: startTime.toISOString(),//start time in iso format UTC
                                     duration: values.duration,
                                 }
                                 console.log(formData)
                                 this.props.scheduleLiveClass(formData, this.props.auth.user.id, this.props.history)
                             }}>
-                            {({ handleSubmit, setFieldValue }) => (
+                            {({ handleSubmit, setFieldValue, values }) => (
                                 <Form onSubmit={handleSubmit}>
                                     <div className="input-field col s12">
                                         <label htmlFor="topic">Topic</label>
@@ -226,37 +191,42 @@ class ScheduleClass extends Component {
                                         <Field type="radio" id="topic" name="topic" placeholder="Class topic name" />
                                         <ErrorMessage name="topic" render={msg => <span className="red-text">{msg}</span>} />
                                     </div> */}
-                                    <div className="col s12">
-                                        <label>Select Liveclass Level</label>
-                                        {this.state.categories?.map(cat => (
-                                            <p key={cat._id}>
-                                                <label>
-                                                    <input value={cat.name} type="checkbox" onChange={this.selectCategories} />
-                                                    <span>{cat.name}</span>
-                                                </label>
-                                            </p>
-                                        ))}
-                                    </div>
-                                    <div className="col s12">
-                                        <label>Select Liveclass Subjects</label>
-                                        {this.state.subjects.map(sub => (
-                                            <div key={sub._id}>
-                                                <label>
-                                                    <input value={sub.name} type="checkbox" onChange={this.selectSubject} />
-                                                    <span>{sub.name}</span>
-                                                    <label style={{ marginLeft: "40px" }}><br />Select Subcategory</label>
-                                                    {sub.subcategory.map((subcat, id) => (
-                                                        <p style={{ marginLeft: "40px" }} key={id}>
-                                                            <label>
-                                                                <input value={subcat.name} type="checkbox" onChange={this.selectSubCategories} />
-                                                                <span>{subcat.name}</span>
-                                                            </label>
-                                                        </p>
-                                                    ))}
-                                                </label>
+                                    <section>
+                                        <div className="col s12 m6">
+                                            <label >Select Liveclass Level</label>
+                                            {this.state.categories?.map(cat => (
+                                                <p key={cat._id}>
+                                                    <label>
+                                                        <Field type="checkbox" name="liveclasslevel" value={cat.name} />
+                                                        <span>{cat.name}</span>
+                                                    </label>
+                                                </p>
+                                            ))}
+                                        </div>
+                                        <br />
+                                        {values && values.liveclasslevel.length === 0 ? null : (
+                                            <div className="col s12 m6" style={{ maxHeight: "500px", overflow: "auto", border: "2px solid #ff5752" }}>
+                                                <label>Select Liveclass Subjects</label>
+                                                {this.state.subjects && this.state.subjects
+                                                    .filter(sub => values.liveclasslevel.some(s => sub.category.includes(s)))
+                                                    .map(((sub, id) => (
+                                                        <div key={id}>
+                                                            <h5>Subject Category: {sub.name}</h5>
+                                                            <h6>Subject Level: {sub.category}</h6>
+                                                            {sub.subcategory.map((subcat, id) => (
+                                                                <p key={id}>
+                                                                    <label>
+                                                                        <Field name="liveclassSubject" type="checkbox" value={subcat.name} />
+                                                                        <span>{subcat.name}</span>
+                                                                    </label>
+                                                                </p>
+                                                            ))}
+                                                        </div>
+                                                    )))
+                                                }
                                             </div>
-                                        ))}
-                                    </div>
+                                        )}
+                                    </section>
                                     <div className="input-field col s12">
                                         <label htmlFor="academicExcellence">Academic Excellence</label>
                                         <Field type="text" id="academicExcellence" name="academicExcellence" placeholder="Academic excellence" />

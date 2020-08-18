@@ -50,7 +50,7 @@ class Register extends Component {
         e.preventDefault();
         const newUser = {
             name: this.state.name,
-            email: this.state.email,
+            email: this.state.email.toLowerCase(),
             password: this.state.password,
             password2: this.state.password2,
             institution: this.state.institution,

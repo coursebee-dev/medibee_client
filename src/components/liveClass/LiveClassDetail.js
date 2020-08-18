@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Helmet } from 'react-helmet'
+//import { Helmet } from 'react-helmet'
 import '../../App.css'
 import M from "materialize-css"
 import { Link } from "react-router-dom";

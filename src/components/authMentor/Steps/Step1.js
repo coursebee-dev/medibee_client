@@ -26,6 +26,7 @@ function Step1({ handleStepOne }) {
                 initialValues={{ name: "", email: '', password: '', password2: '', mobileNo: '', propic: [], propicurl: "" }}
                 validate={values => {
                     const errors = {};
+
                     if (!values.email) {
                         errors.email = 'Email is required!';
                     } else if (
@@ -53,7 +54,7 @@ function Step1({ handleStepOne }) {
                 onSubmit={async values => {
                     console.log(values.propic)
                     values.propicurl = await getUrls(values.propic)
-                    handleStepOne(values.name, values.email, values.password, values.password2, values.mobileNo, values.propicurl)
+                    handleStepOne(values.name, values.email.toLowerCase(), values.password, values.password2, values.mobileNo, values.propicurl)
                 }}
             >
                 {({ handleSubmit, setFieldValue }) => (

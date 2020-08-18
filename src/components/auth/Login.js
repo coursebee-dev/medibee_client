@@ -46,7 +46,7 @@ class Login extends Component {
         e.preventDefault();
         this.setState({ loading: true })
         const userData = {
-            email: this.state.email,
+            email: this.state.email.toLowerCase(),
             password: this.state.password
         };
         this.props.loginUser(userData, this.props.history);
