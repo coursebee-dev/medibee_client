@@ -16,7 +16,9 @@ function Step3Professional({ handleStepThree, getBack }) {
     const upload = async (body) => {
         try {
             const { data } = await axios.post("https://api.cloudinary.com/v1_1/coursebee/upload", body)
-            return data.url;
+            let a = data.url;
+            a = a.replace("http://", "https://")
+            return a;
         } catch (error) {
             return error
         }
