@@ -8,7 +8,7 @@ class Breadcrumbs extends Component {
     render() {
         return (
             <div className="banner">
-                <div id="moving-banner" style={{ width: "100vw", minHeight: "300px" }} ></div>
+                <div id="moving-banner" style={{ width: "100%", minHeight: "300px" }} ></div>
                 <div className="banner_overlay">
                     <div className="banner_text">
                         <h2 className="hide-on-small-only" style={{ fontFamily: "cursive" }}>{this.props.title}</h2>
