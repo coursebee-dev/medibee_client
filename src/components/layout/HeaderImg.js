@@ -7,7 +7,7 @@ class HeaderImg extends Component {
     render() {
         return (
             <div className="banner">
-                <div id="moving-banner" style={{ width: "100vw", minHeight: "300px" }} ></div>
+                <div id="moving-banner" style={{ width: "100%", minHeight: "300px" }} ></div>
                 <div className="banner_overlay">
                     <div className="banner_text">
                         <img style={{ height: "120px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="MEDIBEE" />

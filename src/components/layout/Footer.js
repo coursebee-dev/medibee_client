@@ -25,11 +25,15 @@ class Footer extends Component {
                         {this.props.auth.isAuthenticated ? null : <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="/admin">Admin</LinkStyled></li>}
                         {this.props.auth.isAuthenticated ? <li className="col s12 m6 l2"><LinkStyled className="btn-flat" to="#">Settings</LinkStyled></li> : null}
                     </ul>
+
                 </div>
+
                 <div className="footer-copyright">
                     <div style={{ width: "100%" }} className="container">
                         <LinkStyled to="/" ><img style={{ height: "60px" }} src="https://res.cloudinary.com/coursebee/image/upload/v1596025434/assets/medibee_di8b3n.png" alt="Medibee" /></LinkStyled>
                         <div style={{ lineHeight: "60px" }} className="right black-text">© Kernel Foundation</div>
+                        <hr/>
+                        <img src="https://securepay.sslcommerz.com/public/image/SSLCommerz-Pay-With-logo-All-Size-03.png" style={{width: "100%"}} alt=""/>
                     </div>
                 </div>
             </footer>
