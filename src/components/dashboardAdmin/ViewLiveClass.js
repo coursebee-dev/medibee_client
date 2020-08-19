@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import EachClass from "./EachClass";
 export default class ViewLiveClass extends Component {
     constructor() {
         super();
@@ -70,25 +71,35 @@ export default class ViewLiveClass extends Component {
                     </p>
                     <Link to={`/liveclass/${liveClass._id}`} className=" btn btn-small blue col">View Details</Link>
                 </div>
-                <h6>Topic : {liveClass.topic}</h6>
+                <h6>Topic : </h6>{liveClass.topic}
                 {/* <div dangerouslySetInnerHTML={{ __html: liveClass.description }} /> */}
-                <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                <p>Duration : {liveClass.duration}</p>
+                {/* <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
+                <p>Duration : {liveClass.duration}</p> */}
                 <p>Type: {liveClass.class_type}</p>
                 {liveClass.approved ? (
                     < button className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text" onClick={() => window.open(liveClass.zoomStartLink, "_blank")}>Start Class</button>
                 ) : null}
-                <div className="row">
-                    <div className="input-field col s6">
-                        <input name="price" onChange={this.onChange} id="price" type="number" min="0" className="validate" />
-                        <label htmlFor="price">Price</label>
-                    </div>
-                    <div className="input-field col s6">
-                        <input name="fakeprice" onChange={this.onChange} id="fakeprice" type="number" min="0" className="validate" />
-                        <label htmlFor="fakeprice">Discount price</label>
-                    </div>
-                </div>
-                <button value={liveClass._id} onClick={this.setPrice} className="blue btn btn-small">Set Price</button>
+                <h6>Class Times:</h6>
+                <blockquote>
+                    {liveClass.classtimes.map((classes, id) => (
+                        <EachClass classes={classes} id={id} classid={liveClass._id} key={id} />
+                    ))}
+                </blockquote>
+                {liveClass.class_type === "Free" ? null : (
+                    <>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <input name="price" onChange={this.onChange} id="price" type="number" min="0" className="validate" />
+                                <label htmlFor="price">Price</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input name="fakeprice" onChange={this.onChange} id="fakeprice" type="number" min="0" className="validate" />
+                                <label htmlFor="fakeprice">Discount price</label>
+                            </div>
+                        </div>
+                        <button value={liveClass._id} onClick={this.setPrice} className="blue btn btn-small">Set Price</button>
+                    </>
+                )}
             </li>
         ));
         return (

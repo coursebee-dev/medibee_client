@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { scheduleLiveClass } from "../../actions/liveClassAction";
 import { Editor } from '@tinymce/tinymce-react';
 import axios from 'axios';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import '../../App.css';
 
 class ScheduleClass extends Component {
@@ -17,6 +17,7 @@ class ScheduleClass extends Component {
             selectedsubcategories: [],
             categories: [],
             subjects: [],
+            phase: 1,
             errors: {}
         };
         this.getSubjects = this.getSubjects.bind(this)
@@ -80,8 +81,7 @@ class ScheduleClass extends Component {
                             initialValues={{
                                 topic: "",
                                 class_type: "",
-                                start_time: "",
-                                start_date: "",
+                                classtimes: [],
                                 duration: 0,
                                 academicExcellence: "",
                                 description: "",
@@ -98,20 +98,8 @@ class ScheduleClass extends Component {
                                     errors.description = "CLass description is required!";
                                 }
 
-                                if (!values.duration || !values.duration === 0) {
-                                    errors.duration = "Please set class duration!";
-                                }
-
                                 if (!values.description) {
                                     errors.description = "Class description is required!";
-                                }
-
-                                if (!values.start_time) {
-                                    errors.start_time = "Class start time is required!";
-                                }
-
-                                if (!values.start_date) {
-                                    errors.start_date = "Class start date is required!"
                                 }
 
                                 // if (!values.academicExcellence){
@@ -121,15 +109,15 @@ class ScheduleClass extends Component {
                                 return errors;
                             }}
                             onSubmit={values => {
-                                const startTime = new Date(`${values.start_date}T${values.start_time}:00Z`)
-                                startTime.setHours(startTime.getHours())// timezone:Asia/Dhaka
-                                const tempTime = new Date()
-                                console.log(startTime)
-                                tempTime.setHours(tempTime.getHours() - 2)
-                                if (tempTime >= startTime) {
-                                    alert("Schedule at least two hours before")
-                                    return
-                                }
+                                // const startTime = new Date(`${values.start_date}T${values.start_time}:00Z`)
+                                // startTime.setHours(startTime.getHours())// timezone:Asia/Dhaka
+                                // const tempTime = new Date()
+                                // console.log(startTime)
+                                // tempTime.setHours(tempTime.getHours() - 2)
+                                // if (tempTime >= startTime) {
+                                //     alert("Schedule at least two hours before")
+                                //     return
+                                // }
                                 const formData = {
                                     mentorId: this.props.auth.user.id,
                                     topic: values.topic,
@@ -139,11 +127,13 @@ class ScheduleClass extends Component {
                                     academicExcellence: values.academicExcellence,
                                     selectedliveclasslevel: values.liveclasslevel,
                                     selectedsubject: values.liveclassSubject,
-                                    start_time: startTime.toISOString(),//start time in iso format UTC
-                                    duration: values.duration,
+                                    classtimes: values.classtimes
+                                    //start_time: startTime.toISOString(),//start time in iso format UTC
+                                    //duration: values.duration,
                                 }
-                                console.log(formData)
+                                //console.log(formData)
                                 this.props.scheduleLiveClass(formData, this.props.auth.user.id, this.props.history)
+
                             }}>
                             {({ handleSubmit, setFieldValue, values }) => (
                                 <Form onSubmit={handleSubmit}>
@@ -231,21 +221,26 @@ class ScheduleClass extends Component {
                                         <label htmlFor="academicExcellence">Academic Excellence</label>
                                         <Field type="text" id="academicExcellence" name="academicExcellence" placeholder="Academic excellence" />
                                     </div>
-                                    <div className=" col s12">
-                                        <label htmlFor="start_date">Start Date  </label>
-                                        <Field type="date" id="start_date" name="start_date" placeholder="Class date" />
-                                        <ErrorMessage name="start_date" render={msg => <span className="red-text">{msg}</span>} />
-                                    </div>
-
                                     <div className="col s12">
-                                        <label htmlFor="start_time">Start Time  </label>
-                                        <Field type="time" id="start_time" name="start_time" placeholder="Class time" />
-                                        <ErrorMessage name="start_time" render={msg => <span className="red-text">{msg}</span>} />
-                                    </div>
-                                    <div className="input-field col s12">
-                                        <label htmlFor="duration">duration in minutes</label>
-                                        <Field type="number" id="duration" name="duration" placeholder="Class duration" />
-                                        <ErrorMessage name="duration" render={msg => <span className="red-text">{msg}</span>} />
+                                        <FieldArray
+                                            name="classtimes"
+                                            render={({ remove, push }) => (
+                                                <>
+                                                    {values.classtimes.map((classtimes, index) => (
+                                                        <div className="section" style={{ padding: "10px", marginBottom: "10px", border: "1px solid black" }} key={index}>
+                                                            <label htmlFor={`classtimes[${index}.date]`}>Start Date</label>
+                                                            <Field type="date" id={`classtimes[${index}.date]`} name={`classtimes[${index}.date]`} />
+                                                            <label htmlFor={`classtimes[${index}.time]`}>Start Time</label>
+                                                            <Field type="time" id={`classtimes[${index}.time]`} name={`classtimes[${index}.time]`} />
+                                                            <label htmlFor={`classtimes[${index}.duration]`}>Class Duration</label>
+                                                            <Field type="number" id={`classtimes[${index}.duration]`} name={`classtimes[${index}.duration]`} min="0" />
+                                                            <button className="btn btn-small red" onClick={() => remove(index)}>Remove</button>
+                                                        </div>
+                                                    ))}
+                                                    <button className="btn btn-small blue" type="button" onClick={() => push({ date: "", time: "", duration: "" })}>Add class date</button>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                     <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                         <button

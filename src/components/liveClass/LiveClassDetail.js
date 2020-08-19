@@ -95,8 +95,15 @@ class LiveClassDetail extends Component {
                                     <>
                                         <div className="col m9">
                                             <h1>{this.state.liveClasses.topic}</h1>
-                                            <p><b>Start Time:</b> {new Date(this.state.liveClasses.start_time).toLocaleDateString() + " " + new Date(this.state.liveClasses.start_time).toLocaleTimeString()} </p>
-                                            <p><b>Duration :</b> {Math.round(this.state.liveClasses.duration / 60)} hour {this.state.liveClasses.duration % 60} minutes </p>
+                                            <blockquote>
+                                                {this.state.liveClasses.classtimes?.map((classes, id) => (
+                                                    <div key={id}>
+                                                        <h6>Class no. : {id + 1}</h6>
+                                                        <p>Start Time: {new Date(classes.date + "T" + classes.time).toLocaleString()} </p>
+                                                        <p>Duration : {classes.duration}</p>
+                                                    </div>
+                                                ))}
+                                            </blockquote>
                                             <p><b>Type:</b> {this.state.liveClasses.class_type}</p>
                                             <p><b>Academic Excellence : </b>{this.state.liveClasses.academicExcellence}</p>
                                             <div><b className="left">Level of participation: </b>
