@@ -47,6 +47,7 @@ import Subjects from './components/dashboardAdmin/Subjects';
 import Mentors from "./components/landing/Mentors";
 import MentorsDetails from './components/landing/MentorsDetails';
 import ReturnRefund from "./components/LegalDocuments/ReturnRefund";
+import ConfirmLiveRegistration from './components/liveClass/ConfirmLiveRegistration';
 
 
 export default function PathRoute() {
@@ -86,6 +87,7 @@ export default function PathRoute() {
                     <Route exact path="/mentors/details/:id" component={MentorsDetails} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute exact path="/dashboard/myliveclass/:id" component={MyLiveClass} />
+                    <PrivateRoute exact path="/liveclass/confirm/:id" component={ConfirmLiveRegistration} />
                     <PrivateRouteMentor exact path="/mentor/dashboard" component={DashboardMentor} />
                     <PrivateRouteMentor exact path="/mentor/dashboard/scheduleclass" component={ScheduleClass} />
                     <PrivateRouteMentor exact path="/mentor/account" component={AccountMentor} />

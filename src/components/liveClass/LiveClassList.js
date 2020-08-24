@@ -5,8 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import M from "materialize-css"
-import courseBanner from "../../images/bannermedi.png";
 import Breadcrumbs from "../layout/Breadcrumbs";
+import EachClass from './EachClass'
 
 class LiveClassList extends Component {
     constructor() {
@@ -18,49 +18,17 @@ class LiveClassList extends Component {
             loading: true,
         };
         this.getLiveClasses = this.getLiveClasses.bind(this)
-        this.onRegisterClick = this.onRegisterClick.bind(this)
     }
 
     getLiveClasses = () => {
         axios.get('/api/approvedliveclass')
             .then(res => {
-                this.setState({ liveClasses: res.data, loading: false })
+                this.setState({ liveClasses: res.data, loading: false }, console.log(res.data))
             })
             .catch(err => {
-                console.log(err)
+                M.toast({ html: err.message })
             });
     };
-
-    onRegisterClick = async (e) => {
-        const { name, value } = e.target;
-
-        if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
-            M.toast({ html: "Please login as a student" })
-            return;
-        }
-        if (name === "Free") {
-            try {
-                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                M.toast({ html: data.message })
-            } catch (error) {
-                M.toast({ html: "Server Error" })
-                console.log(error)
-            }
-        } else if (name === "Paid") {
-            try {
-                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                if (data.status === 'success') {
-                    window.open(data.data);
-                } else {
-                    M.toast({ html: "Server Error" })
-                    console.log(data.message)
-                }
-            } catch (error) {
-                M.toast({ html: "Server Error" })
-                console.log(error)
-            }
-        }
-    }
 
     componentDidMount() {
         this.getLiveClasses();
@@ -74,52 +42,7 @@ class LiveClassList extends Component {
             image: ""
         };
         const liveClasses = this.state.liveClasses.map(liveClass => (
-            <div className="col m4 s12" key={liveClass._id}>
-                <div className="card custom-card">
-                    <div className="card-image">
-                        <img src={courseBanner} alt="course_banner" />
-                    </div>
-                    <div className="card-content">
-                        <span className="card-title center-align">{liveClass.topic}</span>
-                        <div className="row">
-                            <div className="col"><b>Class tarts from:</b><p> {new Date(liveClass.classtimes[0].date + "T" + liveClass.classtimes[0].time).toLocaleString()}</p></div>
-                            {/* <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div> */}
-                            <div className="col s12"><b>Type</b>: {liveClass.class_type}</div>
-                            <div className="col">Number of classes: {liveClass.classtimes.length}</div>
-                        </div>
-                    </div>
-                    <div className="card-action">
-                        <div className="row">
-                            <Link
-                                to={`/liveclass/${liveClass._id}`}
-                                style={{ width: "100%", fontWeight: "500" }}
-                                className="btn-flat blue-grey white-text darken-3 custom_btn">
-                                <span >View Details</span>
-                            </Link>
-                            {liveClass.class_type === "Paid" ?
-                                <button
-                                    value={liveClass._id}
-                                    name={liveClass.class_type}
-                                    onClick={this.onRegisterClick}
-                                    style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
-                                    className="btn-flat  cyan darken-2 white-text custom_btn">
-                                    Register for ৳ {liveClass.price}  <del style={{ color: "black" }}>  ৳{liveClass.fake_price}</del>
-                                </button>
-                                : <button
-                                    value={liveClass._id}
-                                    name={liveClass.class_type}
-                                    style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
-                                    onClick={this.onRegisterClick}
-                                    className="btn-flat  blue darken-4 white-text custom_btn">
-                                    Register for free
-                                </button>
-                            }
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+            <EachClass key={liveClass._id} liveClass={liveClass} />
         ));
         return (
             <>
