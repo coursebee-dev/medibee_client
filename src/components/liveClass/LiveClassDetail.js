@@ -14,20 +14,19 @@ class LiveClassDetail extends Component {
         this.state = {
             liveClasses: {},
             mentor: {},
+            show: true,
             loading: false,
         }
         this.getMentor = this.getMentor.bind(this)
         this.getLiveClass = this.getLiveClass.bind(this)
-        this.onRegisterClick = this.onRegisterClick.bind(this)
     }
 
     getMentor = async (mentorid) => {
         try {
             const { data } = await axios.get(`/api/mentor/mentorinfo/${mentorid}`)
-            this.setState({ mentor: data },
-                console.log(data))
+            this.setState({ mentor: data })
         } catch (error) {
-            console.log(error)
+            M.toast({ html: error.message })
         }
     }
 
@@ -35,48 +34,18 @@ class LiveClassDetail extends Component {
         this.setState({ loading: true })
         try {
             const { data } = await axios.get(`/api/liveclassdetails/${this.props.match.params.id}`)
-            this.setState({ liveClasses: data },
-                console.log(data))
+            this.setState({ liveClasses: data })
             this.getMentor(data.mentorId)
         } catch (error) {
-            console.log(error)
+            M.toast({ html: error.message })
         }
         this.setState({ loading: false })
     }
 
-    onRegisterClick = async e => {
-        const { name, value } = e.target;
-
-        if (!this.props.auth.isAuthenticated || this.props.auth.user.type !== "student") {
-            M.toast({ html: "Please login as a student" })
-            return;
-        }
-        if (name === "Free") {
-            try {
-                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                M.toast({ html: data.message })
-            } catch (error) {
-                M.toast({ html: "Server Error" })
-                console.log(error)
-            }
-        } else if (name === "Paid") {
-            try {
-                const { data } = await axios.post(`/api/registerliveclass/${this.props.auth.user.id}/${value}`)
-                if (data.status === 'success') {
-                    window.open(data.data);
-                } else {
-                    M.toast({ html: "Server Error" })
-                    console.log(data.message)
-                }
-            } catch (error) {
-                M.toast({ html: "Server Error" })
-                console.log(error)
-            }
-
-        }
-    }
-
     componentDidMount() {
+        if (this.state.liveClasses?.participants?.some(lc => lc.studentId === this.props.auth.user.id)) {
+            this.setState({ show: false })
+        }
         this.getLiveClass()
     }
 
@@ -148,22 +117,15 @@ class LiveClassDetail extends Component {
                                                     <p>{this.state.mentor.position}</p>
                                                 </div>
                                             </div>
-                                            {this.state.liveClasses.class_type === "Paid" ?
-                                                <button
-                                                    value={this.state.liveClasses._id}
-                                                    name={this.state.liveClasses.class_type}
-                                                    onClick={this.onRegisterClick}
-                                                    className="btn-flat  cyan darken-2 white-text custom_btn">
-                                                    Register for ৳ {this.state.liveClasses.price} <s>{this.state.liveClasses.fake_price}</s>
-                                                </button>
-                                                : <button
-                                                    value={this.state.liveClasses._id}
-                                                    name={this.state.liveClasses.class_type}
-                                                    onClick={this.onRegisterClick}
-                                                    className="btn-flat  cyan darken-2 white-text custom_btn">
-                                                    Register for free
-                                                </button>
-                                            }
+                                            {this.state.show ? (
+                                                <Link to={`/liveclass/confirm/${this.state.liveClasses._id}`}
+                                                    style={{ width: "100%", marginTop: "20px", fontWeight: "500" }}
+                                                    className="btn-flat  blue darken-4 white-text custom_btn">
+                                                    {this.state.liveClasses.class_type === "Paid" ? (<>Register for ৳ {this.stateliveClasses.price}  <del style={{ color: "black" }}>  ৳{this.state.liveClasses.fake_price}</del></>) : (<>Register for free</>)}
+                                                </Link>
+                                            ) : (
+                                                    <p>Already Registered</p>
+                                                )}
                                         </div>
                                     </>
                                 )}

@@ -25,8 +25,8 @@ export default class LiveClassMentor extends Component {
                 </p>
                 <h3 className="center-align">{liveClass.topic}</h3>
                 {/* <div dangerouslySetInnerHTML={{ __html: liveClass.description }} /> */}
-                <p><b>Start Time:</b> {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
-                <p><b>Duration :</b> {liveClass.duration}</p>
+                <p><b>Start Time:</b> {new Date(liveClass.classtimes[0].date + "T" + liveClass.classtimes[0].time).toLocaleString()} </p>
+                {/* <p><b>Duration :</b> {liveClass.duration}</p> */}
                 <p><b>Type:</b> {liveClass.class_type}</p>
                 {liveClass.approved ? (
                     <button onClick={() => window.open(liveClass.zoomJoinLink, "_blank")} className="btn btn-small waves-effect waves-light hoverable red darken-1 black-text">Start Class</button>
