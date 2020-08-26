@@ -30,6 +30,7 @@ import DashboardAdmin from './components/dashboardAdmin/DashboardAdmin';
 import ViewMentor from './components/dashboardAdmin/ViewMentor';
 import ViewMentorDetail from './components/dashboardAdmin/ViewMentorDetail';
 import ViewLiveClass from './components/dashboardAdmin/ViewLiveClass';
+import QuesBankDashboard from './components/dashboardAdmin/QuesBankDashboard';
 import ViewStudent from './components/dashboardAdmin/ViewStudent';
 import MyLiveClass from './components/dashboard/MyLiveClass';
 import LiveClassDetail from './components/liveClass/LiveClassDetail';
@@ -95,6 +96,7 @@ export default function PathRoute() {
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewmentor/:mentorid" component={ViewMentorDetail} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewliveclass" component={ViewLiveClass} />
                     <PrivateRouteAdmin exact path="/admin/dashboard/viewstudent" component={ViewStudent} />
+                    <PrivateRouteAdmin exact path="/admin/dashboard/questionBank/dashboard" component={QuesBankDashboard} />
                 </main>
                 <Footer />
             </React.Fragment>

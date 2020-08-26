@@ -39,6 +39,9 @@ class DashboardAdmin extends Component {
             <div className="container left-align">
               <Link to="/admin/dashboard/subjects" style={{ margin: "15px", width: "100%" }} className="btn btn-large waves-effect waves-light hoverable black">Manage Subjects</Link>
             </div>
+            <div className="container left-align">
+              <Link to="/admin/dashboard/questionBank/dashboard" style={{ margin: "15px", width: "100%" }} className="btn btn-large waves-effect waves-light hoverable black">Manage Question Bank</Link>
+            </div>
             <button
               style={{
                 width: "150px",
