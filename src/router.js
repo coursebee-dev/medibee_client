@@ -31,6 +31,7 @@ import ViewMentor from './components/dashboardAdmin/ViewMentor';
 import ViewMentorDetail from './components/dashboardAdmin/ViewMentorDetail';
 import ViewLiveClass from './components/dashboardAdmin/ViewLiveClass';
 import QuesBankDashboard from './components/dashboardAdmin/QuesBankDashboard';
+import QuesBank from './components/questionBank/questionBank';
 import ViewStudent from './components/dashboardAdmin/ViewStudent';
 import MyLiveClass from './components/dashboard/MyLiveClass';
 import LiveClassDetail from './components/liveClass/LiveClassDetail';
@@ -86,6 +87,7 @@ export default function PathRoute() {
                     <Route exact path="/contactus" component={Contact} />
                     <Route exact path="/mentors" component={Mentors} />
                     <Route exact path="/mentors/details/:id" component={MentorsDetails} />
+                    <Route exact path="/questionbank" component={QuesBank} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute exact path="/dashboard/myliveclass/:id" component={MyLiveClass} />
                     <PrivateRoute exact path="/liveclass/confirm/:id" component={ConfirmLiveRegistration} />

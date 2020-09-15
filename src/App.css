@@ -286,6 +286,97 @@ body {
 nav{
     background: linear-gradient(45deg, #fffefd,#fcdcdc, #d94a4e,#ae292d, #5d0c0e, #001321, #00080d);
 }
+/*question Bank*/
+.option{
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #7c6b6b;
+    border-radius: 9px;
+    box-shadow: 3px 3px 5px #8b8787;
+}
+.explanation{
+    padding: 15px;
+    background: #dbdbdb;
+    border-radius: 8px;
+    line-height: 30px;
+    text-align: justify;
+}
+.quiz input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+.quiz input[type="radio"] + span {
+    position: relative;
+    font-weight: normal;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.quiz input[type="radio"] + span::before {
+    text-align: center;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+.quiz input[type="radio"] + span::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #222;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+}
+.quiz .dim input[type="radio"] + span::before,
+.quiz .correct input[type="radio"] + span::before {
+    border: 0;
+    font-size: 1.2em;
+    animation: 0.25s roll-in ease;
+}
+.quiz .dim input[type="radio"] + span::after,
+.quiz .correct input[type="radio"] + span::after {
+    display: none;
+}
+.quiz .correct input[type="radio"] + span:before {
+    content: "\2713";
+    font-family: "FontAwesome" !important;
+    color: #36ad3b;
+    font-size: 25px;
+    font-weight: 800;
+}
+.quiz .dim input[type="radio"] + span:before {
+    content: "\292C";
+    /*content: "X";*/
+    font-family: "FontAwesome" !important;
+    color: #ff1100;
+    font-size: 25px;
+    font-weight: 800;
+}
+.quiz input[type="radio"]:not(:checked) + span:after {
+    opacity: 0;
+    transform: scale(0);
+}
+.quiz input[type="radio"]:checked + span:after {
+    opacity: 1;
+    transform: scale(1);
+}
+.quiz .correct {
+    border: 2px solid green;
+}
+.quiz .dim {
+    border: 2px solid red;
+}
+/*question Bank end*/
 
 ::-moz-selection { /* Code for Firefox */
   color: white;
