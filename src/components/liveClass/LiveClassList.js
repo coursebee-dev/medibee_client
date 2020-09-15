@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
 import M from "materialize-css"
 import Breadcrumbs from "../layout/Breadcrumbs";
 import EachClass from './EachClass'
