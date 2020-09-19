@@ -6,8 +6,19 @@ import Result from "./result";
 class Question extends Component{
     state = {
         answer : null,
-        submit : false
+        submit : false,
+        category : []
     };
+
+    componentDidMount = async () => {
+        await axios.get(`/api/admin/questionBank/category`)
+            .then(res => {
+                this.setState({
+                    category: res.data
+                })
+            })
+        console.log(this.state.category)
+    }
 
     handleAnswer = (e) => {
         this.setState({
