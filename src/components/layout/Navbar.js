@@ -55,7 +55,12 @@ class Navbar extends Component {
                     <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li>
                     <li><LinkStyled to="/mentors">Mentors</LinkStyled></li>
                     {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
-                    {this.props.auth.isAuthenticated ? <li><LinkStyled className="blue" to="#">{this.props.auth.user.name}</LinkStyled></li> :
+                    {this.props.auth.isAuthenticated ?
+                        <>
+                            <li><LinkStyled className="blue" to="/questionbank">Question Bank</LinkStyled></li>
+                            <li><LinkStyled className="blue" to="#">{this.props.auth.user.name}</LinkStyled></li>
+                        </>
+                        :
                         <li>
                             <LinkStyled to="/register">
                                 Sign Up
@@ -82,10 +87,14 @@ class Navbar extends Component {
                                 <li><LinkStyled to="/about">About Us</LinkStyled></li>
                                 <li><LinkStyled to="/liveClass">Live Classroom</LinkStyled></li>
                                 <li><LinkStyled to="/course">Courses</LinkStyled></li>
-                                <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li>
                                 <li><LinkStyled to="/mentors">Mentors</LinkStyled></li>
                                 {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
-                                {this.props.auth.isAuthenticated ? <li><UserIcon /></li> :
+                                {this.props.auth.isAuthenticated ?
+                                    <>
+                                        <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li>
+                                        <li><UserIcon /></li>
+                                    </>
+                                    :
                                     <li>
                                         <Link className="blue" to="/register">
                                             Sign Up

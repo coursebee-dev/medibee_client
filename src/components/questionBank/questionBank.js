@@ -10,7 +10,7 @@ class QuestionBank extends Component{
     constructor() {
         super();
         this.state = {
-            questions: {}
+            questions: {},
         }
     }
 
@@ -20,9 +20,9 @@ class QuestionBank extends Component{
 
     fetchQuestions = async () => {
         try {
-            const { data } = await axios.get(`/api/admin/questionBank/question`)
+            const { data } = await axios.get(`/api/admin/questionBank/question/${this.props.match.params.id}`)
             this.setState({
-                questions: data
+                questions: data[0]
             });
         } catch (error) {
             console.log(error)

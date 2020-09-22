@@ -17,7 +17,6 @@ class Question extends Component{
                     category: res.data
                 })
             })
-        console.log(this.state.category)
     }
 
     handleAnswer = (e) => {
@@ -45,8 +44,6 @@ class Question extends Component{
                     {question.answers.map((answer,key) => {
                         return (
                             <div key={key} className="option">
-                                    {/*<input type="checkbox" name="answer" value={key+1} onChange={this.handleAnswer} />*/}
-                                    {/*<span>{answer}</span>*/}
                                     <label>
                                         <input type="radio" name="answer" value={key+1} onChange={this.handleAnswer}/>
                                         <span>{answer.option}</span>
