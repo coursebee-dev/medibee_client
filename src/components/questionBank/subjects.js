@@ -32,10 +32,11 @@ class Subjects extends Component {
     loadSubjects = () => {
         return this.state.subjects.map( (subject,key) => {
             return (
-                <>
+                <div key={key}>
                     <Link
                         to={`/questions/${subject._id}`}
-                        style={{ width: "100%", fontWeight: "500" }}>
+                        style={{ width: "100%", fontWeight: "500" }}
+                    >
                         <div className="row option black-text">
                             <div className="col s10">{subject.name}</div>
                             <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
@@ -43,12 +44,13 @@ class Subjects extends Component {
                     </Link>
 
 
-                </>
+                </div>
             )
         })
     }
 
     render() {
+        console.log("user payload",this.props.auth.user)
         const seo = {
             title: "Medibee : Question Bank",
             description:
@@ -86,7 +88,7 @@ class Subjects extends Component {
 
 
 const mapStateToProps = state => ({
-
+    auth: state.auth
 });
 
 export default connect(
