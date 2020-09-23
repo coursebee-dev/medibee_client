@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 class Result extends Component{
     loadQuestion = () =>{
@@ -21,7 +22,7 @@ class Result extends Component{
                                     <div key={key} className="option correct">
                                         <label className="white-text">
                                             <input type="radio" name="answer" disabled/>
-                                            <span>{answer.option} correct</span>
+                                            <span>{answer.option}</span>
                                         </label>
                                     </div>
                                 )
@@ -31,7 +32,7 @@ class Result extends Component{
                                     <div key={key} className="option dim">
                                         <label className="white-text">
                                             <input type="radio" name="answer" disabled/>
-                                            <span>{answer.option} wrong</span>
+                                            <span>{answer.option}</span>
                                         </label>
                                     </div>
                                 )
@@ -55,13 +56,35 @@ class Result extends Component{
         }
     };
 
+    nextQuestion = () => {
+        this.props.changeSubmit()
+        this.props.onNextQuestionClick()
+    }
+
     render() {
+        console.log("result props",this.props)
         return (
-            <div>
+            <div style={{transition: "all 0.5s ease-in-out"}}>
                 <h1 className="center-align">Result</h1>
                 <div className="row">
                     <div className="col m8">
                         {this.loadQuestion()}
+                    </div>
+                    <div className="col m4">
+
+                        {/*{this.props.currentQuestion + 1 < this.props.questionLenth ? <button onClick={this.nextQuestion}>Next Question</button> : '' }*/}
+                        {this.props.currentQuestion + 1 < this.props.questionLenth ?
+                            <button className="btn waves-effect waves-light" type="submit" onClick={this.nextQuestion}>Next Question
+                                <i className="material-icons right">arrow_forward</i>
+                            </button>
+                            :
+                            <Link
+                                to={`/questionbank`}
+                                className="btn waves-effect waves-light"
+                            >
+                                Go To Question Bank
+                                <i className="material-icons right">arrow_forward</i>
+                            </Link> }
                     </div>
                 </div>
             </div>

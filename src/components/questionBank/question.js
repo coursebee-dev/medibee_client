@@ -19,6 +19,13 @@ class Question extends Component{
             })
     }
 
+    changeSubmit = () => {
+        this.setState({
+            submit: false,
+            answer : null,
+        })
+    }
+
     handleAnswer = (e) => {
         this.setState({
             answer : e.target.value
@@ -51,9 +58,16 @@ class Question extends Component{
                             </div>
                         )
                     })}
-                    <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.onSubmit}>Submit
-                        <i className="material-icons right">send</i>
-                    </button>
+                    {this.state.answer === null ?
+                        <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.onSubmit} disabled>Submit
+                            <i className="material-icons right">send</i>
+                        </button>
+                        :
+                        <button className="btn waves-effect waves-light" type="submit" name="action" onClick={this.onSubmit} >Submit
+                            <i className="material-icons right">send</i>
+                        </button>
+                    }
+
                 </div>
 
             )
@@ -68,9 +82,10 @@ class Question extends Component{
                 <div>
                     <h1 className="center-align">Questions</h1>
                     {this.loadQuestion()}
-                </div> )
+                </div>
+            )
         }else {
-            return <Result question={this.props.question} answer={this.state.answer}/>
+            return <Result question={this.props.question} changeSubmit={this.changeSubmit} answer={this.state.answer} {...this.props}/>
         }
 
 
