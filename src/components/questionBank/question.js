@@ -32,10 +32,24 @@ class Question extends Component{
         });
     };
 
-    onSubmit = () => {
+    onSubmit = async () => {
+        const subjectId = this.props.question.questionCategory;
+        const questionId = this.props.question._id;
+        const selectedAns = this.state.answer;
+        const studentId = this.props.auth.user.id;
+        console.log("student Id",this.props.auth.user.id)
+
         this.setState({
             submit : true
         })
+
+        await axios.get(`/api/admin/questionBank/${subjectId}/${questionId}/${selectedAns}/${studentId}`)
+            .then(res => {
+                console.log("success",res.data)
+            })
+            .catch (err => {
+                console.log("fail",err)
+            })
     };
 
     loadQuestion = () =>{
@@ -94,7 +108,7 @@ class Question extends Component{
 }
 
 const mapStateToProps = state => ({
-
+    auth: state.auth
 });
 
 export default connect(
