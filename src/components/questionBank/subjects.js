@@ -9,12 +9,14 @@ class Subjects extends Component {
     constructor() {
         super();
         this.state = {
-            subjects : []
+            subjects : [],
+            answeredQuestion : []
         }
     }
 
     componentDidMount() {
         this.fetchSubjects();
+        this.fetchStudent()
     }
 
     fetchSubjects = async () => {
@@ -29,21 +31,72 @@ class Subjects extends Component {
             })
     }
 
+    fetchStudent = async () => {
+        await axios.get(`/api/questionBank/${this.props.auth.user.id}`)
+            .then(res => {
+                this.setState({
+                    answeredQuestion: res.data
+                })
+            })
+            .catch (error => {
+                console.log(error)
+            })
+    }
+
+    // loadSubjects = () => {
+    //     return this.state.subjects.map( (subject,key) => {
+    //         return (
+    //             <div key={key}>
+    //                 <Link
+    //                     to={`/questions/${subject._id}`}
+    //                     style={{ width: "100%", fontWeight: "500" }}
+    //                 >
+    //                     <div className="row option black-text">
+    //                         <div className="col s10">{subject.name}</div>
+    //                         <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
+    //                     </div>
+    //                 </Link>
+    //             </div>
+    //         )
+    //     })
+    // }
+
     loadSubjects = () => {
         return this.state.subjects.map( (subject,key) => {
-            return (
-                <div key={key}>
-                    <Link
-                        to={`/questions/${subject._id}`}
-                        style={{ width: "100%", fontWeight: "500" }}
-                    >
-                        <div className="row option black-text">
-                            <div className="col s10">{subject.name}</div>
-                            <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
-                        </div>
-                    </Link>
-                </div>
-            )
+            if (this.state.answeredQuestion.length > 0){
+                return this.state.answeredQuestion.map( (ques,i) => {
+                    console.log(subject._id , ques.subject_id)
+                    if (subject._id == ques.subject_id){
+                        return (
+                            <div key={key}>
+                                <Link
+                                    to={`/questions/${subject._id}`}
+                                    style={{ width: "100%", fontWeight: "500" }}
+                                >
+                                    <div className="row option black-text">
+                                        <div className="col s10">{subject.name}</div>
+                                        <div className="col s2"><span className="badge red white-text">{ques.questions.length} / {subject.questions.length}</span></div>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    }
+                } )
+            }else{
+                return (
+                    <div key={key}>
+                        <Link
+                            to={`/questions/${subject._id}`}
+                            style={{ width: "100%", fontWeight: "500" }}
+                        >
+                            <div className="row option black-text">
+                                <div className="col s10">{subject.name}</div>
+                                <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }
         })
     }
 

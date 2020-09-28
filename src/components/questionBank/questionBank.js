@@ -40,9 +40,8 @@ class QuestionBank extends Component{
         return (
             // <div>{this.state.questions.question}</div>
             <>
-                {this.state.questions.length > 0 ? <Question question={this.state.questions[this.state.currentQuestion]} onNextQuestionClick = {this.NextQuestion} questionLenth={this.state.questions.length} currentQuestion={this.state.currentQuestion} /> : <h2>Loading</h2>}
+                {this.state.questions.length > 0 ? <Question question={this.state.questions[this.state.currentQuestion]} onNextQuestionClick = {this.NextQuestion} questionLenth={this.state.questions.length} currentQuestion={this.state.currentQuestion} /> : <h2>Congratulations! You have answered all the questions.</h2>}
             </>
-
         )
     };
 
