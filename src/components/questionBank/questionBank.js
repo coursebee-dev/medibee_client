@@ -21,7 +21,7 @@ class QuestionBank extends Component{
 
     fetchQuestions = async () => {
         try {
-            const { data } = await axios.get(`/api/admin/questionBank/question/${this.props.match.params.id}`)
+            const { data } = await axios.get(`/api/admin/questionBank/question/${this.props.match.params.id}/${this.props.auth.user.id}`)
             this.setState({
                 questions: data
             });
@@ -82,7 +82,7 @@ class QuestionBank extends Component{
 }
 
 const mapStateToProps = state => ({
-
+    auth: state.auth
 });
 
 export default connect(

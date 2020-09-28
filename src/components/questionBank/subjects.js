@@ -42,8 +42,6 @@ class Subjects extends Component {
                             <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
                         </div>
                     </Link>
-
-
                 </div>
             )
         })
