@@ -62,6 +62,34 @@ class Subjects extends Component {
     }
 
 
+    // loadSubjects = () => {
+    //     return this.state.subjects.map( (subject,key) => {
+    //         if (this.state.answeredQuestion.length > 0){
+    //             return this.state.answeredQuestion.some( (ques,i) => {
+    //                 console.log(subject._id , ques.subject_id)
+    //                 return subject._id == ques.subject_id
+    //             } )
+    //         }
+    //         else{
+    //             return (
+    //                 <div key={key}>
+    //                     <Link
+    //                         to={`/questions/${subject._id}`}
+    //                         style={{ width: "100%", fontWeight: "500" }}
+    //                     >
+    //                         <div className="row option black-text">
+    //                             <div className="col s10">{subject.name}</div>
+    //                             <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+    //                         </div>
+    //                     </Link>
+    //                 </div>
+    //             )
+    //         }
+    //     })
+    // }
+
+
+
 
     // loadSubjects = () => {
     //     return this.state.subjects.map( (subject,key) => {
@@ -84,7 +112,8 @@ class Subjects extends Component {
     //                     )
     //                 }
     //             } )
-    //         }else{
+    //         }
+    //         else{
     //             return (
     //                 <div key={key}>
     //                     <Link
@@ -101,6 +130,7 @@ class Subjects extends Component {
     //         }
     //     })
     // }
+
 
     // loadSubjects = () => {
     //     const {subjects} = this.state;
@@ -166,26 +196,26 @@ class Subjects extends Component {
     //     }
 
 
-        // for (let i=0; i<subjects.length; i++){
-        //     for(let j=0; j<answeredQuestion; j++){
-        //         if (subjects[i]._id == answeredQuestion[j].subject_id){
-        //             return(
-        //                 <Link
-        //                     to={`/questions/${subject._id}`}
-        //                     style={{ width: "100%", fontWeight: "500" }}
-        //                 >
-        //                     <div className="row option black-text">
-        //                         <div className="col s10">{subject.name}</div>
-        //                         <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
-        //                     </div>
-        //                 </Link>
-        //             )
-        //             break;
-        //         }else{
-        //
-        //         }
-        //     }
-        // }
+    // for (let i=0; i<subjects.length; i++){
+    //     for(let j=0; j<answeredQuestion; j++){
+    //         if (subjects[i]._id == answeredQuestion[j].subject_id){
+    //             return(
+    //                 <Link
+    //                     to={`/questions/${subject._id}`}
+    //                     style={{ width: "100%", fontWeight: "500" }}
+    //                 >
+    //                     <div className="row option black-text">
+    //                         <div className="col s10">{subject.name}</div>
+    //                         <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+    //                     </div>
+    //                 </Link>
+    //             )
+    //             break;
+    //         }else{
+    //
+    //         }
+    //     }
+    // }
     // }
 
     render() {
