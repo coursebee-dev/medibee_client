@@ -45,6 +45,7 @@ class Navbar extends Component {
         M.Sidenav.init(elems);
     }
     render() {
+        console.log("navabr",this.props.auth.user.type)
         return (
             <header className="no-padding">
                 <ul className="sidenav" id="mobile-demo">
@@ -57,7 +58,8 @@ class Navbar extends Component {
                     {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
                     {this.props.auth.isAuthenticated ?
                         <>
-                            <li><LinkStyled className="blue" to="/questionbank">Question Bank</LinkStyled></li>
+                            {this.props.auth.user.type === 'student' ? <li><LinkStyled className="blue" to="/questionbank">Question Bank</LinkStyled></li> : ''}
+
                             <li><LinkStyled className="blue" to="#">{this.props.auth.user.name}</LinkStyled></li>
                         </>
                         :
@@ -91,7 +93,7 @@ class Navbar extends Component {
                                 {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
                                 {this.props.auth.isAuthenticated ?
                                     <>
-                                        <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li>
+                                        {this.props.auth.user.type === 'student' ? <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li> : ''}
                                         <li><UserIcon /></li>
                                     </>
                                     :
