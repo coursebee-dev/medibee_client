@@ -10,7 +10,7 @@ class QuesBankDashboard extends Component {
     constructor() {
         super();
         this.state = {
-            option: ""
+            option: "question"
         };
     }
 
@@ -33,17 +33,17 @@ class QuesBankDashboard extends Component {
                 <div></div>
                 <div className="container">
                     <div className="row">
-                        <div className="col s12 center-align">
-                            <h4>
+                        <div className="col s12">
+                            <h4 className="center-align">
                                 <b>QUESTION BANK</b>
                             </h4>
 
                             <div className="row">
-                                <div className="col s6">
-                                    <button value="category" onClick={e =>this.setState({option: e.target.value})} className={this.state.option === 'category' ? "btn btn-large waves-effect waves-light hoverable red" : "btn btn-large waves-effect waves-light hoverable black"}>Add Category</button>
+                                <div className="col s6 center-align ">
+                                    <button value="category" onClick={e =>this.setState({option: e.target.value})} className={this.state.option === 'category' ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable black"}>Add Category</button>
                                 </div>
-                                <div className="col s6">
-                                    <button value="question" onClick={e =>this.setState({option: e.target.value})} className={this.state.option === 'question' ? "btn btn-large waves-effect waves-light hoverable red" : "btn btn-large waves-effect waves-light hoverable black"}>Add Question</button>
+                                <div className="col s6 center-align ">
+                                    <button value="question" onClick={e =>this.setState({option: e.target.value})} className={this.state.option === 'question' ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable black"}>Add Question</button>
                                 </div>
                             </div>
                             <hr/>
@@ -67,7 +67,6 @@ QuesBankDashboard.propTypes = {
 const mapStateToProps = state => ({
     auth: state.auth
 });
-
 
 export default connect(
     mapStateToProps,
