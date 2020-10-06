@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import M from "materialize-css";
 import axios from "axios";
+import {Editor} from "@tinymce/tinymce-react";
 
 
 class QuesBankQuestions extends Component{
@@ -8,24 +9,26 @@ class QuesBankQuestions extends Component{
     constructor() {
         super();
         this.state = {
-            subject: "",
             category: "",
-            categories: [],
             question: "",
             showOption: false,
             option: "",
-            correct: "",
+            correct: false,
+            course: "",
+            subject: "",
+            description: "",
+            courses: [],
             answers: []
         };
 
-        this.GetCategories = this.GetCategories.bind(this);
+        this.GetCourses = this.GetCourses.bind(this);
         this.AddQuestion = this.AddQuestion.bind(this);
     }
 
     componentDidMount() {
         M.Modal.init(this.Modal2);
-        M.FormSelect.init(this.Select)
-        // this.GetCategories()
+        M.FormSelect.init(this.Select);
+        this.GetCourses()
         // let instance = M.Modal.getInstance(this.Modal);
         // instance.open();
         // instance.close();
@@ -38,11 +41,23 @@ class QuesBankQuestions extends Component{
         })
     }
 
-    async GetCategories() {
+    handleRadioButtons = e => {
+        if (e.target.value === "true"){
+            this.setState({
+                correct: true
+            })
+        }else{
+            this.setState({
+                correct: false
+            })
+        }
+    }
+
+    async GetCourses() {
         try {
-            const { data } = await axios.get("/api/admin/questionBank/category");
+            const { data } = await axios.get("/api/admin/questionBank/course");
             console.log("data",data);
-            this.setState({ categories: data })
+            this.setState({ courses: data })
         } catch (error) {
             console.log(error)
         }
@@ -50,12 +65,18 @@ class QuesBankQuestions extends Component{
 
     AddQuestion = async e => {
         e.preventDefault();
+        const {question,description,answers,subject} = this.state;
+        const formData = {
+            question: question,
+            explanation : description,
+            answers : answers,
+            questionCategory : subject
+        }
+        console.log(formData)
         try {
-            const { data } = await axios.post("/api/admin/questionBank/question/add", {
-                name: this.state.category
-            });
+            const { data } = await axios.post("/api/admin/questionBank/question/add", formData);
             M.toast({ html: data.message });
-            this.GetCategories()
+            this.GetCourses()
         } catch (error) {
             console.log(error)
         }
@@ -67,8 +88,23 @@ class QuesBankQuestions extends Component{
         console.log("add option",this.state.answers)
     }
 
+    handleEditorChange = async (e) => {
+        this.setState({
+            description:e.target.getContent()
+        })
+    }
+
+    renderSubjects = () => {
+        return this.state.courses.filter(course => course._id === this.state.course).map((course,key) => {
+            return course.subjects.map((subject,key) => {
+                return <option value={subject._id} key={key}>{subject.name}</option>
+            })
+        })
+    }
+
     render() {
-        console.log(this.state.correct,this.state.option, this.state.answers)
+        let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
+
         return (
             <>
                 <div className="section">
@@ -76,21 +112,21 @@ class QuesBankQuestions extends Component{
                         <div className="card-content">
                             <div className="row">
                                 <span className="col card-title">Questions</span>
-                                <a className="btn secondary-content btn-small red modal-trigger" href="#categorymodal">Add</a>
+                                <a className="btn secondary-content btn-small red modal-trigger" href="#questionModal">Add</a>
                                 <div ref={Modal2 => {
                                     this.Modal2 = Modal2;
-                                }} id="categorymodal" className="modal">
+                                }} id="questionModal" className="modal">
                                     <button className="secondary-content white btn-floating"><i className="secondary-content material-icons red-text modal-close">close</i></button>
                                     <div className="modal-content">
                                         <h4>Add a Question</h4>
                                         <div className="section">
 
                                                 <div className="row">
-                                                    <form className="col s12">
+                                                    <form className="col s12" onSubmit={this.AddQuestion}>
 
                                                         <div className="row">
                                                             <div className="input-field col s12">
-                                                                <input id="question" type="text" className="validate"/>
+                                                                <input id="question" type="text" name="question" className="validate" onChange={this.handleChange}/>
                                                                 <label htmlFor="question">Question</label>
                                                             </div>
                                                         </div>
@@ -102,7 +138,13 @@ class QuesBankQuestions extends Component{
                                                                         <div className="row">
                                                                             <div className="col s10"><span>{answer.option}</span></div>
                                                                             <div className="col s2">
-                                                                                <span className={answer.correct === 'true' ? 'green white-text' : 'red white-text'}>{answer.correct}</span>
+                                                                                {
+                                                                                    answer.correct === true ?
+                                                                                        <span className='green white-text'>True</span>
+                                                                                        :
+                                                                                        <span className='red white-text'>False</span>
+                                                                                }
+                                                                                <span className={answer.correct === true ? 'green white-text' : 'red white-text'}>{answer.correct}</span>
                                                                                 <span style={{ cursor: "pointer" }} className="secondary-content material-icons red-text">close</span>
                                                                             </div>
                                                                         </div>
@@ -127,13 +169,13 @@ class QuesBankQuestions extends Component{
                                                                 <div className="input-field col s12">
                                                                     <span>
                                                                         <label>
-                                                                            <input name="correct" type="radio" value="true" onChange={this.handleChange} />
+                                                                            <input name="correct" type="radio" value="true" onChange={this.handleRadioButtons} />
                                                                             <span>True</span>
                                                                         </label>
                                                                     </span>
                                                                     <span>
                                                                         <label>
-                                                                            <input name="correct" type="radio" value="false" onChange={this.handleChange} />
+                                                                            <input name="correct" type="radio" value="false" onChange={this.handleRadioButtons} />
                                                                             <span>False</span>
                                                                         </label>
                                                                     </span>
@@ -146,40 +188,57 @@ class QuesBankQuestions extends Component{
                                                         }
 
                                                         <div className="row">
-                                                            <div className="input-field col s6">
-                                                                <input id="question_type" type="text" className="validate"/>
-                                                                    <label htmlFor="question_type">Question Type (text/photo)</label>
+                                                            <div className="col s6">
+                                                                <label htmlFor="course">Choose a Course:</label>
+
+                                                                <select id="course" name="course" style={{display: "block"}} onChange={this.handleChange}>
+                                                                    <option value="">Choose a Course</option>
+                                                                    {
+                                                                        this.state.courses.map((course,key) =>
+                                                                            <option value={course._id} key={key}>{course.name}</option>
+                                                                        )
+                                                                    }
+                                                                </select>
                                                             </div>
-                                                            <div className="input-field col s6">
-                                                                <input id="ansSelectionType" type="text" className="validate"/>
-                                                                <label htmlFor="ansSelectionType">Answer Selection Type (single/multiple)</label>
+
+                                                            <div className="col s6">
+                                                                <label htmlFor="subject">Choose a Subject:</label>
+
+                                                                <select id="subject" name="subject" style={{display: "block"}} onChange={this.handleChange}>
+
+                                                                    <option value="">Choose a Subject</option>
+                                                                    {this.renderSubjects()}
+                                                                </select>
                                                             </div>
                                                         </div>
+
                                                         <div className="row">
-                                                            <div className="input-field col s12">
-                                                                <input id="answer" type="text" className="validate"/>
-                                                                    <label htmlFor="answer">Answer</label>
-                                                            </div>
+                                                            <span>Description</span>
+                                                            <Editor
+                                                                apiKey={API_KEY}
+                                                                init={{
+                                                                    height: 500,
+                                                                    menubar: 'edit insert format table tools help',
+                                                                    plugins: [
+                                                                        ' autolink media lists link charmap print preview anchor',
+                                                                        'searchreplace visualblocks code fullscreen',
+                                                                        'insertdatetime table paste code wordcount'
+                                                                    ],
+                                                                    toolbar:
+                                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
+                                                                }}
+                                                                onChange={this.handleEditorChange}
+                                                                // onEditorChange={desc => setFieldValue("description", desc)}
+                                                            />
                                                         </div>
-                                                        <div className="row">
-                                                            <div className="input-field col s12">
-                                                                <input id="correctAnswer" type="text"  className="validate"/>
-                                                                    <label htmlFor="correctAnswer">Correct Answer</label>
-                                                            </div>
-                                                        </div>
-                                                        <div className="row">
-                                                            <div className="input-field col s12">
-                                                                <input id="explanation" type="text" className="validate"/>
-                                                                    <label htmlFor="explanation">Explanation</label>
-                                                            </div>
-                                                        </div>
+
                                                         <div className="row">
                                                             {/*<div className="input-field col s12">*/}
                                                             {/*    <input id="category_name" onChange={e => this.setState({ category: e.target.value })} type="text" className="validate" />*/}
                                                             {/*    <label className="active" htmlFor="category_name">Category Name</label>*/}
                                                             {/*</div>*/}
                                                             <div className="input-field col s12">
-                                                                <button className="btn" onClick={this.AddQuestion} >Add Question</button>
+                                                                <button className="btn" type="submit" >Add Question</button>
                                                             </div>
                                                         </div>
 
@@ -190,11 +249,6 @@ class QuesBankQuestions extends Component{
                                     </div>
                                 </div>
                             </div>
-                            <ul className="collection">
-                                {this.state.categories.map(categories => (
-                                    <li key={categories._id} className="collection-item">{categories.name}<span style={{ cursor: "pointer" }} className="secondary-content material-icons red-text">close</span></li>
-                                ))}
-                            </ul>
                         </div>
                     </div>
                 </div>
