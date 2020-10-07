@@ -50,7 +50,8 @@ class Result extends Component{
                         })}
                     </div>
                     <h5>Description</h5>
-                    <p className="explanation">{question.explanation}</p>
+                    <div style={{ background: "#f1f1f1", padding: "20px" }} dangerouslySetInnerHTML={{ __html: question.explanation }} />
+                    {/*<p className="explanation">{question.explanation}</p>*/}
                 </div>
             )
         }

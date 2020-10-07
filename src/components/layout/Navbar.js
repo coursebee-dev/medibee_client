@@ -93,7 +93,15 @@ class Navbar extends Component {
                                 {/* <li><LinkStyled to="/training">Training</LinkStyled></li> */}
                                 {this.props.auth.isAuthenticated ?
                                     <>
-                                        {this.props.auth.user.type === 'student' ? <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li> : ''}
+                                        {
+                                            this.props.auth.user.type === 'student' ?
+                                                <>
+                                                    <li><LinkStyled to="/questionbank">Question Bank</LinkStyled></li>
+                                                    <li><LinkStyled to="/questionbank/result">Result</LinkStyled></li>
+                                                </>
+                                                :
+                                                ''
+                                        }
                                         <li><UserIcon /></li>
                                     </>
                                     :
