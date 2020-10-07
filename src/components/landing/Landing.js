@@ -109,6 +109,7 @@ class Landing extends Component {
           {/*signup mentors*/}
           <div className="container" style={{ padding: "25px 0" }}>
             <h2>Share your knowledge as a Mentor <Link to="/mentor/register" className="mentor_signup">Signup</Link></h2>
+            <p className="grey-text text-darken-1">Already have an account? <Link className="red-text text-darken-1" to="/mentor/login">Log in</Link></p>
           </div>
         </div>
       </div>
