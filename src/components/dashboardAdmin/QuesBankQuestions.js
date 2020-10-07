@@ -102,6 +102,13 @@ class QuesBankQuestions extends Component{
         })
     }
 
+    deleteAnswer = (itemNumber) => {
+        console.log("delete element")
+        this.state.answers.splice(itemNumber, 1);
+        this.forceUpdate();
+        console.log("after delete item",this.state.answers)
+    }
+
     render() {
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
@@ -144,11 +151,9 @@ class QuesBankQuestions extends Component{
                                                                                         :
                                                                                         <span className='red white-text'>False</span>
                                                                                 }
-                                                                                <span className={answer.correct === true ? 'green white-text' : 'red white-text'}>{answer.correct}</span>
-                                                                                <span style={{ cursor: "pointer" }} className="secondary-content material-icons red-text">close</span>
+                                                                                <span style={{ cursor: "pointer" }} onClick={() => this.deleteAnswer(key)} className="secondary-content material-icons red-text">close</span>
                                                                             </div>
                                                                         </div>
-
                                                                     </li>
                                                                 )
                                                             )}

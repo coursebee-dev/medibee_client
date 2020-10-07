@@ -20,7 +20,7 @@ class Subjects extends Component {
     }
 
     fetchSubjects = async () => {
-        await axios.get(`/api/admin/questionBank/category`)
+        await axios.get(`/api/admin/questionBank/category/${this.props.match.params.courseId}`)
             .then(res => {
                 this.setState({
                     subjects: res.data
