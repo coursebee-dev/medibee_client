@@ -24,11 +24,7 @@ const EachClass = ({ liveClass, auth }) => {
               <b>Class tarts from:</b>
               <p>
                 {" "}
-                {new Date(
-                  liveClass?.classtimes[0].date +
-                    "T" +
-                    liveClass?.classtimes[0].time
-                ).toLocaleString()}
+                {new Date(liveClass?.classtimes[0].start_date).toLocaleString()}
               </p>
             </div>
             {/* <div className="col s4 m4"><b>Duration</b></div>   <div className="col s8 m8"><p>: {Math.round(liveClass.duration / 60)} hour {liveClass.duration % 60} minutes</p></div> */}
