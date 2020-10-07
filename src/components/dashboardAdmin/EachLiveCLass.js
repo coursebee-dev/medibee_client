@@ -46,7 +46,7 @@ export default function EachLiveCLass({
       <h6>Topic : </h6>
       {liveClass?.topic}
       {/* <div dangerouslySetInnerHTML={{ __html: liveClass.description }} /> */}
-      {/* <p>Start Time: {new Date(liveClass.start_time).toLocaleDateString() + " " + new Date(liveClass.start_time).toLocaleTimeString()} </p>
+      {/* <p>Start Time: {new Date(liveClass.start_date).toLocaleTimeString()} </p>
                 <p>Duration : {liveClass.duration}</p> */}
       <p>Type: {liveClass?.class_type}</p>
       {liveClass?.approved ? (
