@@ -65,12 +65,13 @@ class QuesBankQuestions extends Component{
 
     AddQuestion = async e => {
         e.preventDefault();
-        const {question,description,answers,subject} = this.state;
+        const { question,description,answers,subject,course } = this.state;
         const formData = {
             question: question,
             explanation : description,
             answers : answers,
-            questionCategory : subject
+            questionCategory : subject,
+            course: course
         }
         console.log(formData)
         try {

@@ -44,23 +44,23 @@ class Subjects extends Component {
             })
     }
 
-    loadSubjects = () => {
-        return this.state.subjects.map( (subject,key) => {
-            return (
-                <div key={key}>
-                    <Link
-                        to={`/questions/${subject._id}`}
-                        style={{ width: "100%", fontWeight: "500" }}
-                    >
-                        <div className="row option black-text">
-                            <div className="col s10">{subject.name}</div>
-                            <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
-                        </div>
-                    </Link>
-                </div>
-            )
-        })
-    }
+    // loadSubjects = () => {
+    //     return this.state.subjects.map( (subject,key) => {
+    //         return (
+    //             <div key={key}>
+    //                 <Link
+    //                     to={`/questions/${subject._id}`}
+    //                     style={{ width: "100%", fontWeight: "500" }}
+    //                 >
+    //                     <div className="row option black-text">
+    //                         <div className="col s10">{subject.name}</div>
+    //                         <div className="col s2"><span className="badge red white-text">{subject.questions.length}</span></div>
+    //                     </div>
+    //                 </Link>
+    //             </div>
+    //         )
+    //     })
+    // }
 
 
     // loadSubjects = () => {
@@ -68,7 +68,7 @@ class Subjects extends Component {
     //         if (this.state.answeredQuestion.length > 0){
     //             return this.state.answeredQuestion.some( (ques,i) => {
     //                 console.log(subject._id , ques.subject_id)
-    //                 return subject._id == ques.subject_id
+    //                 return subject._id === ques.subject_id
     //             } )
     //         }
     //         else{
@@ -93,67 +93,80 @@ class Subjects extends Component {
 
 
 
-    // loadSubjects = () => {
-    //     console.log("test",this.state.subjects)
-    //     var answeredQuestion = null;
-    //     return this.state.subjects.map( (subject,key) => {
-    //         if (this.state.answeredQuestion.length > 0){
-    //             this.state.answeredQuestion.map( (ques,i) => {
-    //                 if (subject._id === ques.subject_id){
-    //                     answeredQuestion = ques
-    //                 }
-    //             } )
-    //             if (answeredQuestion !== null){
-    //             console.log("questionnnnnnn",answeredQuestion)
-    //                 if (subject._id === answeredQuestion.subject_id){
-    //                     return (
-    //                         <div key={key}>
-    //                             <Link
-    //                                 to={`/questions/${subject._id}`}
-    //                                 style={{ width: "100%", fontWeight: "500" }}
-    //                             >
-    //                                 <div className="row option black-text">
-    //                                     <div className="col s10">{subject.name}</div>
-    //                                     <div className="col s2"><span className="badge red white-text">{answeredQuestion.questions.length} / {subject.questions.length}</span></div>
-    //                                 </div>
-    //                             </Link>
-    //                         </div>
-    //                     )
-    //                 }
-    //             }
-    //             else{
-    //                 return (
-    //                     <div key={key}>
-    //                         <Link
-    //                             to={`/questions/${subject._id}`}
-    //                             style={{ width: "100%", fontWeight: "500" }}
-    //                         >
-    //                             <div className="row option black-text">
-    //                                 <div className="col s10">{subject.name}</div>
-    //                                 <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
-    //                             </div>
-    //                         </Link>
-    //                     </div>
-    //                 )
-    //             }
-    //         }
-    //         else{
-    //             return (
-    //                 <div key={key}>
-    //                     <Link
-    //                         to={`/questions/${subject._id}`}
-    //                         style={{ width: "100%", fontWeight: "500" }}
-    //                     >
-    //                         <div className="row option black-text">
-    //                             <div className="col s10">{subject.name}</div>
-    //                             <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
-    //                         </div>
-    //                     </Link>
-    //                 </div>
-    //             )
-    //         }
-    //     })
-    // }
+    loadSubjects = () => {
+        var answeredQuestion = null;
+        return this.state.subjects.map( (subject,key) => {
+            if (this.state.answeredQuestion.length > 0){
+                this.state.answeredQuestion.map( (ques,i) => {
+                    if (subject._id === ques.subject_id){
+                        answeredQuestion = ques
+                    }
+                } )
+                if (answeredQuestion !== null){
+                    if (subject._id === answeredQuestion.subject_id){
+                        return (
+                            <div key={key}>
+                                <Link
+                                    to={`/questions/${subject._id}`}
+                                    style={{ width: "100%", fontWeight: "500" }}
+                                >
+                                    <div className="row option black-text">
+                                        <div className="col s10">{subject.name}</div>
+                                        <div className="col s2"><span className="badge red white-text">{answeredQuestion.questions.length} / {subject.questions.length}</span></div>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    }else{
+                        return (
+                            <div key={key}>
+                                <Link
+                                    to={`/questions/${subject._id}`}
+                                    style={{ width: "100%", fontWeight: "500" }}
+                                >
+                                    <div className="row option black-text">
+                                        <div className="col s10">{subject.name}</div>
+                                        <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    }
+                    // answeredQuestion = null;
+                }
+                else{
+                    return (
+                        <div key={key}>
+                            <Link
+                                to={`/questions/${subject._id}`}
+                                style={{ width: "100%", fontWeight: "500" }}
+                            >
+                                <div className="row option black-text">
+                                    <div className="col s10">{subject.name}</div>
+                                    <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+                                </div>
+                            </Link>
+                        </div>
+                    )
+                }
+            }
+            else{
+                return (
+                    <div key={key}>
+                        <Link
+                            to={`/questions/${subject._id}`}
+                            style={{ width: "100%", fontWeight: "500" }}
+                        >
+                            <div className="row option black-text">
+                                <div className="col s10">{subject.name}</div>
+                                <div className="col s2"><span className="badge red white-text">0 / {subject.questions.length}</span></div>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }
+        })
+    }
 
 
 
