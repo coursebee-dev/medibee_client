@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Dropbox } from "dropbox";
 import { scheduleLiveClass } from "../../actions/liveClassAction";
 import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import "../../App.css";
 import moment from "moment";
+import isofetch from 'isomorphic-fetch';
+
+
+var dbx = new Dropbox({
+  accessToken:
+    "sl.AjZZTe_5c5HIm68HF4Omz3GMxpRijxvIqj_eMQzCaDXIS5nHx1vrEU-Nf0bursBjZa5qNLtuHb_RhzEAvmFtje0EIx3iGS9XOvgzx1pYfLVxMor4iPf-vLdyccxVWS-H9dOZmUQi"
+  ,
+  fetch: isofetch
+});
 
 class ScheduleClass extends Component {
   constructor() {
@@ -18,10 +28,13 @@ class ScheduleClass extends Component {
       selectedsubcategories: [],
       categories: [],
       subjects: [],
+      desurl: "",
       errors: {},
     };
     this.getSubjects = this.getSubjects.bind(this);
     this.getCategories = this.getCategories.bind(this);
+    this.handleUploadChange = this.handleUploadChange.bind(this);
+    this.uploadfiles = this.uploadfiles.bind(this)
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -58,6 +71,27 @@ class ScheduleClass extends Component {
     this.getSubjects();
     //console.log(this.state)
   }
+  handleUploadChange = async e => {
+    let { files } = e.target;
+    const body = new FormData()
+    body.append('upload_preset', "enxcncgu")
+    body.append("file", files[0])
+    body.append("folder", "mentors/najishm828282@gmail.com/medibee/liveclass/description")
+
+    try {
+      const { data } = await axios.post("http://api.cloudinary.com/v1_1/coursebee/upload", body)
+      let a = data.url;
+      a = a.replace("http://", "https://")
+      this.setState({ desurl: a })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  uploadfiles = async () => {
+  }
+
+
   handleEditorChange = (content) => {
     console.log("Content was updated:", content);
     this.setState({ description: content });
@@ -193,6 +227,16 @@ class ScheduleClass extends Component {
                       render={(msg) => <span className="red-text">{msg}</span>}
                     />
                   </div>
+                  <div class="file-field col s12 input-field">
+                    <div class="btn">
+                      <span>Add an image in description</span>
+                      <input type="file" onChange={this.handleUploadChange} />
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" />
+                    </div>
+                    <code>{this.state.desurl}</code>
+                  </div>
                   <div className="input-field col s12">
                     <span className="required-field">Description</span>
                     <Editor
@@ -200,18 +244,27 @@ class ScheduleClass extends Component {
                       init={{
                         height: 500,
                         menubar: "edit insert format table tools help",
+
+
                         plugins: [
-                          " autolink media lists link charmap print preview anchor",
+                          "image autolink lists link charmap print preview anchor",
                           "searchreplace visualblocks code fullscreen",
                           "insertdatetime table paste code wordcount",
                         ],
                         toolbar:
                           "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat ",
+                        images_upload_handler: (a, s, f) => {
+                          alert("Upload is not vailable. Use the upload option before the description field below and paste the link here. ")
+                          f()
+                        }
                       }}
+
                       onEditorChange={(desc) =>
                         setFieldValue("description", desc)
                       }
                     />
+
+
                     <ErrorMessage
                       name="description"
                       render={(msg) => <span className="red-text">{msg}</span>}
@@ -475,62 +528,62 @@ class ScheduleClass extends Component {
                       </div>
                     </div>
                   ) : (
-                    <div className="col s12">
-                      <FieldArray
-                        name="classtimes"
-                        render={({ remove, push }) => (
-                          <>
-                            {values.classtimes.map((classtimes, index) => (
-                              <div
-                                className="section"
-                                style={{
-                                  padding: "10px",
-                                  marginBottom: "10px",
-                                  border: "1px solid black",
-                                }}
-                                key={index}
-                              >
-                                <span>Start Date</span>
-                                <Field
-                                  type="date"
-                                  id={`classtimes[${index}.date]`}
-                                  name={`classtimes[${index}.date]`}
-                                />
-                                <span>Start Time</span>
-                                <Field
-                                  type="time"
-                                  id={`classtimes[${index}.time]`}
-                                  name={`classtimes[${index}.time]`}
-                                />
-                                <span>Class Duration</span>
-                                <Field
-                                  type="number"
-                                  id={`classtimes[${index}.duration]`}
-                                  name={`classtimes[${index}.duration]`}
-                                  min="0"
-                                />
-                                <button
-                                  className="btn btn-small red"
-                                  onClick={() => remove(index)}
+                      <div className="col s12">
+                        <FieldArray
+                          name="classtimes"
+                          render={({ remove, push }) => (
+                            <>
+                              {values.classtimes.map((classtimes, index) => (
+                                <div
+                                  className="section"
+                                  style={{
+                                    padding: "10px",
+                                    marginBottom: "10px",
+                                    border: "1px solid black",
+                                  }}
+                                  key={index}
                                 >
-                                  Remove
+                                  <span>Start Date</span>
+                                  <Field
+                                    type="date"
+                                    id={`classtimes[${index}.date]`}
+                                    name={`classtimes[${index}.date]`}
+                                  />
+                                  <span>Start Time</span>
+                                  <Field
+                                    type="time"
+                                    id={`classtimes[${index}.time]`}
+                                    name={`classtimes[${index}.time]`}
+                                  />
+                                  <span>Class Duration</span>
+                                  <Field
+                                    type="number"
+                                    id={`classtimes[${index}.duration]`}
+                                    name={`classtimes[${index}.duration]`}
+                                    min="0"
+                                  />
+                                  <button
+                                    className="btn btn-small red"
+                                    onClick={() => remove(index)}
+                                  >
+                                    Remove
                                 </button>
-                              </div>
-                            ))}
-                            <button
-                              className="btn btn-small blue"
-                              type="button"
-                              onClick={() =>
-                                push({ date: "", time: "", duration: "" })
-                              }
-                            >
-                              Add class date
+                                </div>
+                              ))}
+                              <button
+                                className="btn btn-small blue"
+                                type="button"
+                                onClick={() =>
+                                  push({ date: "", time: "", duration: "" })
+                                }
+                              >
+                                Add class date
                             </button>
-                          </>
-                        )}
-                      />
-                    </div>
-                  )}
+                            </>
+                          )}
+                        />
+                      </div>
+                    )}
                   <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                     <button
                       style={{
