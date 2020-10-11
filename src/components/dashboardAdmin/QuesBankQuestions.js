@@ -14,11 +14,12 @@ class QuesBankQuestions extends Component{
             showOption: false,
             option: "",
             correct: false,
-            course: "",
-            subject: "",
+            course: undefined,
+            subject: undefined,
             description: "",
             courses: [],
-            answers: []
+            answers: [],
+            questions: []
         };
 
         this.GetCourses = this.GetCourses.bind(this);
@@ -28,11 +29,21 @@ class QuesBankQuestions extends Component{
     componentDidMount() {
         M.Modal.init(this.Modal2);
         M.FormSelect.init(this.Select);
-        this.GetCourses()
+        this.GetCourses();
+        this.fetchQuestions()
         // let instance = M.Modal.getInstance(this.Modal);
         // instance.open();
         // instance.close();
         // instance.destroy();
+    }
+
+    fetchQuestions = async () => {
+        try {
+            const { data } = await axios.get("/api/admin/questionBank/question");
+            this.setState({ questions: data })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     handleChange = e => {
@@ -73,11 +84,16 @@ class QuesBankQuestions extends Component{
             questionCategory : subject,
             course: course
         }
-        console.log(formData)
+        // console.log(formData)
         try {
+            // e.target.reset();
             const { data } = await axios.post("/api/admin/questionBank/question/add", formData);
             M.toast({ html: data.message });
-            this.GetCourses()
+            // console.log("reset",e.target.reset())
+            this.setState({
+                answers: [], question: "", course: undefined
+            });
+            // this.GetCourses()
         } catch (error) {
             console.log(error)
         }
@@ -111,6 +127,7 @@ class QuesBankQuestions extends Component{
     }
 
     render() {
+        console.log("questions",this.state.questions)
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
         return (
@@ -134,7 +151,7 @@ class QuesBankQuestions extends Component{
 
                                                         <div className="row">
                                                             <div className="input-field col s12">
-                                                                <input id="question" type="text" name="question" className="validate" onChange={this.handleChange}/>
+                                                                <input id="question" type="text" name="question" className="validate" value={this.state.question} onChange={this.handleChange}/>
                                                                 <label htmlFor="question">Question</label>
                                                             </div>
                                                         </div>
@@ -159,7 +176,6 @@ class QuesBankQuestions extends Component{
                                                                 )
                                                             )}
                                                         </ul>
-
 
                                                         <div className="row">
                                                             <div className="col m12">
@@ -197,7 +213,7 @@ class QuesBankQuestions extends Component{
                                                             <div className="col s6">
                                                                 <label htmlFor="course">Choose a Course:</label>
 
-                                                                <select id="course" name="course" style={{display: "block"}} onChange={this.handleChange}>
+                                                                <select id="course" name="course" value={this.state.course ? this.state.course : ''} style={{display: "block"}} onChange={this.handleChange}>
                                                                     <option value="">Choose a Course</option>
                                                                     {
                                                                         this.state.courses.map((course,key) =>
@@ -231,7 +247,7 @@ class QuesBankQuestions extends Component{
                                                                         'insertdatetime table paste code wordcount'
                                                                     ],
                                                                     toolbar:
-                                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
+                                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
                                                                 }}
                                                                 onChange={this.handleEditorChange}
                                                                 // onEditorChange={desc => setFieldValue("description", desc)}
@@ -254,6 +270,21 @@ class QuesBankQuestions extends Component{
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card">
+                        <div className="card-content">
+                            <div className="row">
+                                {
+                                    this.state.questions.length > 0 ?
+                                    this.state.questions.map((question,key) => (
+                                        <div key={key}>
+                                            <p>{question.question}</p>
+                                        </div>
+                                    ))
+                                        : ''
+                                }
                             </div>
                         </div>
                     </div>

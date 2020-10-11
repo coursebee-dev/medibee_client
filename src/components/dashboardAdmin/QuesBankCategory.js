@@ -89,7 +89,7 @@ class QuesBankCategory extends Component{
                     <div style={{ minWidth: "300px" }} className="card">
                         <div className="card-content">
                             <div className="row">
-                                <span className="col card-title">Subject Categories</span>
+                                <span className="col card-title">Courses</span>
                                 <a className="btn secondary-content btn-small red modal-trigger" href="#courseModal">Add</a>
 
 
