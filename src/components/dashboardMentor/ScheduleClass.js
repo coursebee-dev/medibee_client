@@ -79,7 +79,7 @@ class ScheduleClass extends Component {
     body.append("folder", "mentors/najishm828282@gmail.com/medibee/liveclass/description")
 
     try {
-      const { data } = await axios.post("http://api.cloudinary.com/v1_1/coursebee/upload", body)
+      const { data } = await axios.post("https://api.cloudinary.com/v1_1/coursebee/upload", body)
       let a = data.url;
       a = a.replace("http://", "https://")
       this.setState({ desurl: a })
