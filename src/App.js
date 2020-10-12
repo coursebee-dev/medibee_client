@@ -14,9 +14,7 @@ import PathRoute from "./router";
 import "materialize-css/dist/css/materialize.min.css";
 
 axios.defaults.baseURL = process.env.REACT_APP_NOT_AXIOS_BASE_URL;
-//axios.defaults.baseURL = "https://medibee-server-staging.herokuapp.com"
-//axios.defaults.baseURL = "https://medibee-server.herokuapp.com"
-// Check for token to keep user logged in
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 if (localStorage.jwtToken) {
   // Set auth token header auth
   const token = localStorage.jwtToken;
