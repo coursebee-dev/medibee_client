@@ -43,10 +43,12 @@ export const loginMentor = (userData, history) => dispatch => {
                 dispatch(setCurrentUser(decoded));
             }
         })
-        .catch(err =>
+        .catch(err => {
             dispatch({
                 type: GET_ERRORS,
                 payload: err?.response?.data
             })
+        }
+
         );
 };
