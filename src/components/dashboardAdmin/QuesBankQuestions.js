@@ -91,7 +91,7 @@ class QuesBankQuestions extends Component{
             M.toast({ html: data.message });
             // console.log("reset",e.target.reset())
             this.setState({
-                answers: [], question: "", course: undefined
+                answers: [], question: "", course: undefined, description: ""
             });
             // this.GetCourses()
         } catch (error) {
