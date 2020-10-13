@@ -90,10 +90,12 @@ export default function PathRoute() {
           <Route exact path="/contactus" component={Contact} />
           <Route exact path="/mentors" component={Mentors} />
           <Route exact path="/mentors/details/:id" component={MentorsDetails} />
-          <Route exact path="/questionbank" component={QuestionBankCourse} />
-          <Route exact path="/questionbank/result" component={Report} />
-          <Route exact path="/questions/subjects/:courseId" component={Subject} />
-          <Route exact path="/questions/:id" component={QuestionBank} />
+
+          <PrivateRoute exact path="/questionbank" component={QuestionBankCourse} />
+          <PrivateRoute exact path="/questionbank/result" component={Report} />
+          <PrivateRoute exact path="/questions/subjects/:courseId" component={Subject} />
+          <PrivateRoute exact path="/questions/:id" component={QuestionBank} />
+
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/dashboard/myliveclass/:id" component={MyLiveClass} />
           <PrivateRoute exact path="/liveclass/confirm/:id" component={ConfirmLiveRegistration} />

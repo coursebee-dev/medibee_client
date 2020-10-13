@@ -275,12 +275,14 @@ class QuesBankQuestions extends Component{
                     </div>
                     <div className="card">
                         <div className="card-content">
+                            <h3 className="center-align"> Questions </h3>
                             <div className="row">
                                 {
                                     this.state.questions.length > 0 ?
-                                    this.state.questions.map((question,key) => (
+                                    this.state.questions.reverse().map((question,key) => (
                                         <div key={key}>
                                             <p>{question.question}</p>
+                                            <hr/>
                                         </div>
                                     ))
                                         : ''
