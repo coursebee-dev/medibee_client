@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import M from "materialize-css";
 import axios from "axios";
 import {Editor} from "@tinymce/tinymce-react";
+import {Link} from "react-router-dom";
 
 
 class QuesBankQuestions extends Component{
@@ -126,8 +127,10 @@ class QuesBankQuestions extends Component{
         console.log("after delete item",this.state.answers)
     }
 
+
     render() {
-        console.log("questions",this.state.questions)
+        console.log("questions",this.state.editedQuestion)
+        console.log("j",this.state.editedQuestion ? this.state.editedQuestion.question : '')
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
         return (
@@ -279,14 +282,25 @@ class QuesBankQuestions extends Component{
                             <div className="row">
                                 {
                                     this.state.questions.length > 0 ?
-                                    this.state.questions.reverse().map((question,key) => (
-                                        <div key={key}>
-                                            <p>{question.question}</p>
-                                            <hr/>
-                                        </div>
-                                    ))
+                                        this.state.questions.map((question,key) => (
+                                            <div className="row" key={key}>
+                                                <div className="col s9" >
+                                                    <p>{question.question}</p>
+
+                                                </div>
+                                                <div className="col s3">
+                                                    <Link to={`/admin/dashboard/questionBank/edit/${question._id}`}>
+                                                        <span className="btn secondary-content btn-small red">Edit</span>
+                                                    </Link>
+                                                </div>
+                                                <hr/>
+                                            </div>
+
+                                        ))
                                         : ''
                                 }
+
+
                             </div>
                         </div>
                     </div>
