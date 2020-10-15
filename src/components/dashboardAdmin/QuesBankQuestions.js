@@ -285,8 +285,7 @@ class QuesBankQuestions extends Component{
                                         this.state.questions.map((question,key) => (
                                             <div className="row" key={key}>
                                                 <div className="col s9" >
-                                                    <p>{question.question}</p>
-
+                                                    <p><span>{key+1} . </span>{question.question}</p>
                                                 </div>
                                                 <div className="col s3">
                                                     <Link to={`/admin/dashboard/questionBank/edit/${question._id}`}>

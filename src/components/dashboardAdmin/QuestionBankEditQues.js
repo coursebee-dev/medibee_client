@@ -87,7 +87,6 @@ class QuestionBankEditQues extends Component{
             <>
                 <Breadcrumbs title="Question Bank" description="Edit question" />
                 <div className="container">
-                    {this.props.match.params.questionId}
                     {
                         editedQues ?
                             <div className="row">
