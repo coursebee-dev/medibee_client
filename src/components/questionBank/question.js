@@ -61,7 +61,7 @@ class Question extends Component{
         }else{
             return (
                 <div>
-                    <h4>{question.question}</h4>
+                    <h6>{question.question}</h6>
                     {question.answers.map((answer,key) => {
                         return (
                             <div key={key} className="option">
