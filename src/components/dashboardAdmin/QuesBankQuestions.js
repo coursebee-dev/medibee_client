@@ -101,7 +101,6 @@ class QuesBankQuestions extends Component{
             M.toast({ html: data.message });
 
             // console.log("reset",e.target.reset())
-
             this.fetchQuestions()
 
         } catch (error) {
