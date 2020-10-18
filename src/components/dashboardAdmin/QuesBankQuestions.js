@@ -21,7 +21,8 @@ class QuesBankQuestions extends Component{
             courses: [],
             answers: [],
             questions: [],
-            selectedCourse: ""
+            selectedCourse: "",
+            selectedSubject : ""
         };
 
         this.GetCourses = this.GetCourses.bind(this);
@@ -39,10 +40,10 @@ class QuesBankQuestions extends Component{
         // instance.destroy();
     }
 
-    fetchQuestions = async () => {
+    fetchQuestions = async (subjectId) => {
         try {
-            const { data } = await axios.get("/api/admin/questionBank/question");
-            this.setState({ questions: data })
+            const { data } = await axios.get(`/api/admin/questionBank/question/${subjectId}`);
+            this.setState({ questions: data,selectedSubject: subjectId })
         } catch (error) {
             console.log(error)
         }
@@ -137,9 +138,6 @@ class QuesBankQuestions extends Component{
 
 
     render() {
-        console.log("description",this.state.description)
-        console.log("questions title",this.state.question)
-        console.log("j",this.state.editedQuestion ? this.state.editedQuestion.question : '')
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
         return (
@@ -321,7 +319,7 @@ class QuesBankQuestions extends Component{
                                         this.state.courses.filter(course => course.name === this.state.selectedCourse ).map(selectedCourse => (
                                             selectedCourse.subjects.map((subject,key)=>(
                                                 <div className="col">
-                                                    <button value={subject.name}  className={this.state.selectedCourse === `${subject.name}` ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable green"}>{subject.name}</button>
+                                                    <button value={subject._id} onClick={ () => this.fetchQuestions(subject._id) }  className={this.state.selectedSubject === `${subject._id}` ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable green"}>{subject.name}</button>
                                                 </div>
                                             ) )
                                         ))
@@ -334,7 +332,7 @@ class QuesBankQuestions extends Component{
                                         this.state.questions.map((question,key) => (
                                             <div className="row" key={key}>
                                                 <div className="col s9" >
-                                                    <p><span>{key+1} . </span>{question.question}</p>
+                                                    <span>{key+1} . </span><div dangerouslySetInnerHTML={{ __html: question.question }} />
                                                 </div>
                                                 <div className="col s3">
                                                     <Link to={`/admin/dashboard/questionBank/edit/${question._id}`}>
