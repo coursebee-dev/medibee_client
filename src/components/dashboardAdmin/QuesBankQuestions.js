@@ -137,7 +137,8 @@ class QuesBankQuestions extends Component{
 
 
     render() {
-        console.log("questions",this.state.editedQuestion)
+        console.log("description",this.state.description)
+        console.log("questions title",this.state.question)
         console.log("j",this.state.editedQuestion ? this.state.editedQuestion.question : '')
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
@@ -162,8 +163,24 @@ class QuesBankQuestions extends Component{
 
                                                         <div className="row">
                                                             <div className="input-field col s12">
-                                                                <input id="question" type="text" name="question" className="validate" value={this.state.question} onChange={this.handleChange}/>
-                                                                <label htmlFor="question">Question</label>
+                                                                <span>Question Title</span>
+                                                                <Editor
+                                                                    apiKey={API_KEY}
+                                                                    init={{
+                                                                        height: 250,
+                                                                        menubar: 'edit insert format table tools help',
+                                                                        plugins: [
+                                                                            ' autolink media lists link charmap print preview anchor',
+                                                                            'searchreplace visualblocks code fullscreen',
+                                                                            'insertdatetime table paste code wordcount'
+                                                                        ],
+                                                                        toolbar:
+                                                                            'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
+                                                                    }}
+                                                                    initialValue={this.state.question}
+                                                                    onChange={(e) => { this.setState({question: e.target.getContent() }) }}
+                                                                    // onEditorChange={desc => setFieldValue("description", desc)}
+                                                                />
                                                             </div>
                                                         </div>
 
@@ -261,7 +278,7 @@ class QuesBankQuestions extends Component{
                                                                         'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
                                                                 }}
                                                                 initialValue={this.state.description}
-                                                                onChange={this.handleEditorChange}
+                                                                onChange={(e) => { this.setState({ description:e.target.getContent()}) }}
                                                                 // onEditorChange={desc => setFieldValue("description", desc)}
                                                             />
                                                         </div>

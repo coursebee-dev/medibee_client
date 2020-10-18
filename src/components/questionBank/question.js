@@ -61,7 +61,8 @@ class Question extends Component{
         }else{
             return (
                 <div>
-                    <h6>{question.question}</h6>
+                    {/*<h6>{question.question}</h6>*/}
+                    <div style={{padding: "20px" }} dangerouslySetInnerHTML={{ __html: question.question }} />
                     {question.answers.map((answer,key) => {
                         return (
                             <div key={key} className="option">

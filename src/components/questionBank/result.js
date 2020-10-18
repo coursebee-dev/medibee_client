@@ -14,7 +14,8 @@ class Result extends Component{
             return (
                 <div className="quiz">
                     {question.answers[ans-1].correct ? <p className="option green white-text">{question.messageForCorrectAnswer}</p> : <p className="option red white-text">{question.messageForIncorrectAnswer}</p>}
-                    <h4>{question.question}</h4>
+                    {/*<h4>{question.question}</h4>*/}
+                    <div style={{padding: "20px" }} dangerouslySetInnerHTML={{ __html: question.question }} />
                     <div>
                         {question.answers.map((answer,key) => {
                             if ( ( (key+1) === ans && answer.correct === true ) || answer.correct === true ){

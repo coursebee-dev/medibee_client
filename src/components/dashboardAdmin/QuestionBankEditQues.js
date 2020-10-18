@@ -94,7 +94,25 @@ class QuestionBankEditQues extends Component{
 
                                     <div className="row">
                                         <div className="input-field col s12">
-                                            <input type="text" name="question" value={question} onChange={this.handleChange} placeholder="Question" />
+                                            {/*<input type="text" name="question" value={question} onChange={this.handleChange} placeholder="Question" />*/}
+                                            <Editor
+                                                apiKey={API_KEY}
+                                                init={{
+
+                                                    height: 250,
+                                                    menubar: 'edit insert format table tools help',
+                                                    plugins: [
+                                                        ' autolink media lists link charmap print preview anchor',
+                                                        'searchreplace visualblocks code fullscreen',
+                                                        'insertdatetime table paste code wordcount'
+                                                    ],
+                                                    toolbar:
+                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
+                                                }}
+                                                initialValue={editedQues.question}
+                                                onChange={(e) => { this.setState({question: e.target.getContent() }) }}
+                                                // onEditorChange={desc => setFieldValue("description", desc)}
+                                            />
                                         </div>
                                     </div>
 
@@ -193,7 +211,7 @@ class QuestionBankEditQues extends Component{
                                                     'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
                                             }}
                                             initialValue={editedQues.explanation}
-                                            onChange={this.handleEditorChange}
+                                            onChange={(e) => { this.setState({ description:e.target.getContent()}) }}
                                             // onEditorChange={desc => setFieldValue("description", desc)}
                                         />
                                     </div>
