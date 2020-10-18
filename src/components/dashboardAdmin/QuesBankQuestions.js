@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import M from "materialize-css";
 import axios from "axios";
 import {Editor} from "@tinymce/tinymce-react";
+import {Link} from "react-router-dom";
 
 
 class QuesBankQuestions extends Component{
@@ -19,7 +20,8 @@ class QuesBankQuestions extends Component{
             description: "",
             courses: [],
             answers: [],
-            questions: []
+            questions: [],
+            selectedCourse: ""
         };
 
         this.GetCourses = this.GetCourses.bind(this);
@@ -77,6 +79,11 @@ class QuesBankQuestions extends Component{
     AddQuestion = async e => {
         e.preventDefault();
         const { question,description,answers,subject,course } = this.state;
+
+        var elems = document.querySelectorAll(".modal");
+        M.Modal.init(elems);
+        elems[0].M_Modal.close();
+
         const formData = {
             question: question,
             explanation : description,
@@ -84,16 +91,19 @@ class QuesBankQuestions extends Component{
             questionCategory : subject,
             course: course
         }
-        // console.log(formData)
         try {
-            // e.target.reset();
-            const { data } = await axios.post("/api/admin/questionBank/question/add", formData);
-            M.toast({ html: data.message });
-            // console.log("reset",e.target.reset())
+            e.target.reset();
             this.setState({
                 answers: [], question: "", course: undefined, description: ""
             });
-            // this.GetCourses()
+
+            const { data } = await axios.post("/api/admin/questionBank/question/add", formData);
+            M.toast({ html: data.message });
+
+            // console.log("reset",e.target.reset())
+
+            this.fetchQuestions()
+
         } catch (error) {
             console.log(error)
         }
@@ -126,8 +136,10 @@ class QuesBankQuestions extends Component{
         console.log("after delete item",this.state.answers)
     }
 
+
     render() {
-        console.log("questions",this.state.questions)
+        console.log("questions",this.state.editedQuestion)
+        console.log("j",this.state.editedQuestion ? this.state.editedQuestion.question : '')
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
 
         return (
@@ -249,6 +261,7 @@ class QuesBankQuestions extends Component{
                                                                     toolbar:
                                                                         'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
                                                                 }}
+                                                                initialValue={this.state.description}
                                                                 onChange={this.handleEditorChange}
                                                                 // onEditorChange={desc => setFieldValue("description", desc)}
                                                             />
@@ -278,15 +291,47 @@ class QuesBankQuestions extends Component{
                             <h3 className="center-align"> Questions </h3>
                             <div className="row">
                                 {
-                                    this.state.questions.length > 0 ?
-                                    this.state.questions.reverse().map((question,key) => (
-                                        <div key={key}>
-                                            <p>{question.question}</p>
-                                            <hr/>
+                                    this.state.courses.map( (course,key) => (
+                                        <div className="col">
+                                            <button value={course.name} onClick={e =>this.setState({selectedCourse: e.target.value})} className={this.state.selectedCourse === `${course.name}` ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable black"}>{course.name}</button>
                                         </div>
-                                    ))
+                                    ) )
+                                }
+                            </div>
+                            <div className="row">
+                                <h5>Subjects</h5>
+                                {
+                                    this.state.selectedCourse.length !== 0 ?
+                                        this.state.courses.filter(course => course.name === this.state.selectedCourse ).map(selectedCourse => (
+                                            selectedCourse.subjects.map((subject,key)=>(
+                                                <div className="col">
+                                                    <button value={subject.name}  className={this.state.selectedCourse === `${subject.name}` ? "btn btn-large waves-effect waves-light hoverable red" : "center-align btn btn-large waves-effect waves-light hoverable green"}>{subject.name}</button>
+                                                </div>
+                                            ) )
+                                        ))
+                                    : ''
+                                }
+                            </div>
+                            <div className="row">
+                                {
+                                    this.state.questions.length > 0 ?
+                                        this.state.questions.map((question,key) => (
+                                            <div className="row" key={key}>
+                                                <div className="col s9" >
+                                                    <p><span>{key+1} . </span>{question.question}</p>
+                                                </div>
+                                                <div className="col s3">
+                                                    <Link to={`/admin/dashboard/questionBank/edit/${question._id}`}>
+                                                        <span className="btn secondary-content btn-small red">Edit</span>
+                                                    </Link>
+                                                </div>
+                                                <hr/>
+                                            </div>
+
+                                        ))
                                         : ''
                                 }
+
                             </div>
                         </div>
                     </div>
