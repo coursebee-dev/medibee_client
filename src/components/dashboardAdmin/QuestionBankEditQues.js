@@ -10,6 +10,8 @@ class QuestionBankEditQues extends Component{
         this.state = {
             editedQues: undefined,
             question: "",
+            course: undefined,
+            subject: undefined,
             showOption: false,
             description: "",
             option: "",
@@ -26,12 +28,6 @@ class QuestionBankEditQues extends Component{
     handleChange = e => {
         this.setState({
             [e.target.name] : e.target.value
-        })
-    }
-
-    handleEditorChange = async (e) => {
-        this.setState({
-            description:e.target.getContent()
         })
     }
 
@@ -72,7 +68,9 @@ class QuestionBankEditQues extends Component{
             this.setState({
                 editedQues : data,
                 question : data.question,
-                answers : data.answers
+                answers : data.answers,
+                course: data.course,
+                subject: data.questionCategory._id
             })
         } catch (error) {
             console.log(error)
@@ -176,6 +174,14 @@ class QuestionBankEditQues extends Component{
                                             <select id="course" name="course" value={this.state.course ? this.state.course : ''} style={{display: "block"}} onChange={this.handleChange}>
                                                 <option value="">Choose a Course</option>
                                                 {
+                                                    this.state.courses.map( (course,key) => (
+                                                            course._id === editedQues.course ?
+                                                                <option value={course._id} key={key}>{course.name}</option>
+                                                            : ''
+                                                        )
+                                                    )
+                                                }
+                                                {
                                                     this.state.courses.map((course,key) =>
                                                         <option value={course._id} key={key}>{course.name}</option>
                                                     )
@@ -187,8 +193,17 @@ class QuestionBankEditQues extends Component{
                                             <label htmlFor="subject">Choose a Subject:</label>
 
                                             <select id="subject" name="subject" style={{display: "block"}} onChange={this.handleChange}>
-
                                                 <option value="">Choose a Subject</option>
+                                                {
+                                                    this.state.courses.filter(course => course._id === this.state.course).map((course,key) => (
+                                                        course.subjects.map((subject,key) => (
+                                                            subject._id === editedQues.questionCategory._id ?
+                                                                <option value={subject._id} key={key}>{subject.name}</option>
+                                                                : ''
+                                                        ) )
+                                                    ))
+                                                }
+
                                                 {this.renderSubjects()}
                                             </select>
                                         </div>
