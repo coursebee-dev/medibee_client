@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from "react-redux";
 import Breadcrumbs from "../layout/Breadcrumbs";
 import {Editor} from "@tinymce/tinymce-react";
+import M from "materialize-css";
 
 class QuestionBankEditQues extends Component{
     constructor() {
@@ -70,9 +71,30 @@ class QuestionBankEditQues extends Component{
                 question : data.question,
                 answers : data.answers,
                 course: data.course,
+                description: data.explanation,
                 subject: data.questionCategory._id
             })
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    UpdateQuestion = async (e) => {
+        e.preventDefault();
+        const { question,description,answers,subject,course } = this.state;
+        try{
+            const formData = {
+                question: question,
+                explanation : description,
+                answers : answers,
+                questionCategory : subject,
+                course: course
+            }
+            const {data} = await  axios.post(`/api/admin/questionBank/question/update/${this.props.match.params.questionId}`,formData)
+            M.toast({ html: data.message });
+            this.props.history.push("/admin/dashboard/questionBank/dashboard");
+        }
+        catch (error) {
             console.log(error)
         }
     }
@@ -88,7 +110,7 @@ class QuestionBankEditQues extends Component{
                     {
                         editedQues ?
                             <div className="row">
-                                <form className="col s12" onSubmit={this.AddQuestion}>
+                                <form className="col s12" onSubmit={this.UpdateQuestion}>
 
                                     <div className="row">
                                         <div className="input-field col s12">
@@ -171,8 +193,8 @@ class QuestionBankEditQues extends Component{
                                         <div className="col s6">
                                             <label htmlFor="course">Choose a Course:</label>
 
-                                            <select id="course" name="course" value={this.state.course ? this.state.course : ''} style={{display: "block"}} onChange={this.handleChange}>
-                                                <option value="">Choose a Course</option>
+                                            <select id="course" name="course" value={this.state.course ? this.state.course : ''} style={{display: "block"}} onChange={this.handleChange} disabled>
+
                                                 {
                                                     this.state.courses.map( (course,key) => (
                                                             course._id === editedQues.course ?
@@ -181,6 +203,7 @@ class QuestionBankEditQues extends Component{
                                                         )
                                                     )
                                                 }
+                                                <option value="">Choose a Course</option>
                                                 {
                                                     this.state.courses.map((course,key) =>
                                                         <option value={course._id} key={key}>{course.name}</option>
@@ -192,8 +215,8 @@ class QuestionBankEditQues extends Component{
                                         <div className="col s6">
                                             <label htmlFor="subject">Choose a Subject:</label>
 
-                                            <select id="subject" name="subject" style={{display: "block"}} onChange={this.handleChange}>
-                                                <option value="">Choose a Subject</option>
+                                            <select id="subject" name="subject" value={this.state.subject ? this.state.subject : ''} style={{display: "block"}} onChange={this.handleChange} disabled>
+
                                                 {
                                                     this.state.courses.filter(course => course._id === this.state.course).map((course,key) => (
                                                         course.subjects.map((subject,key) => (
@@ -203,6 +226,7 @@ class QuestionBankEditQues extends Component{
                                                         ) )
                                                     ))
                                                 }
+                                                <option value="">Choose a Subject</option>
 
                                                 {this.renderSubjects()}
                                             </select>
@@ -233,7 +257,7 @@ class QuestionBankEditQues extends Component{
 
                                     <div className="row">
                                         <div className="input-field col s12">
-                                            <button className="btn" type="submit" onClick={this.showOutput} >Edit Question</button>
+                                            <button className="btn" type="submit" >Edit Question</button>
                                         </div>
                                     </div>
 
