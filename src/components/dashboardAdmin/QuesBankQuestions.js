@@ -136,6 +136,12 @@ class QuesBankQuestions extends Component{
         console.log("after delete item",this.state.answers)
     }
 
+    deleteQues = (questionId) => {
+        const data = axios.post(`/api/admin/questionBank/question/delete/${questionId}`);
+        M.toast({ html: data.message });
+        this.fetchQuestions()
+    }
+
 
     render() {
         let API_KEY = process.env.REACT_APP_NOT_TINYMCE_API_KEY;
@@ -338,8 +344,8 @@ class QuesBankQuestions extends Component{
                                                     <Link to={`/admin/dashboard/questionBank/edit/${question._id}`}>
                                                         <span className="btn secondary-content btn-small red">Edit</span>
                                                     </Link>
+                                                    <span style={{ cursor: "pointer" }} onClick={() => this.deleteQues(question._id)} className="secondary-content material-icons red-text">close</span>
                                                 </div>
-                                                <hr/>
                                             </div>
 
                                         ))
