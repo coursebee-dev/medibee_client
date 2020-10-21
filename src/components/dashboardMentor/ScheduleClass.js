@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Dropbox } from "dropbox";
 import { scheduleLiveClass } from "../../actions/liveClassAction";
 import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import "../../App.css";
 import moment from "moment";
-import isofetch from 'isomorphic-fetch';
-
-
-var dbx = new Dropbox({
-  accessToken:
-    "sl.AjZZTe_5c5HIm68HF4Omz3GMxpRijxvIqj_eMQzCaDXIS5nHx1vrEU-Nf0bursBjZa5qNLtuHb_RhzEAvmFtje0EIx3iGS9XOvgzx1pYfLVxMor4iPf-vLdyccxVWS-H9dOZmUQi"
-  ,
-  fetch: isofetch
-});
 
 class ScheduleClass extends Component {
   constructor() {
@@ -33,9 +23,8 @@ class ScheduleClass extends Component {
     };
     this.getSubjects = this.getSubjects.bind(this);
     this.getCategories = this.getCategories.bind(this);
-    this.handleUploadChange = this.handleUploadChange.bind(this);
-    this.uploadfiles = this.uploadfiles.bind(this)
   }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
@@ -71,26 +60,6 @@ class ScheduleClass extends Component {
     this.getSubjects();
     //console.log(this.state)
   }
-  handleUploadChange = async e => {
-    let { files } = e.target;
-    const body = new FormData()
-    body.append('upload_preset', "enxcncgu")
-    body.append("file", files[0])
-    body.append("folder", "mentors/najishm828282@gmail.com/medibee/liveclass/description")
-
-    try {
-      const { data } = await axios.post("https://api.cloudinary.com/v1_1/coursebee/upload", body)
-      let a = data.url;
-      a = a.replace("http://", "https://")
-      this.setState({ desurl: a })
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  uploadfiles = async () => {
-  }
-
 
   handleEditorChange = (content) => {
     console.log("Content was updated:", content);
@@ -227,16 +196,6 @@ class ScheduleClass extends Component {
                       render={(msg) => <span className="red-text">{msg}</span>}
                     />
                   </div>
-                  <div class="file-field col s12 input-field">
-                    <div class="btn">
-                      <span>Add an image in description</span>
-                      <input type="file" onChange={this.handleUploadChange} />
-                    </div>
-                    <div className="file-path-wrapper">
-                      <input className="file-path validate" type="text" />
-                    </div>
-                    <code>{this.state.desurl}</code>
-                  </div>
                   <div className="input-field col s12">
                     <span className="required-field">Description</span>
                     <Editor
@@ -253,9 +212,31 @@ class ScheduleClass extends Component {
                         ],
                         toolbar:
                           "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat ",
-                        images_upload_handler: (a, s, f) => {
-                          alert("Upload is not vailable. Use the upload option before the description field below and paste the link here. ")
-                          f()
+                        automatic_uploads: true,
+                        images_upload_url: "https://api.cloudinary.com/v1_1/coursebee/upload",
+                        images_upload_handler: async (blobinfo, success, failure) => {
+                          let headers = new Headers()
+                          headers.append('Accept', 'Application/JSON')
+
+                          let formdata = new FormData()
+
+                          formdata.append("name", blobinfo.filename())
+                          formdata.append("image", blobinfo.base64())
+
+                          let req = new Request("https://api.imgbb.com/1/upload?expiration=600&key=b9eed6cb0484ae308da889596a484e50", {
+                            method: 'POST',
+                            headers,
+                            mode: 'cors',
+                            body: formdata
+                          })
+
+
+
+                          fetch(req)
+                            .then(res => res.json())
+                            .then(data => success(data.data.url))
+                            .catch(err => failure(err.message))
+
                         }
                       }}
 
