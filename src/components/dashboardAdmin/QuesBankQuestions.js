@@ -168,22 +168,49 @@ class QuesBankQuestions extends Component{
                                                         <div className="row">
                                                             <div className="input-field col s12">
                                                                 <span>Question Title</span>
+
                                                                 <Editor
                                                                     apiKey={API_KEY}
                                                                     init={{
                                                                         height: 250,
-                                                                        menubar: 'edit insert format table tools help',
+                                                                        menubar: "edit insert format table tools help",
                                                                         plugins: [
-                                                                            ' autolink media lists link charmap print preview anchor',
-                                                                            'searchreplace visualblocks code fullscreen',
-                                                                            'insertdatetime table paste code wordcount'
+                                                                            "image autolink lists link charmap print preview anchor",
+                                                                            "searchreplace visualblocks code fullscreen",
+                                                                            "insertdatetime table paste code wordcount",
                                                                         ],
                                                                         toolbar:
-                                                                            'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
+                                                                            "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat ",
+                                                                        automatic_uploads: true,
+                                                                        images_upload_url: "https://api.cloudinary.com/v1_1/coursebee/upload",
+                                                                        images_upload_handler: async (blobinfo, success, failure) => {
+                                                                            let headers = new Headers()
+                                                                            headers.append('Accept', 'Application/JSON')
+
+                                                                            let formdata = new FormData()
+
+                                                                            formdata.append("name", blobinfo.filename())
+                                                                            formdata.append("image", blobinfo.base64())
+
+                                                                            let req = new Request("https://api.imgbb.com/1/upload?expiration=600&key=b9eed6cb0484ae308da889596a484e50", {
+                                                                                method: 'POST',
+                                                                                headers,
+                                                                                mode: 'cors',
+                                                                                body: formdata
+                                                                            })
+
+
+
+                                                                            fetch(req)
+                                                                                .then(res => res.json())
+                                                                                .then(data => success(data.data.url))
+                                                                                .catch(err => failure(err.message))
+
+                                                                        }
                                                                     }}
+
                                                                     initialValue={this.state.question}
                                                                     onChange={(e) => { this.setState({question: e.target.getContent() }) }}
-                                                                    // onEditorChange={desc => setFieldValue("description", desc)}
                                                                 />
                                                             </div>
                                                         </div>
@@ -272,18 +299,44 @@ class QuesBankQuestions extends Component{
                                                                 apiKey={API_KEY}
                                                                 init={{
                                                                     height: 500,
-                                                                    menubar: 'edit insert format table tools help',
+                                                                    menubar: "edit insert format table tools help",
                                                                     plugins: [
-                                                                        ' autolink media lists link charmap print preview anchor',
-                                                                        'searchreplace visualblocks code fullscreen',
-                                                                        'insertdatetime table paste code wordcount'
+                                                                        "image autolink lists link charmap print preview anchor",
+                                                                        "searchreplace visualblocks code fullscreen",
+                                                                        "insertdatetime table paste code wordcount",
                                                                     ],
                                                                     toolbar:
-                                                                        'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat  '
+                                                                        "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat ",
+                                                                    automatic_uploads: true,
+                                                                    images_upload_url: "https://api.cloudinary.com/v1_1/coursebee/upload",
+                                                                    images_upload_handler: async (blobinfo, success, failure) => {
+                                                                        let headers = new Headers()
+                                                                        headers.append('Accept', 'Application/JSON')
+
+                                                                        let formdata = new FormData()
+
+                                                                        formdata.append("name", blobinfo.filename())
+                                                                        formdata.append("image", blobinfo.base64())
+
+                                                                        let req = new Request("https://api.imgbb.com/1/upload?expiration=600&key=b9eed6cb0484ae308da889596a484e50", {
+                                                                            method: 'POST',
+                                                                            headers,
+                                                                            mode: 'cors',
+                                                                            body: formdata
+                                                                        })
+
+
+
+                                                                        fetch(req)
+                                                                            .then(res => res.json())
+                                                                            .then(data => success(data.data.url))
+                                                                            .catch(err => failure(err.message))
+
+                                                                    }
                                                                 }}
+
                                                                 initialValue={this.state.description}
                                                                 onChange={(e) => { this.setState({ description:e.target.getContent()}) }}
-                                                                // onEditorChange={desc => setFieldValue("description", desc)}
                                                             />
                                                         </div>
 
